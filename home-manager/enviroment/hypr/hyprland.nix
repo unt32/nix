@@ -25,6 +25,12 @@
       ];
 
       exec-once = [
+        
+        "hyprlock"
+        "hypridle"
+        "hyprpaper"
+        #"~/.config/hypr/changeWallpaper.sh"
+
         "waybar"
         "dunst"
 

@@ -1,6 +1,6 @@
 {
   imports = [
-    ./hyprland.nix
+    ./hypr/bundle.nix
     ./waybar.nix
     ./wlogout.nix
     ./wofi.nix
