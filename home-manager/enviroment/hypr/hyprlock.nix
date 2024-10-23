@@ -60,7 +60,7 @@
           rounding = -1;
           rotate = 0;
           reload_time = -1;
-          reload_cmd = ;
+          reload_cmd = "";
           position = "0, 40";
           halign = "center";
           valign = "center";
