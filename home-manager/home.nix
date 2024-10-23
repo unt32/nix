@@ -1,5 +1,7 @@
 { pkgs, pkgs-unstable,  ... }: {
 
+    pkgs.config.allowUnfree = true;
+
     imports = [
         ./apps/bundle.nix
         ./enviroment/bundle.nix
