@@ -21,12 +21,6 @@
   {
     nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
       specialArgs = {
-
-        pkgs = import nixpkgs {
-          inherit system;
-          config.allowUnfree = true;
-        };
-
         pkgs-unstable = import nixpkgs-unstable {
           inherit system;
           config.allowUnfree = true;
