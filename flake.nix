@@ -35,7 +35,7 @@
     
     homeConfigurations.unt32 = home-manager.lib.homeManagerConfiguration {
       pkgs = nixpkgs.legacyPackages.${system};
-     # extraSpecialArgs = { inherit inputs; };
+      extraSpecialArgs = { inherit inputs; };
       modules = [ ./home-manager/home.nix ];
       #pkgs.config.allowUnfree = true;
     };
