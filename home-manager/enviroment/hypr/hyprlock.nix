@@ -24,6 +24,7 @@
 
       # LAYOUT
       label = [
+        # LAYOUT
         {
           monitor = "";
           text = "$LAYOUT";
@@ -34,10 +35,8 @@
           halign = "left";
           valign = "bottom";
         }
-      ];
 
-      # TIME
-      label = [
+        # TIME
         {
           monitor = "";
           text = ''cmd[update:1000] echo "$(date +"%H:%M")"'';
@@ -45,20 +44,6 @@
           font_size = 30;
           font_family = "SF Pro Display Bold";
           position = "-10, -20 ";
-          halign = "right";
-          valign = "bottom";
-        }
-      ];
-
-      # DATE
-      label =  [
-        {
-          monitor = "";
-          text = ''cmd[update:43200000] date +"%A, %d %B %Y"'';
-          color = "rgba(255, 255, 255, .65)";
-          font_size = 15;
-          font_family = "SF Pro Display Bold";
-          position = "-10, -15";
           halign = "right";
           valign = "bottom";
         }
