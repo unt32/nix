@@ -4,10 +4,6 @@
     allowUnfree = true;
   };
 
-  pkgs-unstable.config = {
-    allowUnfree = true;
-  };
-
   environment.systemPackages = with pkgs; [
     home-manager
 

@@ -4,10 +4,10 @@
     ./user.nix
     ./sound.nix
     ./network.nix
-    #./bluetooth.nix
+    ./bluetooth.nix
     ./hyprland.nix
     ./xdg.nix
     #./xserver.nix
-    #./collect-garbage.nix
+    ./collect-garbage.nix
   ];
 }
