@@ -16,7 +16,7 @@
 
       listener = {
           timeout = 300;                                # 5min
-          on-timeout = loginctl lock-session            # lock screen when timeout has passed
+          on-timeout = loginctl lock-session;            # lock screen when timeout has passed
       };
 
       listener = {
