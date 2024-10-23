@@ -3,18 +3,18 @@
       enable = true;
       settings = {
         main = {
-            term = "foot";
+          term = "foot";
 
-            font = "monospace:size=12";
-            dpi-aware = "no";
+          font = "monospace:size=12";
+          dpi-aware = "no";
         };
 
         mouse = {
-            hide-when-typing = "no";
+          hide-when-typing = "no";
         };
 
         colors = {
-            alpha = "0.8";
+          alpha = 0.8;
         };
       };
   };
