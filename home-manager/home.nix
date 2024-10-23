@@ -1,6 +1,7 @@
 { pkgs, pkgs-unstable, config,  ... }: {
 
-    pkgs.config.allowUnfree = true;
+    nixpkgs.config.allowUnfree = true;
+    nixpkgs-unstable.config.allowUnfree = true;
 
     imports = [
         ./apps/bundle.nix
