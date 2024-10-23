@@ -2,343 +2,262 @@
   programs.waybar = {
     enable = true;
     settings = {
-      mainBar = {
-        layer = "top";
-        position = "top";
-        margin = "9 13 -10 18";
+        mainBar = {
+            layer = "top";
+            position = "top";
+            height = 34;
+            spacing = 4;
 
-        modules-left = ["hyprland/workspaces" "hyprland/language" "keyboard-state" "hyprland/submap"];
-        modules-center = ["clock" "custom/weather"];
-        modules-right = ["pulseaudio" "custom/mem" "cpu" "backlight" "battery" "tray"];
+            modules-left = ["hyprland/workspaces" "pulseaudio" "backlight" "hyprland/language"];
+            modules-center = ["hyprland/window"];
+            modules-right = ["hyprland/submap" "cpu" "memory" "temperature" "battery" "tray" "clock"];
 
-        "hyprland/workspaces" = {
-          disable-scroll = true;
+            "hyprland/workspaces" = {
+                disable-scroll = true;
+                on-click = "activate";
+                format = "{name}";
+                on-scroll-up = "hyprctl dispatch workspace m-1 > /dev/null";
+                on-scroll-down = "hyprctl dispatch workspace m+1 > /dev/null";
+                format-icons = {
+                    "1" = "";
+                    "2" = "";
+                    "3" = "";
+                    "4" = "";
+                    "5" = "";
+                    "urgent" = "";
+                    "focused" = "";
+                    "default" = "";
+                };
+            };
+
+            keyboard-state = {
+                numlock = false;
+                capslock = false;
+                format = "{name} {icon}";
+                format-icons = {
+                    locked = "";
+                    unlocked = "";
+                };
+            };
+                    
+            "hyprland/window" = {
+                max-length = 50;
+                separate-outputs = true;
+            };
+
+            "hyprland/language" = {
+                format = "{}";
+                max-length = 18;
+            };
+
+            idle_inhibitor = {
+                format = "{icon}";
+                format-icons = {
+                    activated = "";
+                    deactivated = "";
+                };
+            };
+
+            tray = {
+                # icon-size = 21;
+                spacing = 0;
+            };
+
+            clock = {
+                # timezone = "America/New_York";
+                tooltip-format = "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>";
+                format-alt = "{:%d-%m-%Y}";
+            };
+
+            cpu = {
+                interval = 1;
+                format = "{usage}% ";
+                tooltip = false;
+            };
+
+            memory = {
+                interval = 1;
+                format = "{}% ";
+            };
+
+            temperature = {
+                interval = 1;
+                # thermal-zone = 2;
+                # hwmon-path = "/sys/class/hwmon/hwmon2/temp1_input";
+                critical-threshold = 80;
+                # format-critical = "{temperatureC}°C {icon}";
+                format = "{temperatureC}°C {icon}";
+                format-icons = ["" "" ""];
+            };
+
+            backlight = {
+                # device = "acpi_video1";
+                format = "{percent}% {icon}";
+                format-icons = ["" "" "" "" "" "" "" "" ""];
+            };
+
+            battery = {
+                states = {
+                    # good = 95;
+                    warning = 30;
+                    critical = 15;
+                };
+                format = "{capacity}% {icon}";
+                format-charging = "{capacity}% 🗲";
+                format-plugged = "{capacity}% ";
+                # format-alt = "{time} {icon}";
+                # format-good = ""; # An empty format will hide the module
+                # format-full = "";
+                format-icons = ["" "" "" ""  ""];
+            };
+
+            network = {
+            # "interface" = "wlan0"; # (Optional) To force the use of this interface
+                format-wifi = "{essid} ";
+                format-ethernet = "{ipaddr}/{cidr} ";
+                tooltip-format = "{ifname} via {gwaddr} ";
+                format-linked = "{ifname} (No IP) ";
+                format-disconnected = "Disconnected ⚠";
+                format-alt = "{ifname}: {ipaddr}/{cidr}";
+            };
+
+            pulseaudio = {
+                # "scroll-step" = 10; # %; can be a float
+                format = "{volume}%{icon} {format_source}";
+                format-bluetooth = "{volume}% {icon} {format_source}";
+                format-bluetooth-muted = " {icon} {format_source}";
+                format-muted = " {format_source}";
+                format-source = "{volume}% ";
+                format-source-muted = "";
+                format-icons = {
+                    headphone = "";
+                    hands-free = "";
+                    headset = "";
+                    phone = "";
+                    portable = "";
+                    car = "";
+                    default = ["" "" ""];
+                };
+                on-click = "pavucontrol";
+            };
         };
-
-    "hyprland/language" = {
-        format-en = "US";
-        format-ru = "RU";
-	      min-length = 5;
-	      tooltip = false;
-    };
-
-    "keyboard-state" = {
-        #numlock = true;
-        capslock = true;
-        format = "{icon} ";
-        format-icons = {
-            locked = " ";
-            unlocked = "";
-        };
-    };
-
-    "clock" = {
-        # timezone = "America/New_York";
-        tooltip-format = "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>";
-        format = "{:%a; %d %b, %I:%M %p}";
-    };
-
-    "custom/weather" = {
-        format = "{}";
-        tooltip = true;
-        interval = 1800;
-        exec = "$HOME/.config/waybar/scripts/wttr.py";
-        return-type = "json";
-    };
-
-    "pulseaudio" = {
-        # scroll-step = 1; # %, can be a float
-        reverse-scrolling = 1;
-        format = "{volume}% {icon} {format_source}";
-        format-bluetooth = "{volume}% {icon} {format_source}";
-        format-bluetooth-muted = " {icon} {format_source}";
-        format-muted = " {format_source}";
-        format-source = "{volume}% ";
-        format-source-muted = "";
-        format-icons = {
-            headphone = "";
-            hands-free = "";
-            headset = "";
-            phone = "";
-            portable = "";
-            car = "";
-            default = ["" "" ""];
-        };
-        on-click = "pavucontrol";
-        min-length = 13;
-    };
-
-    "custom/mem" = {
-        format = "{} ";
-        interval = 3;
-        exec = "free -h | awk '/Mem:/{printf $3}'";
-        tooltip = false;
-    };
-
-    "cpu" = {
-      interval = 2;
-      format = "{usage}% ";
-      min-length = 6;
-    };
-
-    "temperature" = {
-        # thermal-zone = 2;
-        # hwmon-path = "/sys/class/hwmon/hwmon2/temp1_input";
-        critical-threshold = 80;
-        # format-critical = "{temperatureC}°C {icon}";
-        format = "{temperatureC}°C {icon}";
-        format-icons = ["" "" "" "" ""];
-        tooltip = false;
-    };
-
-    "backlight" = {
-        device = "intel_backlight";
-        format = "{percent}% {icon}";
-        format-icons = [""];
-        min-length = 7;
-    };
-
-    battery = {
-        states = {
-            warning = 30;
-            critical = 15;
-        };
-        format = "{capacity}% {icon}";
-        format-charging = "{capacity}% ";
-        format-plugged = "{capacity}% ";
-        format-alt = "{time} {icon}";
-        format-icons = ["" "" "" "" "" "" "" "" "" ""];
-	on-update = "$HOME/.config/waybar/scripts/check_battery.sh";
-    };
-
-    tray = {
-        icon-size = 16;
-        spacing = 0;
-    };
-
-      };
     };
   
     style = 
       ''
+@define-color base00 #181818;
+@define-color base01 #2b2e37;
+@define-color base02 #3b3e47;
+@define-color base03 #585858;
+@define-color base04 #b8b8b8;
+@define-color base05 #d8d8d8;
+@define-color base06 #e8e8e8;
+@define-color base07 #f8f8f8;
+@define-color base08 #ab4642;
+@define-color base09 #dc9656;
+@define-color base0A #f7ca88;
+@define-color base0B #a1b56c;
+@define-color base0C #86c1b9;
+@define-color base0D #7cafc2;
+@define-color base0E #ba8baf;
+@define-color base0F #a16946;
+
 * {
-    border: none;
-    border-radius: 0;
-    /* `otf-font-awesome` is required to be installed for icons */
-    font-family: JetBrains Mono;
-    font-weight: bold; 
-    min-height: 20px;
+  transition: none;
+  box-shadow: none;
 }
 
-window#waybar {
-    background: transparent;
-}
-
-window#waybar.hidden {
-    opacity: 0.2;
+#waybar {
+	font-family: 'Source Code Pro', sans-serif;
+	font-size: 1.0em;
+	font-weight: 400;
+  color: @base04;
+  background: @base01;
+  border-radius: 0;
 }
 
 #workspaces {
-    margin-right: 8px;
-    border-radius: 10px;
-    transition: none;
-    background: #383c4a;
+  margin: 0 2px;
 }
 
 #workspaces button {
-    transition: none;
-    color: #7c818c;
-    background: transparent;
-    padding: 5px;
-    font-size: 18px;
+  margin: 4px 0;
+  padding: 0 4px;
+  color: @base05;
 }
 
-#workspaces button.persistent {
-    color: #7c818c;
-    font-size: 12px;
-}
-
-/* https://github.com/Alexays/Waybar/wiki/FAQ#the-workspace-buttons-have-a-strange-hover-effect */
-#workspaces button:hover {
-    transition: none;
-    box-shadow: inherit;
-    text-shadow: inherit;
-    border-radius: inherit;
-    color: #383c4a;
-    background: #7c818c;
+#workspaces button.visible {
 }
 
 #workspaces button.active {
-    background: #4e5263;
-    color: white;
-    border-radius: inherit;
+  border-radius: 4px;
+  background-color: @base02;
 }
 
-#language {
-    padding-left: 16px;
-    padding-right: 8px;
-    border-radius: 10px 0px 0px 10px;
-    transition: none;
-    color: #ffffff;
-    background: #383c4a;
-}
-
-#keyboard-state {
-    margin-right: 8px;
-    padding-right: 16px;
-    border-radius: 0px 10px 10px 0px;
-    transition: none;
-    color: #ffffff;
-    background: #383c4a;
-}
-
-#custom-pacman {
-    padding-left: 16px;
-    padding-right: 8px;
-    border-radius: 10px 0px 0px 10px;
-    transition: none;
-    color: #ffffff;
-    background: #383c4a;
-}
-
-#custom-mail {
-    margin-right: 8px;
-    padding-right: 16px;
-    border-radius: 0px 10px 10px 0px;
-    transition: none;
-    color: #ffffff;
-    background: #383c4a;
-}
-
-#submap {
-    padding-left: 16px;
-    padding-right: 16px;
-    border-radius: 10px;
-    transition: none;
-    color: #ffffff;
-    background: #383c4a;
-}
-
-#clock {
-    padding-left: 16px;
-    padding-right: 16px;
-    border-radius: 10px 0px 0px 10px;
-    transition: none;
-    color: #ffffff;
-    background: #383c4a;
-}
-
-#custom-weather {
-    padding-right: 16px;
-    border-radius: 0px 10px 10px 0px;
-    transition: none;
-    color: #ffffff;
-    background: #383c4a;
-}
-
-#pulseaudio {
-    margin-right: 8px;
-    padding-left: 16px;
-    padding-right: 16px;
-    border-radius: 10px;
-    transition: none;
-    color: #ffffff;
-    background: #383c4a;
-}
-
-#pulseaudio.muted {
-    background-color: #90b1b1;
-    color: #2a5c45;
-}
-
-#custom-mem {
-    margin-right: 8px;
-    padding-left: 16px;
-    padding-right: 16px;
-    border-radius: 10px;
-    transition: none;
-    color: #ffffff;
-    background: #383c4a;
-}
-
-#cpu {
-    margin-right: 8px;
-    padding-left: 16px;
-    padding-right: 16px;
-    border-radius: 10px;
-    transition: none;
-    color: #ffffff;
-    background: #383c4a;
-}
-
-#temperature {
-    margin-right: 8px;
-    padding-left: 16px;
-    padding-right: 16px;
-    border-radius: 10px;
-    transition: none;
-    color: #ffffff;
-    background: #383c4a;
-}
-
-#temperature.critical {
-    background-color: #eb4d4b;
-}
-
-#backlight {
-    margin-right: 8px;
-    padding-left: 16px;
-    padding-right: 16px;
-    border-radius: 10px;
-    transition: none;
-    color: #ffffff;
-    background: #383c4a;
-}
-
-#battery {
-    margin-right: 8px;
-    padding-left: 16px;
-    padding-right: 16px;
-    border-radius: 10px;
-    transition: none;
-    color: #ffffff;
-    background: #383c4a;
-}
-
-#battery.charging {
-    color: #ffffff;
-    background-color: #26A65B;
-}
-
-#battery.warning:not(.charging) {
-    background-color: #ffbe61;
-    color: black;
-}
-
-#battery.critical:not(.charging) {
-    background-color: #f53c3c;
-    color: #ffffff;
-    animation-name: blink;
-    animation-duration: 0.5s;
-    animation-timing-function: linear;
-    animation-iteration-count: infinite;
-    animation-direction: alternate;
+#workspaces button.urgent {
+  color: rgba(238, 46, 36, 1);
 }
 
 #tray {
-    padding-left: 16px;
-    padding-right: 16px;
-    border-radius: 10px;
-    transition: none;
-    color: #ffffff;
-    background: #383c4a;
+  margin: 4px 4px 4px 4px;
+  border-radius: 4px;
+  background-color: @base02;
 }
 
-@keyframes blink {
-    to {
-        background-color: #ffffff;
-        color: #000000;
-    }
+#tray * {
+  padding: 0 1px;
+}
+
+#tray *:first-child {
+  margin: 0 2px 0 1px;
+}
+
+#mode, #battery, #cpu, #memory, #network, #pulseaudio, #idle_inhibitor, #backlight, #clock, #temperature, #language{
+  margin: 4px 1px;
+  padding: 0 6px;
+  background-color: @base02;
+  border-radius: 4px;
+  min-width: 20px;
+}
+
+#cpu, #memory {
+  padding-right: 10px;
+}
+
+#battery, #network {
+  padding-right: 14px;
+}
+
+#pulseaudio.muted {
+  color: @base0F;
+}
+
+#pulseaudio.bluetooth {
+  color: @base0C;
+}
+
+#clock {
+  margin-left: 0px;
+  margin-right: 4px;
+  padding: 0px 6px;
+  font-size: 1.2em;
+  background-color: @base02;
+}
+
+#temperature.critical {
+  color: @base0F;
+}
+
+#window {
+  font-size: 0.9em;
+	font-weight: 400;
+	font-family: sans-serif;
+}
+
+#language {
+	font-size: 0.9em;
+	font-weight: 500;
+	letter-spacing: -1px;
 }
       '';
   };

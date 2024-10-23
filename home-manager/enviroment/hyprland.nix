@@ -19,14 +19,20 @@
         "GDK_BACKEND,wayland"
         "CLUTTER_BACKEND,wayland"
 
-        "LIBGL_ALWAYS_SOFTWARE,true"
-        "MESA_LOADER_DRIVER_OVERRIDE,zink"
-        "GSK_RENDERER,ngl"
+        #"LIBGL_ALWAYS_SOFTWARE,true"
+        #"MESA_LOADER_DRIVER_OVERRIDE,zink"
+        #"GSK_RENDERER,ngl"
       ];
 
       exec-once = [
-        #"waybar"
+        "waybar"
+        "dunst"
+
+        "cliphist wipe"
         "wl-paste --watch cliphist store"
+
+        "nm-applet --indicator"
+        "blueman-applet"
       ];
 
       debug = {
