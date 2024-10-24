@@ -166,7 +166,7 @@
         "$mainMod, V, togglefloating,"
         "$mainMod, R, exec, wofi --show drun"
         "$mainMod, P, exec, wlogout"
-        "$mainMod, L, exec, hyprlock"
+        "$mainMod, L, exec, loginctl lock-session"
         "$mainMod, F1, exec, ~/.config/hypr/gameMode.sh"
         "$mainMod, Backspace, exec, cliphist list | wofi -S dmenu -w 1 | cliphist decode | wl-copy"
 

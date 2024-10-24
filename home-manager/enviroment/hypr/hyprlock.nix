@@ -4,6 +4,7 @@
     settings = {
       general = {
         no_fade_in = false;
+        no_fade_out = true;
         hide_cursor = true;
         ignore_empty_input = true;
         grace = 0;
@@ -38,11 +39,11 @@
         # TIME
         {
           monitor = "";
-          text = ''cmd[update:1000] echo "$(date +"%H:%M")"'';
+          text = ''cmd[update:1000]update:<time>:1 echo "$(date +"%H:%M")"'';
           color = "rgba(255, 255, 255, .65)";
           font_size = 30;
           font_family = "SF Pro Display Bold";
-          position = "0, 0";
+          position = "-5, -50";
           halign = "right";
           valign = "bottom";
         }

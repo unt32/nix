@@ -9,5 +9,8 @@
     ./xdg.nix
     #./xserver.nix
     ./collect-garbage.nix
+   
+    ./banana.nix
+    ./polkit.nix
   ];
 }
