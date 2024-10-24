@@ -1,7 +1,6 @@
-{ pkgs, pkgs-unstable, config,  ... }: {
+{ pkgs, config, username,  ... }: {
 
     nixpkgs.config.allowUnfree = true;
- #   nixpkgs-unstable.config.allowUnfree = true;
 
     imports = [
         ./apps/bundle.nix
@@ -9,8 +8,8 @@
     ];
 
     home = {
-        username = "unt32";
-        homeDirectory = "/home/unt32";
+        username = "${username}";
+        homeDirectory = "/home/${username}";
         stateVersion = "24.05";
     };
 

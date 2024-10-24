@@ -1,4 +1,4 @@
-{
+{ username, ...}: {
   programs.hyprlock = {
     enable = true;
     settings = {
@@ -14,7 +14,7 @@
       background = [ 
         {
           monitor = "";
-          path = "/home/unt32/nix/.icons/wallpaper.jpg";
+          path = "/home/${username}/nix/images/wallpaper.jpg";
           blur_passes = 2;
           contrast = 0.8916;
           brightness = 0.8172;
@@ -35,25 +35,13 @@
           halign = "left";
           valign = "bottom";
         }
-
-        # TIME
-        {
-          monitor = "";
-          text = ''cmd[update:1000]update:<time>:1 echo "$(date +"%H:%M")"'';
-          color = "rgba(255, 255, 255, .65)";
-          font_size = 30;
-          font_family = "SF Pro Display Bold";
-          position = "-5, -50";
-          halign = "right";
-          valign = "bottom";
-        }
       ];
 
       # Profie-Photo
       image = [
         {
           monitor = "";
-          path = "/home/unt32/nix/.icons/ava.png";
+          path = "/home/${username}/nix/images/ava.png";
           border_size = 2;
           border_color = "rgba(255, 255, 255, .65)";
           size = 130;

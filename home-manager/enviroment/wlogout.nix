@@ -1,4 +1,4 @@
-{
+{ pkgs, ... }: {
   programs.wlogout = {
     enable = true;
 
@@ -63,27 +63,27 @@
             }
 
             #lock {
-                background-image: image(url("/home/unt32/nix/.icons/wlogout/lock.png"), url("/home/unt32/nix/.icons/wlogout/lock.png"));
+                background-image: image(url("${pkgs.wlogout}/share/wlogout/icons/lock.png"), url("${pkgs.wlogout}/share/wlogout/icons/lock.png"));
             }
 
             #logout {
-                background-image: image(url("/home/unt32/nix/.icons/wlogout/logout.png"), url("/home/unt32/nix/.icons/wlogout/logout.png"));
+                background-image: image(url("${pkgs.wlogout}/share/wlogout/icons/logout.png"), url("${pkgs.wlogout}/share/wlogout/icons/logout.png"));
             }
 
             #suspend {
-                background-image: image(url("/home/unt32/nix/.icons/wlogout/suspend.png"), url("/home/unt32/nix/.icons/wlogout/suspend.png"));
+                background-image: image(url("${pkgs.wlogout}/share/wlogout/icons/suspend.png"), url("${pkgs.wlogout}/share/wlogout/icons/suspend.png"));
             }
 
             #hibernate {
-                background-image: image(url("/home/unt32/nix/.icons/wlogout/hibernate.png"), url("/home/unt32/nix/.icons/wlogout/hibernate.png"));
+                background-image: image(url("${pkgs.wlogout}/share/wlogout/icons/hibernate.png"), url("${pkgs.wlogout}/share/wlogout/icons/hibernate.png"));
             }
 
             #shutdown {
-                background-image: image(url("/home/unt32/nix/.icons/wlogout/shutdown.png"), url("/home/unt32/nix/.icons/wlogout/shutdown.png"));
+                background-image: image(url("${pkgs.wlogout}/share/wlogout/icons/shutdown.png"), url("${pkgs.wlogout}/share/wlogout/icons/shutdown.png"));
             }
 
             #reboot {
-                background-image: image(url("/home/unt32/nix/.icons/wlogout/reboot.png"), url("/home/unt32/nix/.icons/wlogout/reboot.png"));
+                background-image: image(url("${pkgs.wlogout}/share/wlogout/icons/reboot.png"), url("${pkgs.wlogout}/share/wlogout/icons/reboot.png"));
             }
     '';
   };

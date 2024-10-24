@@ -1,9 +1,9 @@
-{
+{ username, ...}: {
   services.hyprpaper = {
     enable = true;
     settings = {
-      "preload" = "/home/unt32/nix/.icons/wallpaper.jpg";
-      "wallpaper" = ",/home/unt32/nix/.icons/wallpaper.jpg";
+      "preload" = "/home/${username}/nix/images/wallpaper.jpg";
+      "wallpaper" = ",/home/${username}/nix/images/wallpaper.jpg";
     };
   };
 }

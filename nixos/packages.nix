@@ -1,5 +1,5 @@
 {pkgs, pkgs-unstable, ...}: {
-  
+
   nixpkgs.config.allowUnfree = true;
 
   environment.systemPackages = with pkgs; [
@@ -11,50 +11,6 @@
 	  git
 
     mc
-
-    # app launcher
-    wofi
-    cliphist
-    wofi-emoji
-
-    # wireless
-	  blueman
-	  networkmanagerapplet	
-
-    # sound
-    wireplumber
-    pipewire 
-    pavucontrol 
-
-    # hyprland
-	  hyprland
-    hyprpaper
-	  hyprshot
-	  hypridle
-    hyprlock
-	  hyprpicker
-	  hyprcursor
-
-    # wayland 
-    xdg-desktop-portal-gtk
-    xdg-desktop-portal-hyprland
-    xwayland
-    wayland-protocols
-    wayland-utils
-    wl-clipboard
-    wlroots
-    wlogout
-    
-    cliphist
-
-
-    gtk3
-    gtk4
-    gnome.nautilus
-    polkit_gnome
-    gnome.gnome-calculator
-    
-    greetd.tuigreet
   ];
 
   fonts.packages = with pkgs; [

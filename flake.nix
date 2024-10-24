@@ -17,10 +17,11 @@
   outputs = inputs@{ self, nixpkgs, nixpkgs-unstable, home-manager, ... }:
     let
       system = "x86_64-linux";
-      
+      username = "unt32";
+      hostname = "nixos";
     in 
   {
-    nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
+    nixosConfigurations.${hostname} = nixpkgs.lib.nixosSystem {
       specialArgs = {
        # pkgs = import nixpkgs {
        #   inherit system;
@@ -39,11 +40,22 @@
       ];
     };
     
-    homeConfigurations.unt32 = home-manager.lib.homeManagerConfiguration {
+    homeConfigurations."${username}" = home-manager.lib.homeManagerConfiguration {
       pkgs = nixpkgs.legacyPackages.${system};
-      extraSpecialArgs = { inherit inputs; };
-      modules = [ ./home-manager/home.nix ];
-      #pkgs.config.allowUnfree = true;
+     # pkgs-unstable = nixpkgs-unstable.legacyPackages.${system};
+
+      extraSpecialArgs = {
+        inherit inputs;
+        pkgs-unstable = import nixpkgs-unstable {
+          inherit system;
+          config.allowUnfree = true;
+        };  
+        username = "${username}";
+      };
+
+      modules = [
+        ./home-manager/home.nix
+      ];
     };
   };
 }
