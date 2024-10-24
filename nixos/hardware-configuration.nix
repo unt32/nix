@@ -4,26 +4,26 @@
 { config, lib, pkgs, modulesPath, ... }:
 
 {
-  imports = [ ];
+  imports =
+    [ (modulesPath + "/installer/scan/not-detected.nix")
+    ];
 
-  boot.initrd.availableKernelModules = [ "ata_piix" "ohci_pci" "ehci_pci" "ahci" "sd_mod" ];
+  boot.initrd.availableKernelModules = [ "ehci_pci" "ahci" "usb_storage" "sd_mod" "sr_mod" "rtsx_pci_sdmmc" ];
   boot.initrd.kernelModules = [ ];
-  boot.kernelModules = [ "kvm-amd" ];
+  boot.kernelModules = [ "kvm-intel" ];
   boot.extraModulePackages = [ ];
 
   fileSystems."/" =
-    { device = "/dev/disk/by-uuid/f080a955-59c7-4b1e-a046-ae2d62ad3ac5";
+    { device = "/dev/disk/by-uuid/8df41d5f-337d-4f5a-9f53-e82421db0ef7";
       fsType = "ext4";
     };
 
-  fileSystems."/media/sf_share" =
-    { device = "share";
-      fsType = "vboxsf";
-    };
+  boot.initrd.luks.devices."luks-4f845fe5-eff7-45b1-8ffe-6dc1dba7b28a".device = "/dev/disk/by-uuid/4f845fe5-eff7-45b1-8ffe-6dc1dba7b28a";
 
-  fileSystems."/home/unt32/nix" =
-    { device = "share";
-      fsType = "vboxsf";
+  fileSystems."/boot" =
+    { device = "/dev/disk/by-uuid/39E1-1939";
+      fsType = "vfat";
+      options = [ "fmask=0077" "dmask=0077" ];
     };
 
   swapDevices = [ ];
@@ -33,8 +33,9 @@
   # still possible to use this option, but it's recommended to use it in conjunction
   # with explicit per-interface declarations with `networking.interfaces.<interface>.useDHCP`.
   networking.useDHCP = lib.mkDefault true;
-  # networking.interfaces.enp0s3.useDHCP = lib.mkDefault true;
+  # networking.interfaces.eno1.useDHCP = lib.mkDefault true;
+  # networking.interfaces.wlo1.useDHCP = lib.mkDefault true;
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
-  virtualisation.virtualbox.guest.enable = true;
+  hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
 }

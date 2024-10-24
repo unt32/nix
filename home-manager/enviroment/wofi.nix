@@ -18,7 +18,7 @@
       margin: 0px;
       border: 1px solid #7A8478;
       border-radius: 10px;
-      background-color: #1E2326;
+      background-color: #1E1E1E;
       opacity: 0.97;
       }
       

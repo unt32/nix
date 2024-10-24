@@ -3,8 +3,13 @@
     enable = true;
     
     theme = {
-      name = "Adwaita-dark";
-      package = pkgs.gnome.gnome-themes-extra;
+      name = "Pop-dark";
+      package = pkgs.pop-gtk-theme;
+    };
+
+    iconTheme = {
+      name = "Vimix-Doder";
+      package = pkgs.vimix-icon-theme;
     };
   };
 

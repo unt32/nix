@@ -6,8 +6,8 @@
     settings = {
       "$mainMod" = "SUPER";
 
-      monitor = ",preferred,auto,1";
-      #monitor = ",800x600@30,0x0,1";
+      #monitor = ",preferred,auto,1";
+      monitor = "LDVS-1,1366x768@60,0x0,1";
 
       env = [
         "HYPRCURSOR_THEME,Vanilla-DMZ"
@@ -15,9 +15,11 @@
 
         "XDG_SESSION_TYPE,wayland"
         "XDG_SESSION_DESKTOP,Hyprland"
-        "QT_QPA_PLATFORM,wayland"
-        "GDK_BACKEND,wayland"
+        "QT_QPA_PLATFORM,wayland;xcb"
+        "GDK_BACKEND,wayland,x11,*"
+        "SDL_VIDEODRIVER,wayland"
         "CLUTTER_BACKEND,wayland"
+        "QT_QPA_PLATFORMTHEME,qt5ct"
 
         #"LIBGL_ALWAYS_SOFTWARE,true"
         #"MESA_LOADER_DRIVER_OVERRIDE,zink"
@@ -139,11 +141,20 @@
 
         "float, ^(.blueman-manager-wrapped)$"
         "pin, ^(.blueman-manager-wrapped)$"
+
+        "float,^(xdg-desktop-portal-gtk)$"
+        "move 100 100,^(xdg-desktop-portal-gtk)$"
+        "size 800 500,^(xdg-desktop-portal-gtk)$"
       ];
 
       windowrulev2 = [
         "suppressevent maximize, class:.*"
-        "bordercolor rgb(FF0000),xwayland:1" # check if window is xwayland
+
+        "bordercolor rgb(FF0000), xwayland:1" # check if window is xwayland
+
+        "opacity 0.98, initialTitle:^(Visual Studio Code)$"
+
+        "opacity 0.9, class:^(org.gnome.Nautilus)$"
       ];
 
       bind = [
@@ -191,6 +202,28 @@
         # Scroll through existing workspaces with mainMod + scroll
         "$mainMod, mouse_down, workspace, e+1"
         "$mainMod, mouse_up, workspace, e-1"
+
+        # Move focus with mainMod + arrow keys
+        "$mainMod, left,  movefocus, l"
+        "$mainMod, right, movefocus, r"
+        "$mainMod, up,    movefocus, u"
+        "$mainMod, down,  movefocus, d"
+
+        # Moving windows
+        "$mainMod SHIFT, left,  swapwindow, l"
+        "$mainMod SHIFT, right, swapwindow, r"
+        "$mainMod SHIFT, up,    swapwindow, u"
+        "$mainMod SHIFT, down,  swapwindow, d"
+
+        # Window resizing                     X  Y
+        "$mainMod CTRL, left,  resizeactive, -60 0"
+        "$mainMod CTRL, right, resizeactive,  60 0"
+        "$mainMod CTRL, up,    resizeactive,  0 -60"
+        "$mainMod CTRL, down,  resizeactive,  0  60"
+
+        # Waybar
+        "$mainMod, B, exec, pkill -SIGUSR1 waybar"
+        "$mainMod, W, exec, pkill -SIGUSR2 waybar"
       ];
 
       # Move/resize windows with mainMod + LMB/RMB and dragging

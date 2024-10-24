@@ -22,7 +22,6 @@
         }
       ];
 
-      # LAYOUT
       label = [
         # LAYOUT
         {
@@ -43,7 +42,7 @@
           color = "rgba(255, 255, 255, .65)";
           font_size = 30;
           font_family = "SF Pro Display Bold";
-          position = "-10, -20 ";
+          position = "0, 0";
           halign = "right";
           valign = "bottom";
         }

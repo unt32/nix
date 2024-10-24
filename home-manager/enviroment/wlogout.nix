@@ -31,7 +31,7 @@
 
             window {
               background-color: rgba(0, 0, 0, 0.6);
-                border-radius: 0;
+              border-radius: 0;
             }
 
             button {
@@ -47,6 +47,7 @@
               background-repeat: no-repeat;
               background-position: center;
               background-size: 25%;
+              outline-style: none;
             }
 
             button:focus, button:active {

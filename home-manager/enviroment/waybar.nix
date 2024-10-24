@@ -46,8 +46,10 @@
             };
 
             "hyprland/language" = {
-                format = "{}";
-                max-length = 18;
+              format-en = "EN";
+              format-ru = "RU";
+              min-length = 1;
+              tooltip = false;
             };
 
             idle_inhibitor = {
@@ -130,13 +132,13 @@
                 format-source = "{volume}% ";
                 format-source-muted = "";
                 format-icons = {
-                    headphone = "";
-                    hands-free = "";
-                    headset = "";
+                    headphone = "1";
+                    hands-free = "2";
+                    headset = "3";
                     phone = "";
                     portable = "";
                     car = "";
-                    default = ["" "" ""];
+                    default = ["4" "5" "6"];
                 };
                 on-click = "pavucontrol";
             };
@@ -205,7 +207,7 @@
 }
 
 #tray * {
-  padding: 0 1px;
+  padding: 0 1px 0 4px;
 }
 
 #tray *:first-child {
@@ -220,12 +222,8 @@
   min-width: 20px;
 }
 
-#cpu, #memory {
-  padding-right: 10px;
-}
-
 #battery, #network {
-  padding-right: 14px;
+  padding-right: 5px;
 }
 
 #pulseaudio.muted {
