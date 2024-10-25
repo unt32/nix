@@ -12,6 +12,8 @@
 
     # sound GUI control
     pavucontrol 
+
+    
   ];
 
   imports = [

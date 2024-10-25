@@ -10,5 +10,7 @@
     ./collect-garbage.nix
     ./polkit.nix
     ./hyprland.nix
+
+    ./steam.nix
   ];
 }
