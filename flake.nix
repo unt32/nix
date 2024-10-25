@@ -46,10 +46,11 @@
 
       extraSpecialArgs = {
         inherit inputs;
-        pkgs-unstable = import nixpkgs-unstable {
+        inherit system;
+        unstable-pkgs = import nixpkgs-unstable {
           inherit system;
           config.allowUnfree = true;
-        };  
+        };
         username = "${username}";
       };
 

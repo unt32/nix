@@ -159,6 +159,13 @@
         "opacity 0.98, initialTitle:^(Visual Studio Code)$"
 
         "opacity 0.9, class:^(org.gnome.Nautilus)$"
+
+        "opacity 0.9, class:^(steam)$"
+        "float,initialTitle:^(Steam Settings)$"
+        "move 100 37,initialTitle:^(Steam Settings)$"
+        "size 960 720,initialTitle:^(Steam Settings)$"
+
+        "opacity 0.9, class:^(discord)$"
       ];
 
       bind = [
