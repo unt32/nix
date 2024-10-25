@@ -5,10 +5,11 @@
     ./sound.nix
     ./network.nix
     ./bluetooth.nix
-    ./xdg.nix
     #./xserver.nix
     ./collect-garbage.nix
     ./polkit.nix
+
+    ./xdg.nix
     ./hyprland.nix
 
     ./steam.nix
