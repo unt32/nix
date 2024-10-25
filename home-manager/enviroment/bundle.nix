@@ -17,8 +17,6 @@
 
     unstable-pkgs.airshipper
 
-    discord
-
     onlyoffice-bin
 
     atlauncher
