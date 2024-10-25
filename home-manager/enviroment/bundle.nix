@@ -12,15 +12,6 @@
 
     # sound GUI control
     pavucontrol 
-
-    wineWowPackages.waylandFull
-
-    unstable-pkgs.airshipper
-
-    onlyoffice-bin
-
-    atlauncher
-    jre8
   ];
 
   imports = [

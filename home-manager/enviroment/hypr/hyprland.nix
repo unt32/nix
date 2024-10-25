@@ -165,7 +165,7 @@
         "move 100 37,initialTitle:^(Steam Settings)$"
         "size 960 720,initialTitle:^(Steam Settings)$"
 
-        "opacity 0.9, class:^(discord)$"
+        "opacity 0.9, class:^(WebCord)$"
       ];
 
       bind = [
