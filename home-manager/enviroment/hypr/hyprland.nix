@@ -1,5 +1,4 @@
 {
-  home.sessionVariables.NIXOS_OZONE_WL = "1";
   
   wayland.windowManager.hyprland = {
     enable = true;
@@ -21,7 +20,6 @@
         "GDK_BACKEND,wayland,x11,*"
         "SDL_VIDEODRIVER,wayland"
         "CLUTTER_BACKEND,wayland"
-        "NIXOS_OZONE_WL,1"
 
         "QT_QPA_PLATFORMTHEME,qt5ct"
 

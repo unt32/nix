@@ -25,6 +25,7 @@
       specialArgs = {
        
         username = "${username}";
+        hostname = "${hostname}";
 
         pkgs-unstable = import nixpkgs-unstable {
           inherit system;

@@ -1,4 +1,4 @@
-{ config, pkgs, ... }: {
+{ config, pkgs, hostname, ... }: {
  
   imports =
     [
@@ -7,7 +7,7 @@
       ./modules/bundle.nix
     ];
 
-  networking.hostName = "nixos";
+  networking.hostName = "${hostname}";
 
   time.timeZone = "Europe/Chisinau";
 
