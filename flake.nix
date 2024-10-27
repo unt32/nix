@@ -23,10 +23,8 @@
   {
     nixosConfigurations.${hostname} = nixpkgs.lib.nixosSystem {
       specialArgs = {
-       # pkgs = import nixpkgs {
-       #   inherit system;
-       #   config.allowUnfree = true;
-       # };
+       
+        username = "${username}";
 
         pkgs-unstable = import nixpkgs-unstable {
           inherit system;

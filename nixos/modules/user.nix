@@ -1,7 +1,7 @@
-{ pkgs, ... }: {
-  users.users.unt32 = {
+{ pkgs, username, ... }: {
+  users.users.${username} = {
     isNormalUser = true;
-    description = "unt32";
+    description = "${username}";
     extraGroups = [ "networkmanager" "wheel" ];
   };
 
@@ -11,7 +11,7 @@
       default_session = {
         #command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --cmd hyprland";
         command = "hyprland";
-        user = "unt32";
+        user = "${username}";
       };
     };
   };
