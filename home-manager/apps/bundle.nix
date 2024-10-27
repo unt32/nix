@@ -10,6 +10,7 @@
         jre8
 
         webcord
+        viber
     ];
 
     imports = [

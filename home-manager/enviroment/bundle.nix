@@ -23,5 +23,6 @@
     ./gtk.nix
     ./qt.nix
     ./dunst.nix
+    #./swaync.nix
   ];
 }
