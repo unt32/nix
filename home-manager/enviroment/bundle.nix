@@ -15,6 +15,7 @@
   ];
 
   imports = [
+    ./variables.nix
     ./hypr/bundle.nix
     ./waybar.nix
     ./wlogout.nix
