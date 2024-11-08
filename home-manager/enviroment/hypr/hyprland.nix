@@ -30,9 +30,10 @@
 
       exec-once = [
         
-        "hyprlock"
-        "hypridle"
-        "hyprpaper"
+        "loginctl lock-session"
+        #"hyprlock"
+        #"hypridle"
+        #"hyprpaper"
         #"~/.config/hypr/changeWallpaper.sh"
 
         "waybar"
