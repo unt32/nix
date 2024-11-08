@@ -11,17 +11,17 @@
       monitor = "LDVS-1,1366x768@60,0x0,1";
 
       env = [
-        "HYPRCURSOR_THEME,Vanilla-DMZ"
-        "HYPRCURSOR_SIZE,20"
+        #"HYPRCURSOR_THEME,Vanilla-DMZ"
+        #"HYPRCURSOR_SIZE,20"
 
-        "XDG_SESSION_TYPE,wayland"
-        "XDG_SESSION_DESKTOP,Hyprland"
-        "QT_QPA_PLATFORM,wayland;xcb"
-        "GDK_BACKEND,wayland,x11,*"
-        "SDL_VIDEODRIVER,wayland"
-        "CLUTTER_BACKEND,wayland"
+        #"XDG_SESSION_TYPE,wayland"
+        #"XDG_SESSION_DESKTOP,Hyprland"
+        #"QT_QPA_PLATFORM,wayland;xcb"
+        #"GDK_BACKEND,wayland,x11,*"
+        #"SDL_VIDEODRIVER,wayland"
+        #"CLUTTER_BACKEND,wayland"
 
-        "QT_QPA_PLATFORMTHEME,qt5ct"
+        #"QT_QPA_PLATFORMTHEME,qt5ct"
 
         #"LIBGL_ALWAYS_SOFTWARE,true"
         #"MESA_LOADER_DRIVER_OVERRIDE,zink"
@@ -37,7 +37,7 @@
         #"~/.config/hypr/changeWallpaper.sh"
 
         "waybar"
-        "dunst"
+        #"dunst"
 
         "cliphist wipe"
         "wl-paste --watch cliphist store"
