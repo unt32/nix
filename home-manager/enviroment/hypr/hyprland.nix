@@ -214,8 +214,8 @@
         "$mainMod, mouse_up, workspace, e-1"
 
         # Example special workspace (scratchpad)
-        bind = $mainMod, S, togglespecialworkspace, magic
-        bind = $mainMod SHIFT, S, movetoworkspace, special:magic
+        "$mainMod, S, togglespecialworkspace, magic"
+        "$mainMod SHIFT, S, movetoworkspace, special:magic"
 
         # Move focus with mainMod + arrow keys
         "$mainMod, left,  movefocus, l"
