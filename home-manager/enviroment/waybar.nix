@@ -66,7 +66,7 @@
             };
 
             clock = {
-                # timezone = "America/New_York";
+                # timezone = "America/New_York";pgrep pavucontrol && hyprctl dispatch togglespecialworkspace || pavucontrol
                 tooltip-format = "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>";
                 format-alt = "{:%d-%m-%Y}";
             };
@@ -140,7 +140,7 @@
                     car = "";
                     default = ["4" "5" "6"];
                 };
-                on-click = "pavucontrol";
+                on-click = "pgrep pavucontrol && hyprctl dispatch togglespecialworkspace || pavucontrol";
             };
         };
     };

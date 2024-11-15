@@ -10,40 +10,24 @@
       #monitor = ",preferred,auto,1";
       monitor = "LDVS-1,1366x768@60,0x0,1";
 
-      env = [
-        #"HYPRCURSOR_THEME,Vanilla-DMZ"
-        #"HYPRCURSOR_SIZE,20"
-
-        #"XDG_SESSION_TYPE,wayland"
-        #"XDG_SESSION_DESKTOP,Hyprland"
-        #"QT_QPA_PLATFORM,wayland;xcb"
-        #"GDK_BACKEND,wayland,x11,*"
-        #"SDL_VIDEODRIVER,wayland"
-        #"CLUTTER_BACKEND,wayland"
-
-        #"QT_QPA_PLATFORMTHEME,qt5ct"
-
-        #"LIBGL_ALWAYS_SOFTWARE,true"
-        #"MESA_LOADER_DRIVER_OVERRIDE,zink"
-        #"GSK_RENDERER,ngl"
-      ];
-
       exec-once = [
         
-        "loginctl lock-session"
-        #"hyprlock"
-        #"hypridle"
-        #"hyprpaper"
-        #"~/.config/hypr/changeWallpaper.sh"
+        "hyprlock"
 
         "waybar"
-        #"dunst"
 
         "cliphist wipe"
         "wl-paste --watch cliphist store"
 
         "nm-applet --indicator"
         "blueman-applet"
+
+        "[workspace 1 silent] firefox"
+        "[workspace 3 silent] foot"
+        "[workspace special silent] pavucontrol"
+
+        "hyprctl dispatch workspace 2"
+        "code"
       ];
 
       debug = {
@@ -140,14 +124,15 @@
 
       windowrule = [
         "float, ^(pavucontrol)$"
-        "pin, ^(pavucontrol)$"
+        "workspace special, ^(pavucontrol)$"
+        "move 2% 7%, ^(pavucontrol)$"
+        "size 40% 85%, ^(pavucontrol)$"
 
         "float, ^(.blueman-manager-wrapped)$"
-        "pin, ^(.blueman-manager-wrapped)$"
 
         "float,^(xdg-desktop-portal-gtk)$"
-        "move 100 100,^(xdg-desktop-portal-gtk)$"
-        "size 800 500,^(xdg-desktop-portal-gtk)$"
+        "move 5% 5%,^(xdg-desktop-portal-gtk)$"
+        "size 60% 40%,^(xdg-desktop-portal-gtk)$"
       ];
 
       windowrulev2 = [
@@ -213,9 +198,9 @@
         "$mainMod, mouse_down, workspace, e+1"
         "$mainMod, mouse_up, workspace, e-1"
 
-        # Example special workspace (scratchpad)
-        "$mainMod, S, togglespecialworkspace, magic"
-        "$mainMod SHIFT, S, movetoworkspace, special:magic"
+        # Special workspace
+        "$mainMod, S, togglespecialworkspace"
+        "$mainMod SHIFT, S, movetoworkspace, special"
 
         # Move focus with mainMod + arrow keys
         "$mainMod, left,  movefocus, l"
