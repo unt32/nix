@@ -66,9 +66,9 @@
             };
 
             clock = {
-                # timezone = "America/New_York";pgrep pavucontrol && hyprctl dispatch togglespecialworkspace || pavucontrol
+                # timezone = "America/New_York";
                 tooltip-format = "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>";
-                format-alt = "{:%d-%m-%Y}";
+                format-alt = "{:%d.%m.%Y}";
             };
 
             cpu = {
@@ -198,6 +198,11 @@
   background-color: @base02;
 }
 
+#workspaces button:hover {
+  background: @base02;
+  border: none;
+}
+
 #workspaces button.urgent {
   color: rgba(238, 46, 36, 1);
 }
@@ -258,6 +263,12 @@
 	font-size: 0.9em;
 	font-weight: 500;
 	letter-spacing: -1px;
+}
+
+tooltip {
+    border-radius: 4px;
+    background-color: @base01;
+    opacity: 0.9;
 }
       '';
   };
