@@ -75,11 +75,13 @@
                 interval = 1;
                 format = "{usage}% ";
                 tooltip = false;
+                on-click = "foot htop";
             };
 
             memory = {
                 interval = 1;
                 format = "{}% ";
+                on-click = "foot htop";
             };
 
             temperature = {
@@ -125,20 +127,20 @@
 
             pulseaudio = {
                 # "scroll-step" = 10; # %; can be a float
-                format = "{volume}%{icon} {format_source}";
-                format-bluetooth = "{volume}% {icon} {format_source}";
-                format-bluetooth-muted = " {icon} {format_source}";
-                format-muted = " {format_source}";
+                format = "{volume}% {icon}  {format_source}";
+                format-bluetooth = "{volume}% {icon}  {format_source}";
+                format-bluetooth-muted = " {icon}  {format_source}";
+                format-muted = "  {format_source}";
                 format-source = "{volume}% ";
                 format-source-muted = "";
                 format-icons = {
-                    headphone = "1";
-                    hands-free = "2";
-                    headset = "3";
+                    headphone = "";
+                    hands-free = "";
+                    headset = "";
                     phone = "";
                     portable = "";
                     car = "";
-                    default = ["4" "5" "6"];
+                    default = ["" "" ""];
                 };
                 on-click = "pgrep pavucontrol && hyprctl dispatch togglespecialworkspace || pavucontrol";
             };

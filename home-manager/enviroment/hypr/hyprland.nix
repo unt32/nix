@@ -58,7 +58,7 @@
         gaps_in = 5;
         gaps_out = 5;
         
-        "col.active_border" = "rgb(44475a)";
+        "col.active_border" = "rgb(a7add4)";
         "col.inactive_border" = "rgb(282a36)";
         "col.nogroup_border" = "rgb(282a36)";
         "col.nogroup_border_active" = "rgb(44475a)";
@@ -125,14 +125,21 @@
       windowrule = [
         "float, ^(pavucontrol)$"
         "workspace special, ^(pavucontrol)$"
-        "move 2% 7%, ^(pavucontrol)$"
+        "move 1% 7%, ^(pavucontrol)$"
         "size 40% 85%, ^(pavucontrol)$"
+        "opacity 0.9, ^(pavucontrol)$"
 
         "float, ^(.blueman-manager-wrapped)$"
+        "workspace special, ^(.blueman-manager-wrapped)$"
+        "move 59% 7%, ^(.blueman-manager-wrapped)$"
+        "size 40% 85%, ^(.blueman-manager-wrapped)$"
+        "opacity 0.9, ^(.blueman-manager-wrapped)$"
+
 
         "float,^(xdg-desktop-portal-gtk)$"
-        "move 5% 5%,^(xdg-desktop-portal-gtk)$"
-        "size 60% 40%,^(xdg-desktop-portal-gtk)$"
+        "move 1% 7%,^(xdg-desktop-portal-gtk)$"
+        "size 60% 85%,^(xdg-desktop-portal-gtk)$"
+        "opacity 0.9,^(xdg-desktop-portal-gtk)$"
       ];
 
       windowrulev2 = [

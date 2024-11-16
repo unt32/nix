@@ -1,14 +1,14 @@
 { pkgs, unstable-pkgs, ... }: {
     home.packages = with pkgs; [
-        wineWowPackages.waylandFull
+
+        wineWowPackages.waylandFull 
 
         unstable-pkgs.airshipper
 
-        onlyoffice-bin
-
+        # https://wiki.nixos.org/wiki/Minecraft
         atlauncher
         jre8
-
+        
         webcord
     ];
 
