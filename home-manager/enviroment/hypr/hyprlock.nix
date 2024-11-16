@@ -29,7 +29,7 @@
           monitor = "";
           text = "$LAYOUT";
           color = "rgba(255, 255, 255, .65)";
-          font_size = 12;
+          font_size = 20;
           font_family = "SF Pro Display Bold";
           position = "10, 10";
           halign = "left";
@@ -44,12 +44,12 @@
           path = "/home/${username}/nix/images/ava.png";
           border_size = 2;
           border_color = "rgba(255, 255, 255, .65)";
-          size = 130;
+          size = 390;
           rounding = -1;
           rotate = 0;
           reload_time = -1;
           reload_cmd = "";
-          position = "0, 40";
+          position = "0, 120";
           halign = "center";
           valign = "center";
         }
@@ -59,7 +59,7 @@
       input-field = [
         {
             monitor = "";
-            size = "300, 60";
+            size = "900, 180";
             outline_thickness = 2;
             dots_size = 0.05; # Scale of input-field height, 0.2 - 0.8
             dots_spacing = 0.2; # Scale of dots' absolute size, 0.0 - 1.0
@@ -71,7 +71,7 @@
             font_family = "SF Pro Display Bold";
             placeholder_text = ''<i><span foreground="##ffffff99">    $USER</span></i>'';
             hide_input = false;
-            position = "0, -80";
+            position = "0, -240";
             halign = "center";
             valign = "center";
         }

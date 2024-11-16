@@ -37,8 +37,8 @@
             button {
               border-radius: 50px;
               border-color: transparent;
-              margin: 10px;
-              padding: 40px;
+              margin: 5.0em 1.0em;
+              padding: 1.0em;
               text-decoration-color: #2b2e37;
               color: #2b2e37;
               background-color: #2b2e37;
