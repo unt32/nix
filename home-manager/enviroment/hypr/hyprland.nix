@@ -7,8 +7,8 @@
     settings = {
       "$mainMod" = "SUPER";
 
-      #monitor = ",preferred,auto,1";
-      monitor = "LDVS-1,1366x768@60,0x0,1";
+      monitor = ",preferred,auto,1";
+      #monitor = "LDVS-1,1366x768@60,0x0,1";
 
       exec-once = [
         
