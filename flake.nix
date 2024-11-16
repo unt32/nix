@@ -15,7 +15,7 @@
   outputs = inputs@{ self, nixpkgs, nixpkgs-unstable, home-manager, ... }:
     let
       system = "x86_64-linux";
-      username = "baran";
+      username = "unt32";
       hostname = "nixos";
     in 
   {
