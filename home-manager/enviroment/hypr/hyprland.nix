@@ -24,7 +24,7 @@
         "nm-applet --indicator"  
 
         "rfkill toggle bluetooth"     # toggle off
-        "blueman-applet"              
+        "blueman-applet"            
 
         "[workspace 1 silent] firefox"
         "[workspace 3 silent] foot"
