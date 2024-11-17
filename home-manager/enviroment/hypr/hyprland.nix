@@ -20,8 +20,11 @@
         "cliphist wipe"
         "wl-paste --watch cliphist store"
 
-        "nm-applet --indicator"
-        "blueman-applet"
+
+        "nm-applet --indicator"  
+
+        "rfkill toggle bluetooth"     # toggle off
+        "blueman-applet"              
 
         "[workspace 1 silent] firefox"
         "[workspace 3 silent] foot"
@@ -230,7 +233,7 @@
 
         # Waybar
         "$mainMod, B, exec, pkill -SIGUSR1 waybar"
-        "$mainMod, W, exec, pkill -SIGUSR2 waybar"
+        #"$mainMod, W, exec, pkill -SIGUSR2 waybar"
       ];
 
       # Move/resize windows with mainMod + LMB/RMB and dragging
