@@ -1,4 +1,3 @@
-4444
 { pkgs, ... }: {
   services.fprintd = {
     enable = true;
