@@ -3,7 +3,7 @@
     sessionVariables = {
       
       HYPRCURSOR_THEME = "Vanilla-DMZ";
-      HYPRCURSOR_SIZE = "20";
+      HYPRCURSOR_SIZE = "24";
 
       NIXOS_OZONE_WL = "1";
 

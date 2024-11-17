@@ -6,6 +6,7 @@
     ./network.nix
     ./bluetooth.nix
     ./collect-garbage.nix
+    ./fprintd.nix
     
     # hyprland stuff
     ./polkit.nix
