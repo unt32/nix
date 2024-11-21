@@ -9,7 +9,13 @@
         atlauncher
         jre8
         
+        lutris
+        gamescope
+        mangohud
+
         webcord
+
+        #qbittorrent
     ];
 
     imports = [
@@ -18,5 +24,6 @@
         ./htop.nix
         ./git.nix
         ./vscode.nix
+        ./rtorrent.nix
     ];
 }

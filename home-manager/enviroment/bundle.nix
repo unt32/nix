@@ -22,7 +22,7 @@
     ./wofi.nix
     ./cursor.nix
     ./gtk.nix
-    ./qt.nix
+    #./qt.nix
     ./dunst.nix
     #./swaync.nix
   ];

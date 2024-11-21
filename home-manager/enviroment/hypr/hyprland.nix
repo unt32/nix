@@ -113,7 +113,7 @@
       gestures = {
         workspace_swipe = true;
         workspace_swipe_fingers = 3;
-        workspace_swipe_invert = false;
+        workspace_swipe_invert = true;
         workspace_swipe_distance = 200;
         workspace_swipe_forever = true;
       };
@@ -125,6 +125,10 @@
         render_ahead_of_time = false;
         disable_hyprland_logo = true;
       };
+
+     # xwayland = {
+     #   force_zero_scaling = true;
+     # };
 
       windowrule = [
         "float, ^(pavucontrol)$"
@@ -154,6 +158,9 @@
         "opacity 0.98, initialTitle:^(Visual Studio Code)$"
 
         "opacity 0.9, class:^(org.gnome.Nautilus)$"
+
+        "opacity 0.9, class:^(lutris)$"
+
 
         "opacity 0.9, class:^(steam)$"
         "float,initialTitle:^(Steam Settings)$"
@@ -230,6 +237,16 @@
         "$mainMod CTRL, right, resizeactive,  60 0"
         "$mainMod CTRL, up,    resizeactive,  0 -60"
         "$mainMod CTRL, down,  resizeactive,  0  60"
+
+        # Volume control
+        ", XF86AudioRaiseVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+"
+        ", XF86AudioLowerVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"
+        ", XF86AudioMute, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
+        ",XF86AudioMicMute, exec, wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"
+
+        # Brightness control
+        ",XF86MonBrightnessDown, exec, brightnessctl set 5%-"
+        ",XF86MonBrightnessUp, exec, brightnessctl set +5%"
 
         # Waybar
         "$mainMod, B, exec, pkill -SIGUSR1 waybar"
