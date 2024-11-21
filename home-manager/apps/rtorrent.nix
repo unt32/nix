@@ -1,9 +1,9 @@
 { username, ...}: {
   programs.rtorrent = {
     enable = true;
-    extraConfig = "
-      directory = home/${username}/Downloads
-      session = home/${username}/.rtorrent
+    extraConfig = ''
+      directory = /home/${username}/Downloads
+      session = /home/${username}/.rtorrent
 
       # Maximum and minimum number of peers to connect to per torrent.
       min_peers = 50
@@ -33,10 +33,6 @@
       # UDP port to use for DHT.
       #
       dht_port = 63425
-
-      # Enable peer exchange (for torrents not marked private)
-      #
-      peer_exchange = yes
-    ";
+    '';
   };
 }
