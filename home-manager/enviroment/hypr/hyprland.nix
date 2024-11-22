@@ -156,12 +156,25 @@
         "move 1% 7%, title:^(xdg-desktop-portal-gtk)$"
         "size 60% 85%, title:^(xdg-desktop-portal-gtk)$"
         "opacity 0.9, title:^(xdg-desktop-portal-gtk)$"
+
         "opacity 0.9, title: ^(File Upload)$"
         "move 1% 7%, title:^(File Upload)$"
         "size 60% 85%, title:^(File Upload)$"
+
         "opacity 0.9, title:^(Open File)$"
         "move 1% 7%, title:^(Open File)$"
         "size 60% 85%, title:^(Open File)$"
+
+
+        "opacity 0.9, title:^(Open file)$"
+        "move 1% 7%, title:^(Open file)$"
+        "size 60% 85%, title:^(Open file)$"
+
+        "opacity 0.9, title:^(Enter name of file to save to…)$"
+        "move 1% 7%, title:^(Enter name of file to save to…)$"
+        "size 60% 85%, title:^(Enter name of file to save to…)$"
+
+
 
         "opacity 0.98, initialTitle:^(Visual Studio Code)$"
 

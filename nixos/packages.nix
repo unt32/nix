@@ -11,6 +11,7 @@
 	  git
 
     mc
+    timg
   ];
 
   fonts.packages = with pkgs; [

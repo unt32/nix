@@ -14,7 +14,7 @@
 
         webcord
 
-        #qbittorrent
+        unstable-pkgs.gimp
     ];
 
     imports = [
@@ -26,5 +26,6 @@
         ./rtorrent.nix
         ./mangohud.nix
         ./mpv.nix
+        ./imv.nix
     ];
 }
