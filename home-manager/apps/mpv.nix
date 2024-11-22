@@ -1,0 +1,6 @@
+{
+  mpv = {
+    enable = true;
+    
+  };
+}

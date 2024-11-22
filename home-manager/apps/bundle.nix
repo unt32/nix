@@ -25,5 +25,6 @@
         ./vscode.nix
         ./rtorrent.nix
         ./mangohud.nix
+        ./mpv.nix
     ];
 }

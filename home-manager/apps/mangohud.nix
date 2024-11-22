@@ -1,8 +1,8 @@
 {
   programs.mangohud = {
     enable = true;
-    settings = ''
-      preset=4
-    '';
+    settings = {
+      preset = 3;
+    };
   };
 }

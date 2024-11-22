@@ -1,5 +1,7 @@
-{
-  
+#let 
+#  filePickers = ["xdg-desktop-portal-gtk" "File Upload" "Open File"];
+#in
+{ 
   wayland.windowManager.hyprland = {
     enable = true;
     xwayland.enable = true;
@@ -24,7 +26,7 @@
         "nm-applet --indicator"  
 
         "rfkill toggle bluetooth"     # toggle off
-        "blueman-applet"            
+        "blueman-manager"            
 
         "[workspace 1 silent] firefox"
         "[workspace 3 silent] foot"
@@ -142,24 +144,34 @@
         "move 59% 7%, ^(.blueman-manager-wrapped)$"
         "size 40% 85%, ^(.blueman-manager-wrapped)$"
         "opacity 0.9, ^(.blueman-manager-wrapped)$"
-
-
-        "float,^(xdg-desktop-portal-gtk)$"
-        "move 1% 7%,^(xdg-desktop-portal-gtk)$"
-        "size 60% 85%,^(xdg-desktop-portal-gtk)$"
-        "opacity 0.9,^(xdg-desktop-portal-gtk)$"
       ];
 
       windowrulev2 = [
         "suppressevent maximize, class:.*"
 
-        "bordercolor rgb(FF0000), xwayland:1" # check if window is xwayland
+        "bordercolor rgb(d6adad), xwayland:1" # check if window is xwayland
+
+        # File pickers
+        "float, title:^(xdg-desktop-portal-gtk)$"
+        "move 1% 7%, title:^(xdg-desktop-portal-gtk)$"
+        "size 60% 85%, title:^(xdg-desktop-portal-gtk)$"
+        "opacity 0.9, title:^(xdg-desktop-portal-gtk)$"
+        "opacity 0.9, title: ^(File Upload)$"
+        "move 1% 7%, title:^(File Upload)$"
+        "size 60% 85%, title:^(File Upload)$"
+        "opacity 0.9, title:^(Open File)$"
+        "move 1% 7%, title:^(Open File)$"
+        "size 60% 85%, title:^(Open File)$"
 
         "opacity 0.98, initialTitle:^(Visual Studio Code)$"
+
+        "opacity 0.9, class:^(nm-applet)$"
 
         "opacity 0.9, class:^(org.gnome.Nautilus)$"
 
         "opacity 0.9, class:^(lutris)$"
+
+        "opacity 0.9, class:^(com-atlauncher-App)$"
 
 
         "opacity 0.9, class:^(steam)$"
@@ -169,7 +181,7 @@
 
         "opacity 0.9, class:^(WebCord)$"
       ];
-
+    
       bind = [
 
         "$mainMod, Q, exec, foot"
