@@ -11,7 +11,6 @@
         
         lutris
         gamescope
-        mangohud
 
         webcord
 
@@ -25,5 +24,6 @@
         ./git.nix
         ./vscode.nix
         ./rtorrent.nix
+        ./mangohud.nix
     ];
 }

@@ -9,6 +9,7 @@
         ignore_empty_input = true;
         grace = 0;
         disable_loading_bar = true;
+        enable_fingerprint = true;
       };
 
       background = [ 
