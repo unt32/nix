@@ -7,6 +7,8 @@
     ./bluetooth.nix
     ./collect-garbage.nix
     ./fprintd.nix
+
+    #./auto-cpufreq.nix
     ./tlp.nix
     
     # hyprland stuff
