@@ -25,12 +25,14 @@
 
         "nm-applet --indicator"  
 
+        "rfkill unblock bluetooth"
         "rfkill toggle bluetooth"     # toggle off
-        "blueman-manager"            
+        #"blueman-applet"
+        "[workspace special silent] blueman-manager"  
+        "[workspace special silent] pavucontrol"          
 
         "[workspace 1 silent] firefox"
         "[workspace 3 silent] foot"
-        "[workspace special silent] pavucontrol"
 
         "hyprctl dispatch workspace 2"
         "code"
@@ -179,6 +181,8 @@
         "opacity 0.98, initialTitle:^(Visual Studio Code)$"
 
         "opacity 0.9, class:^(nm-applet)$"
+
+        "opacity 0.9, class:^(polkit-gnome-authentication-agent-1)$"
 
         "opacity 0.9, class:^(org.gnome.Nautilus)$"
 
