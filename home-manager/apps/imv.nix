@@ -2,8 +2,7 @@
   programs.imv = {
     enable = true;
     settings = {
-      options.background = "ffffff";
-      aliases.x = "close";
+      options.background = "000000";
     };
   };
 }
