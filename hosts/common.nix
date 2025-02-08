@@ -48,12 +48,12 @@
     setuid = true;
     setgid = true;
   };
-
+	
   environment.systemPackages = with pkgs; [
     home-manager
     slock
   ];
-
+  
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
   nixpkgs.config.allowUnfree = true;

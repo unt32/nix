@@ -4,15 +4,15 @@
   inputs = {
 
     nixpkgs.url = "github:nixos/nixpkgs/nixos-24.11";
-
+    
     home-manager = {
       url = "github:nix-community/home-manager/release-24.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     
-    unstable.url = "github:nixos/nixpkgs/nixos-unstable";
+    unstable-nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+   
 
-    #https://github.com/nix-community/lanzaboote/blob/master/docs/QUICK_START.md
     lanzaboote = {
       url = "github:nix-community/lanzaboote/v0.4.2";
 
@@ -22,18 +22,21 @@
 
   };
 
-  outputs = { self, nixpkgs, unstable, home-manager,
-  #lanzaboote,
-  ... }@inputs: let
-  
+  outputs = { self, nixpkgs, unstable-nixpkgs, home-manager, lanzaboote, ... }@inputs: let
+    
+    pkgs = import nixpkgs {
+	inherit system;
+	config.allowUnfree = true;
+	};
+
     system = "x86_64-linux";
     homeStateVersion = "24.11";
-    user = "banana";
+    user = "unt32";
     hosts = [
         { hostname = "P16G2"; stateVersion = "24.11";}
         { hostname = "vbox"; stateVersion = "24.11";}
     ];
-
+    unstable = import unstable-nixpkgs { inherit system; config.AllowUnFree = true; };
     makeSystem = { hostname, stateVersion }: nixpkgs.lib.nixosSystem {
       system = system;
       specialArgs = {
@@ -46,32 +49,33 @@
           users.users.${user} = {
             isNormalUser = true;
             home = "/home/${user}";
-            extraGroups = [ "wheel" "networkmanager" ];
+            extraGroups = [ "audio" "wheel" "networkmanager" ];
             shell = pkgs.bash;
           };
         })
+	
+	
+	lanzaboote.nixosModules.lanzaboote
 
-       /* lanzaboote.nixosModules.lanzaboote
+          ({ pkgs, lib, ... }: {
 
-        ({ pkgs, lib, ... }: {
+            environment.systemPackages = [
+              # For debugging and troubleshooting Secure Boot.
+              pkgs.sbctl
+            ];
 
-          environment.systemPackages = [
-            # For debugging and troubleshooting Secure Boot.
-            pkgs.sbctl
-          ];
+            # Lanzaboote currently replaces the systemd-boot module.
+            # This setting is usually set to true in configuration.nix
+            # generated at installation time. So we force it to false
+            # for now.
+            boot.loader.systemd-boot.enable = lib.mkForce false;
 
-          # Lanzaboote currently replaces the systemd-boot module.
-          # This setting is usually set to true in configuration.nix
-          # generated at installation time. So we force it to false
-          # for now.
-          boot.loader.systemd-boot.enable = lib.mkForce false;
-
-          boot.lanzaboote = {
-            enable = true;
-            pkiBundle = "/var/lib/sbctl";
-          };
-        })
-        */
+            boot.lanzaboote = {
+              enable = true;
+              pkiBundle = "/var/lib/sbctl";
+            };
+          })
+       
       ];
     };
   
@@ -84,9 +88,9 @@
       }) {} hosts;
 
     homeConfigurations.${user} = home-manager.lib.homeManagerConfiguration {
-      pkgs = nixpkgs.legacyPackages.${system};
+      pkgs = pkgs;
       extraSpecialArgs = {
-        inherit inputs homeStateVersion user;
+        inherit inputs homeStateVersion user unstable;
       };
 
       modules = [
