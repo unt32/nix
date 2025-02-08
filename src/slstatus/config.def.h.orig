@@ -58,7 +58,6 @@ static const char unknown_str[] = "n/a";
  * uid                 UID of current user             NULL
  * uptime              system uptime                   NULL
  * username            username of current user        NULL
- * alsa_master_vol     ALSA Master device volume       NULL
  * vol_perc            OSS/ALSA volume in percent      mixer file (/dev/mixer)
  *                                                     NULL on OpenBSD/FreeBSD
  * wifi_essid          WiFi ESSID                      interface name (wlan0)
@@ -66,8 +65,15 @@ static const char unknown_str[] = "n/a";
  */
 static const struct arg args[] = {
 	/* function format          argument */
-	{ battery_perc,         "%s%%",       "BAT0" },
+	{ cpu_perc,             " %s%% ",      NULL },
+	{ ram_used,             " %s",         NULL },
+	{ ram_total,            "/%s",          NULL },
+	{ ram_perc,             "(%s%%) ",      NULL },
+	{ run_command,          " %s%% ",      "brightnessctl g | awk '{print int($1 / 255 * 100)}'" },
+	{ battery_perc,         " %s%%",       "BAT0" },
 	{ battery_state,        "(%s) ",        "BAT0" },
+	{ run_command,          " %s ",        "pamixer --get-volume-human" },
+	{ run_command,          " %s ",        "pamixer --default-source --get-mute" },
 	{ keymap,               " %s ",        NULL },
 	{ datetime, "%s",           "%F %T" },
 };

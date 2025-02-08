@@ -100,6 +100,10 @@
     theme = {
       name = "Adwaita-dark"; 
     };
+    cursorTheme = {
+	name = "Vanilla-DMZ";
+	size = 32;
+    };	
   };
 
 }
