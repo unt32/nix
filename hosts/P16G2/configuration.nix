@@ -27,7 +27,7 @@
 	  #jack.enable = true;
   };
   
-  systemd.services.f4-light-off = {
+/*  systemd.services.f4-light-off = {
 	  description = "Off f4 btn on boot";
 	  wantedBy = [ "multi-user.target" ];
 	  serviceConfig = {
@@ -39,7 +39,7 @@
 	    type = "oneshot";
 	  };
   };
-
+*/
   services.libinput.touchpad = {
 #	accelProfile = "flat";
 #	accelSpeed = "10";
