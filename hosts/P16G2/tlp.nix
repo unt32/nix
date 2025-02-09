@@ -15,8 +15,8 @@
 
 
           # Battery Care
-          START_CHARGE_THRESH_BAT0 = 20; 
-          STOP_CHARGE_THRESH_BAT0 = 90;
+          START_CHARGE_THRESH_BAT0 = 90; 
+          STOP_CHARGE_THRESH_BAT0 = 100;
 
           NATACPI_ENABLE = 1;
           TPACPI_ENABLE = 1;

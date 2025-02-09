@@ -8,7 +8,6 @@
     [	
         ../common.nix
 	./hardware-configuration.nix
-	./fprintd.nix
 	./tlp.nix
     ];
 
@@ -32,19 +31,35 @@
 	  wantedBy = [ "multi-user.target" ];
 	  serviceConfig = {
 	    User = "root";
-	    ExecStart = ''
-		/usr/bin/sudo /bin/bash -lc "echo 0 | tee /sys/class/leds/platform\:\:micmute/brightness"
-	    '';  
-	    Restart = "on-failure";
-	    type = "oneshot";
+	    ExecStart = "echo 0 | tee /sys/class/leds/platform\:\:micmute/brightness";  
+	    Type = "simple";
 	  };
   };
 */
-  services.libinput.touchpad = {
-#	accelProfile = "flat";
-#	accelSpeed = "10";
+  
+  powerManagement = {
+	enable = true;
+#	powerUpCommands = "echo 0 | sudo tee /sys/class/leds/platform::micmute/brightness";
   };
 
+  services.fprintd = {
+    enable = true;
+    package = pkgs.fprintd-tod;
+    tod = {
+      enable = true;
+      driver =  pkgs.libfprint-2-tod1-goodix;
+
+    };
+  };
+
+  services.libinput.touchpad = {
+    accelSpeed = "1.0";
+  };
+	
+  services.upower = {
+  	enable = true;
+  };
+  
   services.blueman.enable = true; 
   services.pipewire.wireplumber.extraConfig.bluetoothEnhancements = {
 	  "monitor.bluez.properties" = {

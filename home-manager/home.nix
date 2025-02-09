@@ -18,12 +18,12 @@
         (st.overrideAttrs (oldAttrs: rec {
           src = ../src/st;
         }))
-	
-	#slstatus
-	(slstatus.overrideAttrs (oldAttrs: rec {
+/*
+        #slstatus
+        (slstatus.overrideAttrs (oldAttrs: rec {
           src = ../src/slstatus;
         }))
-
+*/
 
         dmenu
         xautolock
@@ -31,15 +31,21 @@
         xkb-switch
         pamixer
 	alsa-utils
+#	upower
 	brightnessctl
+#	acpilight
 	
+	
+	rtorrent
 
 	unstable.sbctl
 
         pavucontrol
-	firefox
+	#firefox
+	microsoft-edge
 	lutris
-	unstable.airshipper        
+	unstable.airshipper
+	discord        
 
         powertop
         htop
@@ -79,31 +85,52 @@
     '';
   };
 
-/*  services.dwm-status = {
+  services.dwm-status = {
     enable = true;
-    order = [ "backlight" "battery" "network" "time"];
+    order = [ "audio" "battery" "network" "time"];
     extraConfig = {
-	  separator = " | ";
+	  separator = " / ";
 
 	  battery = {
 	    notifier_levels = [ 2 5 10 15 20 ];
 	  };
 
 	  time = {
-	    format = "%H:%M";
+	    format = "%H:%M ";
 	  };
-	};
+	
+	  audio = {
+		template = " vol {VOL}%";
+	  };
+   };
   };
-*/
+
+
   gtk = {
     enable = true;
     theme = {
-      name = "Adwaita-dark"; 
+      name = "Adwaita-dark";
+      package = pkgs.gnome-themes-extra;
+    };
+    iconTheme = {
+      name = "Papirus-Dark";
+      package = pkgs.papirus-icon-theme;
     };
     cursorTheme = {
-	name = "Vanilla-DMZ";
-	size = 32;
-    };	
+      name = "Bibata-Modern-Classic";
+      package = pkgs.bibata-cursors;
+      size = 24;
+    };
+    gtk3.extraConfig = {
+      gtk-application-prefer-dark-theme = 1;
+      gtk-theme-name = "Adwaita-dark";
+      gtk-icon-theme-name = "Papirus-Dark";
+      gtk-cursor-theme-name = "Bibata-Modern-Classic";
+      gtk-font-name = "JetBrains Mono 11";
+    };
+    gtk4.extraConfig = {
+      gtk-application-prefer-dark-theme = 1;
+    };
   };
 
 }
