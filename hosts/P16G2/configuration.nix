@@ -54,6 +54,7 @@
 
   services.libinput.touchpad = {
     accelSpeed = "1.0";
+    middleEmulation = false;
   };
 	
   services.upower = {

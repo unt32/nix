@@ -18,12 +18,6 @@
         (st.overrideAttrs (oldAttrs: rec {
           src = ../src/st;
         }))
-/*
-        #slstatus
-        (slstatus.overrideAttrs (oldAttrs: rec {
-          src = ../src/slstatus;
-        }))
-*/
 
         dmenu
         xautolock
@@ -42,10 +36,11 @@
 
         pavucontrol
 	#firefox
+	flameshot
 	microsoft-edge
 	lutris
 	unstable.airshipper
-	discord        
+	#discord        
 
         powertop
         htop
@@ -79,8 +74,8 @@
     enable = true;
     windowManager.command = "exec dwm";
     initExtra = ''
-      xss-lock slock &
-      xautolock -time 5 -locker "slock" -killtime 15 -killer "systemctl suspend" -detectsleep &
+      xss-lock -- sh -c 'xkb-switch -s us & slock' &
+      xautolock -time 5 -locker 'xkb-switch -s us & slock' -killtime 15 -killer 'systemctl suspend' -detectsleep &
       xrandr --output eDP-1 --primary --mode 3840x2400 --rate 60
     '';
   };

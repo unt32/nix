@@ -63,4 +63,8 @@
   dates = "weekly";
   options = "--delete-older-than 30d";
   };
+	
+  services.libinput.mouse = {
+	middleEmulation = false;
+  };
 }
