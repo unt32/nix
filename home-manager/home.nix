@@ -25,22 +25,25 @@
         xkb-switch
         pamixer
 	alsa-utils
-#	upower
 	brightnessctl
-#	acpilight
-	
+	xclip
+	scrot
+
+	feh	
 	
 	rtorrent
 
 	unstable.sbctl
 
         pavucontrol
-	#firefox
-	flameshot
-	microsoft-edge
+	firefox
+#	microsoft-edge
 	lutris
 	unstable.airshipper
-	#discord        
+#	discord
+	
+	prismlauncher
+	jdk21
 
         powertop
         htop
@@ -48,11 +51,16 @@
         wget
 
 	dconf
+
+	wineWowPackages.full
     ];
     
     sessionVariables = {
+	QT_SCALE_FACTOR = "2.5";
     	GDK_SCALE = "2.5";
 	GDK_DPI_SCALE = "0.5";
+	MOZ_USE_XINPUT2 = "1";	 
+   	_JAVA_AWT_WM_NONREPARENTING = "1";
     };
   };
   
@@ -95,6 +103,7 @@
 	  };
 	
 	  audio = {
+ 		mute = " mute";
 		template = " vol {VOL}%";
 	  };
    };

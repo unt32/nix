@@ -5,11 +5,15 @@
 { config, lib, pkgs, ... }:
 {
   imports =
-    [	
+  [	
         ../common.nix
 	./hardware-configuration.nix
 	./tlp.nix
-    ];
+  ];
+  
+  environment.systemPackages = with pkgs; [
+	  libinput-gestures
+  ];
 
   hardware.bluetooth = {
 	enable = true;
@@ -42,23 +46,31 @@
 #	powerUpCommands = "echo 0 | sudo tee /sys/class/leds/platform::micmute/brightness";
   };
 
-  services.fprintd = {
-    enable = true;
-    package = pkgs.fprintd-tod;
-    tod = {
-      enable = true;
-      driver =  pkgs.libfprint-2-tod1-goodix;
+  services = {
+ 
+	fprintd = {
+	    enable = true;
+	    package = pkgs.fprintd-tod;
+	    tod = {
+	      enable = true;
+	      driver =  pkgs.libfprint-2-tod1-goodix;
 
-    };
-  };
+	    };
+  	};
 
-  services.libinput.touchpad = {
-    accelSpeed = "1.0";
-    middleEmulation = false;
-  };
+  	libinput = {
+		enable = true;
+		touchpad = {
+		    accelSpeed = "1.0";
+		    middleEmulation = false;
+		};
+	};
+
+	touchegg.enable = true;	
 	
-  services.upower = {
-  	enable = true;
+	upower = {
+	    enable = true;
+	};
   };
   
   services.blueman.enable = true; 

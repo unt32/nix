@@ -49,7 +49,7 @@
           users.users.${user} = {
             isNormalUser = true;
             home = "/home/${user}";
-            extraGroups = [ "audio" "wheel" "networkmanager" ];
+            extraGroups = [ "input" "audio" "wheel" "networkmanager" ];
             shell = pkgs.bash;
           };
         })
