@@ -11,10 +11,19 @@
 	./tlp.nix
   ];
   
+  environment.sessionVariables = {
+        QT_SCALE_FACTOR = "2.5";
+        GDK_SCALE = "2.5";
+        GDK_DPI_SCALE = "0.5";
+        MOZ_USE_XINPUT2 = "1";
+        _JAVA_AWT_WM_NONREPARENTING = "1";
+  };
+
+ /* 
   environment.systemPackages = with pkgs; [
 	  libinput-gestures
   ];
-
+*/
   hardware.bluetooth = {
 	enable = true;
 	powerOnBoot = true;
@@ -71,6 +80,15 @@
 	upower = {
 	    enable = true;
 	};
+
+/*	tlp = {
+	  enable = true;
+	  settings = {
+	  	CPU_ENERGY_PERF_POLICY_ON_AC = "performance";
+		CPU_ENERGY_PERF_POLICY_ON_BAT = "low-power";
+	  }; 	
+	};
+*/  
   };
   
   services.blueman.enable = true; 

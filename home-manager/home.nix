@@ -56,11 +56,12 @@
     ];
     
     sessionVariables = {
-	QT_SCALE_FACTOR = "2.5";
+/*	QT_SCALE_FACTOR = "2.5";
     	GDK_SCALE = "2.5";
 	GDK_DPI_SCALE = "0.5";
 	MOZ_USE_XINPUT2 = "1";	 
    	_JAVA_AWT_WM_NONREPARENTING = "1";
+*/
     };
   };
   
