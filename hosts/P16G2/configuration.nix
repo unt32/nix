@@ -26,7 +26,7 @@
 */
   hardware.bluetooth = {
 	enable = true;
-	powerOnBoot = true;
+	powerOnBoot = false;
   };
 
   security.rtkit.enable = true;

@@ -1,6 +1,7 @@
 /* See LICENSE file for copyright and license details. */
 #include <X11/XF86keysym.h>
 
+
 /* appearance */
 static const unsigned int borderpx  = 1;        /* border pixel of windows */
 static const unsigned int snap      = 32;       /* snap pixel */
@@ -67,21 +68,21 @@ static const Key keys[] = {
 	{ MODKEY,                       XK_p,      spawn,          {.v = dmenucmd } },
 	{ MODKEY|ShiftMask,             XK_Return, spawn,          {.v = termcmd } },
 	{ MODKEY,                       XK_b,      togglebar,      {0} },
-	{ MODKEY,                       XK_Up,      focusstack,     {.i = +1 } },
-	{ MODKEY,                       XK_Down,      focusstack,     {.i = -1 } },
+	{ MODKEY,                       XK_Down,   focusstack,     {.i = +1 } },
+	{ MODKEY,                       XK_Up,     focusstack,     {.i = -1 } },
 	{ MODKEY,                       XK_i,      incnmaster,     {.i = +1 } },
 	{ MODKEY,                       XK_d,      incnmaster,     {.i = -1 } },
-	{ MODKEY,                       XK_Left,      setmfact,       {.f = -0.05} },
-	{ MODKEY,                       XK_Right,      setmfact,       {.f = +0.05} },
+	{ MODKEY,                       XK_Left,   setmfact,       {.f = -0.05} },
+	{ MODKEY,                       XK_Right,  setmfact,       {.f = +0.05} },
 	{ MODKEY,                       XK_Return, zoom,           {0} },
-	{ ALT,                       	XK_Tab,    view,           {0} },
-	{ ALT,             				XK_F4,     killclient,     {0} },
-	{ MODKEY,                       XK_l,  	   spawn,          SHCMD("xautolock -locknow")},
+	{ ALT, 	                        XK_Tab,    view,           {0} },
+	{ ALT,		                XK_F4,     killclient,     {0} },
+	{ MODKEY,                       XK_l,      spawn,          SHCMD("xautolock -locknow")},
 	{ MODKEY,                       XK_t,      setlayout,      {.v = &layouts[0]} },
 	{ MODKEY,                       XK_f,      setlayout,      {.v = &layouts[1]} },
 	{ MODKEY,                       XK_m,      setlayout,      {.v = &layouts[2]} },
-	{ 0,                            XK_Print,  spawn,          SHCMD("scrot -s -f -z /tmp/screenshot.png && xclip -selection clipboard -t image/png -i \"$(ls -t /tmp/screenshot*.png | head -n 1)\"") },
-	{ MODKEY,                       XK_space,  spawn,	   SHCMD("xkb-switch -n") },
+	{ MODKEY,                       XK_space,  spawn,          SHCMD("xkb-switch -n") },
+	{ 0,                            XK_Print,  spawn, 	   SHCMD("scrot -s -f -z /tmp/screenshot.png && xclip -selection clipboard -t image/png -i \"$(ls -t /tmp/screenshot*.png | head -n 1)\"") },
 	{ MODKEY|ShiftMask,             XK_space,  togglefloating, {0} },
 	{ MODKEY,                       XK_0,      view,           {.ui = ~0 } },
 	{ MODKEY|ShiftMask,             XK_0,      tag,            {.ui = ~0 } },
@@ -99,13 +100,14 @@ static const Key keys[] = {
 	TAGKEYS(                        XK_8,                      7)
 	TAGKEYS(                        XK_9,                      8)
 	{ MODKEY|ShiftMask,             XK_q,      quit,           {0} },
-	
+
+
 	{ 0, XF86XK_AudioMute, spawn, SHCMD("pamixer -t") },         // Mute sound
-	{ 0, XF86XK_AudioMicMute, spawn, SHCMD("pamixer --default-source -t") },  // Mute microphone
-    	{ 0, XF86XK_AudioRaiseVolume, spawn, SHCMD("pamixer --increase 5") },   // Increase volume by 5%
-    	{ 0, XF86XK_AudioLowerVolume, spawn, SHCMD("pamixer --decrease 5") },   // Decrease volume by 5%
-	{ 0, XF86XK_MonBrightnessUp, spawn, SHCMD("brightnessctl s +10%") },      // Increase brightness with XF86BrightnessUp
-    	{ 0, XF86XK_MonBrightnessDown, spawn, SHCMD("brightnessctl s 10-%") },    // Decrease brightness with XF86BrightnessDown
+        { 0, XF86XK_AudioMicMute, spawn, SHCMD("pamixer --default-source -t") },  // Mute microphone
+        { 0, XF86XK_AudioRaiseVolume, spawn, SHCMD("pamixer --increase 5") },   // Increase volume by 5%
+        { 0, XF86XK_AudioLowerVolume, spawn, SHCMD("pamixer --decrease 5") },   // Decrease volume by 5%
+        { 0, XF86XK_MonBrightnessUp, spawn, SHCMD("brightnessctl s +10%") },      // Increase brightness with XF86BrightnessUp
+        { 0, XF86XK_MonBrightnessDown, spawn, SHCMD("brightnessctl s 10-%") },    // Decrease brightness with XF86BrightnessDown
 
 };
 

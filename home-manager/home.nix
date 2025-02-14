@@ -48,7 +48,12 @@
         powertop
         htop
         mc
-        wget
+        wget	
+
+
+        fpc
+        binutils
+
 
 	dconf
 
@@ -67,10 +72,15 @@
   
 
   programs = {
+    vim = {
+   	enable = true;
+	extraConfig = "colorscheme torte"; 
+    };
+
     git = {
         enable = true;
-    userEmail = "vladsaen5@gmail.com";
-    userName = "unt32";
+    	userEmail = "vladsaen5@gmail.com";
+    	userName = "unt32";
     };
   
   
