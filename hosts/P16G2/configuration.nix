@@ -1,14 +1,12 @@
-# Edit this configuration file to define what should be installed on
-# your system.  Help is available in the configuration.nix(5) man page
-# and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, lib, pkgs, ... }:
+{ config, lanzaboote, lib, pkgs, unstable, ... }:
 {
   imports =
   [	
         ../common.nix
 	./hardware-configuration.nix
 	./tlp.nix
+        lanzaboote.nixosModules.lanzaboote
   ];
   
   environment.sessionVariables = {
@@ -19,11 +17,27 @@
         _JAVA_AWT_WM_NONREPARENTING = "1";
   };
 
- /* 
+
+
   environment.systemPackages = with pkgs; [
-	  libinput-gestures
+#  libinput-gestures
+    unstable.sbctl
   ];
-*/
+
+
+  boot.loader.systemd-boot.enable = lib.mkForce false;
+  #boot.loader.systemd-boot.enable = true;
+  boot.loader.efi.canTouchEfiVariables = true;
+
+  boot.initrd.luks.devices."luks-c81b66c2-27a8-40fc-b741-2d8c3e39e5bf".device = "/dev/disk/by-uuid/c81b66c2-27a8-40fc-b741-2d8c3e39e5bf";
+
+  boot.lanzaboote = {
+    enable = true;
+    pkiBundle = "/var/lib/sbctl";
+  };
+
+
+
   hardware.bluetooth = {
 	enable = true;
 	powerOnBoot = false;
@@ -102,13 +116,10 @@
   };
   programs.steam = {
 	  enable = true;
+          gamescopeSession.enable = true;
 	  remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
 	  dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
 	  localNetworkGameTransfers.openFirewall = true; # Open ports in the firewall for Steam Local Network Game Transfers
   };
   	
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
-
-  boot.initrd.luks.devices."luks-c81b66c2-27a8-40fc-b741-2d8c3e39e5bf".device = "/dev/disk/by-uuid/c81b66c2-27a8-40fc-b741-2d8c3e39e5bf";
 }

@@ -102,10 +102,10 @@ static const Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_q,      quit,           {0} },
 
 
-	{ 0, XF86XK_AudioMute, spawn, SHCMD("pamixer -t") },         // Mute sound
-        { 0, XF86XK_AudioMicMute, spawn, SHCMD("pamixer --default-source -t") },  // Mute microphone
-        { 0, XF86XK_AudioRaiseVolume, spawn, SHCMD("pamixer --increase 5") },   // Increase volume by 5%
-        { 0, XF86XK_AudioLowerVolume, spawn, SHCMD("pamixer --decrease 5") },   // Decrease volume by 5%
+	{ 0, XF86XK_AudioMute, spawn, SHCMD("amixer set Master toggle") },         // Mute sound
+        { 0, XF86XK_AudioMicMute, spawn, SHCMD("amixer set Capture toggle") },  // Mute microphone
+        { 0, XF86XK_AudioRaiseVolume, spawn, SHCMD("amixer set Master 5%+") },   // Increase volume by 5%
+        { 0, XF86XK_AudioLowerVolume, spawn, SHCMD("amixer set Master 5%-") },   // Decrease volume by 5%
         { 0, XF86XK_MonBrightnessUp, spawn, SHCMD("brightnessctl s +10%") },      // Increase brightness with XF86BrightnessUp
         { 0, XF86XK_MonBrightnessDown, spawn, SHCMD("brightnessctl s 10-%") },    // Decrease brightness with XF86BrightnessDown
 
