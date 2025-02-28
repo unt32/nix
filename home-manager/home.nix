@@ -1,6 +1,4 @@
 { homeStateVersion, user, pkgs, unstable, ... }: {
-  imports = [
-  ];
 
   home = {
     username = user;
@@ -23,7 +21,6 @@
         xautolock
         xss-lock
         xkb-switch
-#       pamixer
 	alsa-utils
 	brightnessctl
 	xclip
@@ -37,10 +34,8 @@
 
         pavucontrol
 	firefox
-#	microsoft-edge
 	lutris
 	unstable.airshipper
-#	discord
 	
 	prismlauncher
 	jdk21
@@ -119,7 +114,6 @@
 	  };
    };
   };
-
 
   gtk = {
     enable = true;

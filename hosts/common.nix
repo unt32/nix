@@ -41,7 +41,7 @@
     };
   };
 
-   security.wrappers.slock = {
+  security.wrappers.slock = {
     source = "${pkgs.slock}/bin/slock";
     owner = "root";
     group = "root";
@@ -59,12 +59,13 @@
   nixpkgs.config.allowUnfree = true;
 
   nix.gc = {
-  automatic = true;
-  dates = "weekly";
-  options = "--delete-older-than 30d";
+    automatic = true;
+    dates = "weekly";
+    options = "--delete-older-than 30d";
   };
 	
-  services.libinput.mouse = {
-	middleEmulation = false;
+  services.libinput = {
+	mouse.middleEmulation = false;
+        touchpad.middleEmulation = false;
   };
 }

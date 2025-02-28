@@ -25,17 +25,19 @@
   ];
 
 
-  boot.loader.systemd-boot.enable = lib.mkForce false;
-  #boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
+  boot = {
+    loader = {
+      systemd-boot.enable = lib.mkForce false;
+      efi.canTouchEfiVariables = true;
+    };
 
-  boot.initrd.luks.devices."luks-c81b66c2-27a8-40fc-b741-2d8c3e39e5bf".device = "/dev/disk/by-uuid/c81b66c2-27a8-40fc-b741-2d8c3e39e5bf";
+    lanzaboote = {
+      enable = true;
+      pkiBundle = "/var/lib/sbctl";
+    };
 
-  boot.lanzaboote = {
-    enable = true;
-    pkiBundle = "/var/lib/sbctl";
+    initrd.luks.devices."luks-c81b66c2-27a8-40fc-b741-2d8c3e39e5bf".device = "/dev/disk/by-uuid/c81b66c2-27a8-40fc-b741-2d8c3e39e5bf";
   };
-
 
 
   hardware.bluetooth = {
@@ -66,53 +68,50 @@
   
   powerManagement = {
 	enable = true;
-#	powerUpCommands = "echo 0 | sudo tee /sys/class/leds/platform::micmute/brightness";
   };
+
+#  boot.postBootCommands = "echo 0 | sudo tee /sys/class/leds/platform::micmute/brightness";
 
   services = {
- 
-	fprintd = {
-	    enable = true;
-	    package = pkgs.fprintd-tod;
-	    tod = {
-	      enable = true;
-	      driver =  pkgs.libfprint-2-tod1-goodix;
+      logind = {
+        lidSwitch = "suspend";
+        lidSwitchDocked = "ignore";
+        lidSwitchExternalPower = "lock";
+      };
 
-	    };
-  	};
+      fprintd = {
+          enable = true;
+          package = pkgs.fprintd-tod;
+          tod = {
+            enable = true;
+            driver =  pkgs.libfprint-2-tod1-goodix;
 
-  	libinput = {
-		enable = true;
-		touchpad = {
-		    accelSpeed = "1.0";
-		    middleEmulation = false;
-		};
-	};
+          };
+      };
 
-	touchegg.enable = true;	
-	
-	upower = {
-	    enable = true;
-	};
+      libinput = {
+              enable = true;
+              touchpad = {
+                  accelSpeed = "1.0";
+              };
+      };
 
-/*	tlp = {
-	  enable = true;
-	  settings = {
-	  	CPU_ENERGY_PERF_POLICY_ON_AC = "performance";
-		CPU_ENERGY_PERF_POLICY_ON_BAT = "low-power";
-	  }; 	
-	};
-*/  
-  };
-  
-  services.blueman.enable = true; 
-  services.pipewire.wireplumber.extraConfig.bluetoothEnhancements = {
-	  "monitor.bluez.properties" = {
-	      "bluez5.enable-sbc-xq" = true;
-	      "bluez5.enable-msbc" = true;
-	      "bluez5.enable-hw-volume" = true;
-	      "bluez5.roles" = [ "hsp_hs" "hsp_ag" "hfp_hf" "hfp_ag" ];
-	  };
+      touchegg.enable = true;	
+      
+      upower = {
+          enable = true;
+      };
+
+
+    blueman.enable = true; 
+    pipewire.wireplumber.extraConfig.bluetoothEnhancements = {
+            "monitor.bluez.properties" = {
+                "bluez5.enable-sbc-xq" = true;
+                "bluez5.enable-msbc" = true;
+                "bluez5.enable-hw-volume" = true;
+                "bluez5.roles" = [ "hsp_hs" "hsp_ag" "hfp_hf" "hfp_ag" ];
+            };
+    };
   };
   programs.steam = {
 	  enable = true;
