@@ -1,0 +1,31 @@
+{
+  "audio": {
+    "mute": " mute",
+    "template": " vol {VOL}%"
+  },
+  "backlight": {
+    "device": "amdgpu_bl1",
+    "template": "bl {BL}%"
+  },
+  "battery": {
+    "notifier_levels": [
+      2,
+      5,
+      10,
+      15,
+      20
+    ]
+  },
+  "order": [
+    "audio",
+    "backlight",
+    "battery",
+    "network",
+    "time"
+  ],
+  "separator": " / ",
+  "time": {
+    "format": "%H:%M "
+  }
+}
+

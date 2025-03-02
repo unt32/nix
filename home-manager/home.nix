@@ -90,15 +90,21 @@
     initExtra = ''
       xss-lock -- sh -c 'xkb-switch -s us & slock' &
       xautolock -time 5 -locker 'xkb-switch -s us & slock' -killtime 15 -killer 'systemctl suspend' -detectsleep &
+      
       xrandr --output eDP-1 --primary --mode 3840x2400 --rate 60 &
     '';
   };
 
   services.dwm-status = {
     enable = true;
-    order = [ "audio" "battery" "network" "time"];
+    order = [ "audio" "backlight" "battery" "network" "time"];
     extraConfig = {
 	  separator = " / ";
+
+          backlight = {
+            device = "amdgpu_bl1";
+            template = "bl {BL}%";
+          };
 
 	  battery = {
 	    notifier_levels = [ 2 5 10 15 20 ];
