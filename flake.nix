@@ -27,7 +27,12 @@
     pkgs = import nixpkgs {
 	inherit system;
 	config.allowUnfree = true;
-	};
+    };
+
+    unstable = import unstable-nixpkgs {
+      inherit system;
+      config.AllowUnFree = true;
+    };
 
     system = "x86_64-linux";
     homeStateVersion = "24.11";
@@ -36,23 +41,14 @@
         { hostname = "P16G2"; stateVersion = "24.11";}
         { hostname = "vbox"; stateVersion = "24.11";}
     ];
-    unstable = import unstable-nixpkgs { inherit system; config.AllowUnFree = true; };
     makeSystem = { hostname, stateVersion }: nixpkgs.lib.nixosSystem {
       system = system;
       specialArgs = {
-        inherit inputs stateVersion hostname lanzaboote unstable;
+        inherit inputs user stateVersion hostname lanzaboote unstable;
       };
 
       modules = [
         ./hosts/${hostname}/configuration.nix
-        ({ config, pkgs, ... }: {
-          users.users.${user} = {
-            isNormalUser = true;
-            home = "/home/${user}";
-            extraGroups = [ "input" "audio" "wheel" "networkmanager" ];
-            shell = pkgs.bash;
-          };
-        })
       ];
     };
   

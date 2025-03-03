@@ -1,4 +1,4 @@
-{ config, pkgs, hostname, stateVersion, ... }:
+{ config, pkgs, hostname, stateVersion, user, ... }:
 {
   system.stateVersion = stateVersion;
   
@@ -68,4 +68,12 @@
 	mouse.middleEmulation = false;
         touchpad.middleEmulation = false;
   };
+
+  users.users.${user} = {
+            isNormalUser = true;
+            home = "/home/${user}";
+            extraGroups = [ "input" "audio" "wheel" "networkmanager" ];
+            shell = pkgs.bash;
+  };
+
 }
