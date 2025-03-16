@@ -69,7 +69,6 @@
       xss-lock -- sh -c 'xkb-switch -s us & slock' &
       xautolock -time 5 -locker 'xkb-switch -s us & slock' -killtime 15 -killer 'systemctl suspend' -detectsleep &
 
-      xrandr --output eDP-1 --mode 3840x2400 --primary --rate 60 &
       ${builtins.toString ../src/dwm-status-restart.sh} &
     '';
   };
