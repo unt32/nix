@@ -1,8 +1,4 @@
-{ config, pkgs, hostname, stateVersion, user, ... }:
-let 
-  fontSize = 26;
-  pixelSize = 34;
-in
+{ config, pkgs, hostname, stateVersion, fontSize, pixelSize, user, ... }:
 {
   system.stateVersion = stateVersion;
   

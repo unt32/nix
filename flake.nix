@@ -38,13 +38,13 @@
     homeStateVersion = "24.11";
     user = "unt32";
     hosts = [
-        { hostname = "P16G2"; stateVersion = "24.11";}
-        { hostname = "vbox"; stateVersion = "24.11";}
+        { hostname = "P16G2"; stateVersion = "24.11"; fontSize = 26; pixelSize = 34;}
+        { hostname = "vbox"; stateVersion = "24.11"; fontSize = 10; pixelSize = 12;}
     ];
-    makeSystem = { hostname, stateVersion }: nixpkgs.lib.nixosSystem {
+    makeSystem = { hostname, stateVersion, fontSize, pixelSize }: nixpkgs.lib.nixosSystem {
       system = system;
       specialArgs = {
-        inherit inputs user stateVersion hostname lanzaboote unstable;
+        inherit inputs user stateVersion hostname lanzaboote unstable fontSize pixelSize;
       };
 
       modules = [
@@ -57,7 +57,7 @@
     nixosConfigurations = nixpkgs.lib.foldl' (configs: host:
       configs // {
         "${host.hostname}" = makeSystem {
-          inherit (host) hostname stateVersion;
+          inherit (host) hostname stateVersion fontSize pixelSize;
         };
       }) {} hosts;
 
