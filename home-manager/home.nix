@@ -7,35 +7,14 @@
 
     packages = with pkgs; [
 
-        #dwm
-        (dwm.overrideAttrs (oldAttrs: rec {
-          src = ../src/dwm;
-        }))
-
-        #st
-        (st.overrideAttrs (oldAttrs: rec {
-          src = ../src/st;
-        }))
-
-        dmenu
-        xautolock
-        xss-lock
-        xkb-switch
-	alsa-utils
-	brightnessctl
-
-	xclip
-	scrot
-
-	feh	
 
         pavucontrol
 	firefox
 	lutris
-	unstable.airshipper
+        #unstable.airshipper
 	
-	prismlauncher
-	jdk21
+        #prismlauncher
+        #jdk21
 
         powertop
         htop

@@ -3,7 +3,6 @@
 {
   imports =
   [	
-        ../common.nix
 	./hardware-configuration.nix
 	./tlp.nix
         lanzaboote.nixosModules.lanzaboote

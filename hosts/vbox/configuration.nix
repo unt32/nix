@@ -13,8 +13,7 @@
   };
 
   imports =
-    [ # Include the results of the hardware scan.
-      ../common.nix
+    [ 
       ./hardware-configuration.nix
     ];
 

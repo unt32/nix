@@ -1,4 +1,8 @@
 { config, pkgs, hostname, stateVersion, user, ... }:
+let 
+  fontSize = 26;
+  pixelSize = 34;
+in
 {
   system.stateVersion = stateVersion;
   
@@ -52,6 +56,47 @@
   environment.systemPackages = with pkgs; [
     home-manager
     slock
+
+    (dwm.overrideAttrs (oldAttrs: rec {
+      src = ../src/dwm;
+      patches = [
+        (builtins.toFile "dwm-fontsize.patch" ''
+          --- a/config.def.h
+          +++ b/config.def.h
+          @@ -10,2 +10,2 @@
+          -static const char *fonts[]          = { "monospace:size=10" };
+          -static const char dmenufont[]       = "monospace:size=10";
+          +static const char *fonts[]          = { "monospace:size=${toString fontSize}" };
+          +static const char dmenufont[]       = "monospace:size=${toString fontSize}";
+        '')
+      ];
+    }))
+
+    (st.overrideAttrs (oldAttrs: rec {
+      src = ../src/st;
+      patches = [
+              (builtins.toFile "st-fontsize.patch" ''
+                --- a/config.def.h
+                +++ b/config.def.h
+                @@ -8,1 +8,1 @@
+                -static char *font = "Liberation Mono:pixelsize=12:antialias=true:autohint=true";
+                +static char *font = "Liberation Mono:pixelsize=${toString pixelSize}:antialias=true:autohint=true";
+              '')
+            ];
+    }))
+
+    dmenu
+    xautolock
+    xss-lock
+    xkb-switch
+    alsa-utils
+    brightnessctl
+
+    xclip
+    scrot
+
+    feh
+
   ];
   
   nix.settings.experimental-features = [ "nix-command" "flakes" ];

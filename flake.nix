@@ -49,6 +49,7 @@
 
       modules = [
         ./hosts/${hostname}/configuration.nix
+        ./hosts/common.nix
       ];
     };
   
