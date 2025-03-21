@@ -2,6 +2,13 @@
 
 {
   
+  services.dwm-status = {
+      enable = true;
+      extraConfig = builtins.readFile ./dwm-status.toml;
+      order = [ "network" "time" ];
+  };
+
+
   security.rtkit.enable = true;
   services.pipewire = {
     enable = true;

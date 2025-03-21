@@ -32,6 +32,7 @@
         #options = "grp:win_space_toggle";
       };
     };
+
     displayManager.ly = {
       enable = true;
       settings = {

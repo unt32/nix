@@ -19,9 +19,14 @@
 
 
   environment.systemPackages = with pkgs; [
-#  libinput-gestures
     unstable.sbctl
   ];
+
+  services.dwm-status = {
+      enable = true;
+      extraConfig = builtins.readFile ./dwm-status.toml;
+      order = [ "audio" "backlight" "battery" "network" "time" ];
+  };
 
 
   boot = {
@@ -97,11 +102,6 @@
 
       touchegg.enable = true;	
       
-      upower = {
-          enable = true;
-      };
-
-
     blueman.enable = true; 
     pipewire.wireplumber.extraConfig.bluetoothEnhancements = {
             "monitor.bluez.properties" = {

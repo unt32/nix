@@ -1,0 +1,8 @@
+separator = " / "
+
+[audio]
+mute = " mute"
+template = " vol {VOL}%"
+
+[time]
+format = "%H:%M "
