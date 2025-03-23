@@ -107,7 +107,11 @@
   };
 	
   services.libinput = {
-	mouse.middleEmulation = false;
+    mouse = {
+      middleEmulation = false;
+      accelProfile = "flat";
+      accelSpeed = "0";
+    };
         touchpad.middleEmulation = false;
   };
 

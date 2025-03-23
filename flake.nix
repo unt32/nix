@@ -39,7 +39,8 @@
     user = "unt32";
     hosts = [
         { hostname = "P16G2"; stateVersion = "24.11"; fontSize = 26; pixelSize = 34;}
-        { hostname = "vbox"; stateVersion = "24.11"; fontSize = 10; pixelSize = 12;}
+        { hostname = "myPC"; stateVersion = "24.11"; fontSize = 14; pixelSize = 16;}
+        { hostname = "vbox"; stateVersion = "24.11"; fontSize = 10; pixelSize = 16;}
     ];
     makeSystem = { hostname, stateVersion, fontSize, pixelSize }: nixpkgs.lib.nixosSystem {
       system = system;
