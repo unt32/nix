@@ -2,25 +2,26 @@
 {
   system.stateVersion = stateVersion;
   
-  networking.networkmanager.enable = true;
-  networking.hostName = hostname;
+  networking = {
+    networkmanager.enable = true;
+    hostName = hostname;
+  };
 
-  # Set your time zone.
   time.timeZone = "Europe/Chisinau";
 
-  # Select internationalisation properties.
-  i18n.defaultLocale = "en_US.UTF-8";
-  
-  i18n.extraLocaleSettings = {
-    LC_ADDRESS = "ru_RU.UTF-8";
-    LC_IDENTIFICATION = "ru_RU.UTF-8";
-    LC_MEASUREMENT = "ru_RU.UTF-8";
-    LC_MONETARY = "ru_RU.UTF-8";
-    LC_NAME = "ru_RU.UTF-8";
-    LC_NUMERIC = "ru_RU.UTF-8";
-    LC_PAPER = "ru_RU.UTF-8";
-    LC_TELEPHONE = "ru_RU.UTF-8";
-    LC_TIME = "ru_RU.UTF-8";
+  i18n = {
+    defaultLocale = "en_US.UTF-8";
+    extraLocaleSettings = {
+      LC_ADDRESS = "ru_RU.UTF-8";
+      LC_IDENTIFICATION = "ru_RU.UTF-8";
+      LC_MEASUREMENT = "ru_RU.UTF-8";
+      LC_MONETARY = "ru_RU.UTF-8";
+      LC_NAME = "ru_RU.UTF-8";
+      LC_NUMERIC = "ru_RU.UTF-8";
+      LC_PAPER = "ru_RU.UTF-8";
+      LC_TELEPHONE = "ru_RU.UTF-8";
+      LC_TIME = "ru_RU.UTF-8";
+    };
   };
 
   services = {
@@ -83,7 +84,6 @@
     }))
 
     dmenu
-    #xautolock
     xidlehook
     xss-lock
     xkb-switch
@@ -92,9 +92,6 @@
 
     xclip
     scrot
-
-    feh
-
   ];
   
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
@@ -113,7 +110,7 @@
       accelProfile = "flat";
       accelSpeed = "0";
     };
-        touchpad.middleEmulation = false;
+    touchpad.middleEmulation = false;
   };
 
   users.users.${user} = {

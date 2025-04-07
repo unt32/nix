@@ -1,5 +1,7 @@
 #!/bin/sh
 
+pkill xidlehook
+
 export PRIMARY_DISPLAY="$(xrandr | awk '/ primary/{print $1}' | tr -d '\n')"
 
 xidlehook \
