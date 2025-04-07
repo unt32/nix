@@ -60,11 +60,16 @@
     enable = true;
     windowManager.command = "exec dwm";
     initExtra = ''
-      xss-lock -- sh -c 'xkb-switch -s us & slock' &
-      xautolock -time 5 -locker 'xkb-switch -s us & slock' -killtime 15 -killer 'systemctl suspend' -detectsleep &
+      xset s 0 0
+      xset s off
+      xset dpms 0 0 0
+      xset -dpms
 
-      ${builtins.toString ../src/dwm-status-restart.sh} &
-    '';
+      xss-lock -- sh -c 'xkb-switch -s us & slock' &
+
+      ${builtins.toString ../src/dwm-status-restart.sh} > ~/dwm-status-restart.log 2>&1 &
+      ${builtins.toString ../src/xidlehook-start.sh} > ~/xidlehook.log 2>&1 &
+   '';
   };
 
 

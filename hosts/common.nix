@@ -83,7 +83,8 @@
     }))
 
     dmenu
-    xautolock
+    #xautolock
+    xidlehook
     xss-lock
     xkb-switch
     alsa-utils
