@@ -43,14 +43,7 @@
     };
   };
 
-  security.wrappers.slock = {
-    source = "${pkgs.slock}/bin/slock";
-    owner = "root";
-    group = "root";
-    setuid = true;
-    setgid = true;
-  };
-	
+
   environment = {
     sessionVariables = {
       vdev = "${vdev}";
@@ -60,7 +53,7 @@
     };
     systemPackages = with pkgs; [
       home-manager
-      slock
+      i3lock
 
       (dwm.overrideAttrs (oldAttrs: rec {
         src = ../src/dwm;

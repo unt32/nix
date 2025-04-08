@@ -65,12 +65,11 @@
       xset dpms 0 0 0
       xset -dpms
 
-      xss-lock -- sh -c 'xkb-switch -s us & slock' &
+      xss-lock -- sh -c 'xkb-switch -s us & i3lock -kc 000000' &
 
       ${builtins.toString ../src/dwm-status-restart.sh} > ~/.dwm-status-restart.log 2>&1 &
       ${builtins.toString ../src}/"$idle".sh > ~/.xidlehook.log 2>&1 &
 
-      echo "Hello |$vdev| on |$resolution| |$hz| |$idle|" > ~/test
       xrandr --output "$vdev" --mode "$resolution" --refresh "$hz" --primary
    '';
   };

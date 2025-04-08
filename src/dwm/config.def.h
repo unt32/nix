@@ -77,7 +77,7 @@ static const Key keys[] = {
 	{ MODKEY,                       XK_Return, zoom,           {0} },
 	{ ALT, 	                        XK_Tab,    view,           {0} },
 	{ ALT,		                XK_F4,     killclient,     {0} },
-	{ MODKEY,                       XK_l,      spawn,          SHCMD("xkb-switch -s us & slock")},
+	{ MODKEY,                       XK_l,      spawn,          SHCMD("xset dpms force off")},
 	{ MODKEY,                       XK_t,      setlayout,      {.v = &layouts[0]} },
 	{ MODKEY,                       XK_f,      setlayout,      {.v = &layouts[1]} },
 	{ MODKEY,                       XK_m,      setlayout,      {.v = &layouts[2]} },
