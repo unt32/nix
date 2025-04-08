@@ -47,15 +47,7 @@
   };
 
   services = {
-    /*udev = {
-      enable = true;
-      extraRules = ''
-        SUBSYSTEM=="power_supply", ACTION=="change", ENV{POWER_SUPPLY_NAME}=="BAT0", RUN+="${builtins.toString ../../src/battery.sh}"
-        SUBSYSTEM=="power_supply", ACTION=="change", ENV{POWER_SUPPLY_NAME}=="AC", RUN+="${builtins.toString ../../src/plugged.sh}""
-      '';
-    };*/
-
-    pipewire = {
+   pipewire = {
               enable = true;
               alsa.enable = true;
               alsa.support32Bit = true;
