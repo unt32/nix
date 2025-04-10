@@ -8,7 +8,7 @@ xidlehook \
         --not-when-fullscreen \
         --not-when-audio \
         --detect-sleep \
-        --timer 120 \
+        --timer 180 \
           'xrandr --output "$PRIMARY_DISPLAY" --brightness .1' \
           'xrandr --output "$PRIMARY_DISPLAY" --brightness 1' \
         --timer 10 'xrandr --output "$PRIMARY_DISPLAY" --brightness 1 & xset dpms force off' '' \

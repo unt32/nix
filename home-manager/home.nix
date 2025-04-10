@@ -9,12 +9,8 @@
 
 
         pavucontrol
+	dconf # for GTK
 	firefox
-	lutris
-        #unstable.airshipper
-	
-        #prismlauncher
-        #jdk21
 
         powertop
         htop
@@ -28,9 +24,14 @@
         binutils
 
 
-	dconf
 
+	lutris
 	wineWowPackages.full
+
+        #unstable.airshipper
+	
+        #prismlauncher
+        #jdk21
     ];
     
     sessionVariables = {
