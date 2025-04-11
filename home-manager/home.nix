@@ -64,7 +64,6 @@
       xset s 0 0
       xset s off
       xset dpms 0 0 0
-      xset -dpms
 
       xss-lock -- sh -c 'xkb-switch -s us & i3lock -kc 000000' &
 
