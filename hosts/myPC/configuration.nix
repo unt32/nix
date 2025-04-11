@@ -6,8 +6,17 @@
       ./hardware-configuration.nix
     ];
 
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
+  boot = {
+      loader = {
+        systemd-boot.enable = true;
+        efi.canTouchEfiVariables = true;
+      };
+      extraModulePackages = with config.boot.kernelPackages; [ xpadneo ];
+      extraModprobeConfig = ''
+        options bluetooth disable_ertm=Y
+      '';
+      # connect xbox controller
+  };
 
 
   services.dwm-status = {
@@ -17,9 +26,22 @@
   };
 
 
-  hardware.bluetooth = {
-        enable = true;
-        powerOnBoot = false;
+  hardware = {
+    bluetooth = {
+          enable = true;
+          powerOnBoot = false;
+          settings.General = {
+            experimental = true; # show battery
+
+            # https://www.reddit.com/r/NixOS/comments/1ch5d2p/comment/lkbabax/
+            # for pairing bluetooth controller
+            Privacy = "device";
+            JustWorksRepairing = "always";
+            Class = "0x000100";
+            FastConnectable = true;
+          };
+    };
+    xpadneo.enable = true;
   };
 
   security.rtkit.enable = true;
