@@ -11,6 +11,7 @@
         pavucontrol
 	dconf # for GTK
 	firefox
+        discord
 
         powertop
         htop
@@ -54,6 +55,9 @@
   
     mangohud = {
 	enable = true;
+        settings = {
+          preset = 3;
+        };
     };
   };
   
