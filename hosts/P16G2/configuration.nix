@@ -38,6 +38,17 @@
   hardware.bluetooth = {
 	enable = true;
 	powerOnBoot = false;
+        settings.General = {
+            experimental = true; # show battery
+
+            # https://www.reddit.com/r/NixOS/comments/1ch5d2p/comment/lkbabax/
+            # for pairing bluetooth controller
+            Privacy = "device";
+            JustWorksRepairing = "always";
+            Class = "0x000100";
+            FastConnectable = true;
+            Enable = "Source,Sink,Media,Socket";
+          };
   };
 
   security.rtkit.enable = true;
@@ -54,6 +65,13 @@
               pulse.enable = true;
               # If you want to use JACK applications, uncomment this
               #jack.enable = true;
+              wireplumber = {
+                configPackages = [
+                  (pkgs.writeTextDir "share/wireplumber/wireplumber.conf.d/11-bluetooth-policy.conf" ''
+                    wireplumber.settings = { bluetooth.autoswitch-to-headset-profile = false }
+                  '')
+                ];
+            };
     };
 
     dwm-status = {
@@ -86,16 +104,7 @@
     };
 
     touchegg.enable = true;	
-      
     blueman.enable = true; 
-    pipewire.wireplumber.extraConfig.bluetoothEnhancements = {
-            "monitor.bluez.properties" = {
-                "bluez5.enable-sbc-xq" = true;
-                "bluez5.enable-msbc" = true;
-                "bluez5.enable-hw-volume" = true;
-                "bluez5.roles" = [ "hsp_hs" "hsp_ag" "hfp_hf" "hfp_ag" ];
-            };
-    };
   };
 
   programs.steam = {
