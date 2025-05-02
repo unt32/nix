@@ -15,6 +15,10 @@
         GDK_DPI_SCALE = "0.5";
         MOZ_USE_XINPUT2 = "1";
         _JAVA_AWT_WM_NONREPARENTING = "1";
+
+        SCREEN1 = "";
+        idle = "battery";
+
     };
     systemPackages = with pkgs; [
       unstable.sbctl

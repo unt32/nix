@@ -1,4 +1,22 @@
-{ config, pkgs, hostname, stateVersion, fontSize, pixelSize, vdev, resolution, hz, idle, user, ... }:
+{ config, pkgs, hostname, stateVersion, user, ... }:
+let
+  hosts = {
+    P16G2 = {
+      fontSize = "26"; 
+      pixelSize = "34";
+    };
+  };
+
+  default = {
+    fontSize = "14";
+    pixelSize = "16";
+  };
+
+  fontSizes = if builtins.hasAttr hostname hosts 
+           then hosts.${hostname}
+           else default;
+
+in
 {
   system.stateVersion = stateVersion;
   
@@ -46,10 +64,6 @@
 
   environment = {
     sessionVariables = {
-      vdev = "${vdev}";
-      resolution = "${resolution}";
-      hz = "${hz}";
-      idle = "${idle}";
     };
     systemPackages = with pkgs; [
       home-manager
@@ -64,8 +78,8 @@
             @@ -10,2 +10,2 @@
             -static const char *fonts[]          = { "monospace:size=10" };
             -static const char dmenufont[]       = "monospace:size=10";
-            +static const char *fonts[]          = { "monospace:size=${toString fontSize}" };
-            +static const char dmenufont[]       = "monospace:size=${toString fontSize}";
+            +static const char *fonts[]          = { "monospace:size=${fontSizes.fontSize}" };
+            +static const char dmenufont[]       = "monospace:size=${fontSizes.fontSize}";
           '')
         ];
       }))
@@ -78,7 +92,7 @@
                   +++ b/config.def.h
                   @@ -8,1 +8,1 @@
                   -static char *font = "Liberation Mono:pixelsize=12:antialias=true:autohint=true";
-                  +static char *font = "Liberation Mono:pixelsize=${toString pixelSize}:antialias=true:autohint=true";
+                  +static char *font = "Liberation Mono:pixelsize=${fontSizes.pixelSize}:antialias=true:autohint=true";
                 '')
               ];
       }))

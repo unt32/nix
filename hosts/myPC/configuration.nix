@@ -6,6 +6,13 @@
       ./hardware-configuration.nix
     ];
 
+  environment = {
+    sessionVariables = {
+      SCREEN1 = "--output DP-0 --mode 1920x1080 --refresh 165 --primary";
+      idle = "plugged";
+    };
+  };
+
   boot = {
       loader = {
         systemd-boot.enable = true;

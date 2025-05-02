@@ -38,14 +38,13 @@
     homeStateVersion = "24.11";
     user = "unt32";
     hosts = [
-        { hostname = "P16G2"; stateVersion = "24.11"; fontSize = 26; pixelSize = 34; vdev = "eDP-1"; resolution = "3840x2400"; hz = "60"; idle = "battery"; }
-        { hostname = "myPC"; stateVersion = "24.11"; fontSize = 14; pixelSize = 16; vdev = "DP-0"; resolution = "1920x1080"; hz = "165"; idle = "plugged";}
-        { hostname = "vbox"; stateVersion = "24.11"; fontSize = 10; pixelSize = 16;}
+        { hostname = "P16G2"; stateVersion = "24.11"; }
+        { hostname = "myPC"; stateVersion = "24.11"; }
     ];
-    makeSystem = { hostname, stateVersion, fontSize, pixelSize, vdev, resolution, hz, idle }: nixpkgs.lib.nixosSystem {
+    makeSystem = { hostname, stateVersion }: nixpkgs.lib.nixosSystem {
       system = system;
       specialArgs = {
-        inherit inputs user stateVersion hostname lanzaboote unstable fontSize pixelSize vdev resolution hz idle;
+        inherit inputs user stateVersion hostname lanzaboote unstable;
       };
 
       modules = [
@@ -58,7 +57,7 @@
     nixosConfigurations = nixpkgs.lib.foldl' (configs: host:
       configs // {
         "${host.hostname}" = makeSystem {
-          inherit (host) hostname stateVersion fontSize pixelSize vdev resolution hz idle;
+          inherit (host) hostname stateVersion;
         };
       }) {} hosts;
 
