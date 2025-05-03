@@ -8,7 +8,7 @@
 
   environment = {
     sessionVariables = {
-      SCREEN1 = "--output DP-0 --mode 1920x1080 --refresh 165 --primary";
+      SCREEN = "--output DP-0 --mode 1920x1080 --refresh 165 --primary";
       idle = "plugged";
     };
   };

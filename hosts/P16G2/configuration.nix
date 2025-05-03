@@ -16,7 +16,8 @@
         MOZ_USE_XINPUT2 = "1";
         _JAVA_AWT_WM_NONREPARENTING = "1";
 
-        SCREEN1 = "";
+        #SCREEN = "--output eDP-1 --primary --mode 3840x2400 --rotate normal --refresh 60";
+        SCREEN = "--output eDP-1 --primary --mode 3840x2400 --pos 0x987 --rotate normal  --refresh 60 --output HDMI-1 --mode 1600x1200 --pos 3840x0 --rotate right --refresh 60 --scale 2x2";
         idle = "battery";
 
     };
