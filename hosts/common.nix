@@ -61,13 +61,16 @@ in
     };
   };
 
+  programs = {
+    i3lock.enable = true;
+  };
 
   environment = {
     sessionVariables = {
     };
     systemPackages = with pkgs; [
       home-manager
-      i3lock
+#      i3lock
 
       (dwm.overrideAttrs (oldAttrs: rec {
         src = ../src/dwm;
