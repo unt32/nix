@@ -20,6 +20,7 @@
         curl
         less
         tree
+        blobdrop
 
         fpc
         binutils
