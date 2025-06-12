@@ -35,11 +35,11 @@
     };
 
     system = "x86_64-linux";
-    homeStateVersion = "24.11";
+    homeStateVersion = "25.05";
     user = "unt32";
     hosts = [
-        { hostname = "P16G2"; stateVersion = "24.11"; }
-        { hostname = "myPC"; stateVersion = "24.11"; }
+        { hostname = "P16G2"; stateVersion = "25.05"; }
+        { hostname = "myPC"; stateVersion = "25.05"; }
     ];
     makeSystem = { hostname, stateVersion }: nixpkgs.lib.nixosSystem {
       system = system;
