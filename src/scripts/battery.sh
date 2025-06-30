@@ -12,4 +12,6 @@ xidlehook \
           'xrandr --output "$PRIMARY_DISPLAY" --brightness .1' \
           'xrandr --output "$PRIMARY_DISPLAY" --brightness 1' \
         --timer 10 'xrandr --output "$PRIMARY_DISPLAY" --brightness 1 & xset dpms force off' '' \
-        --timer 600 'systemctl suspend' ''
+        --timer 600 'systemctl suspend' '' &
+
+echo $idle

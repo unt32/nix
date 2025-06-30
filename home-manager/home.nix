@@ -72,9 +72,9 @@
 
       xss-lock -- sh -c 'xkb-switch -s us & i3lock -kc 000000' &
 
-      ${builtins.toString ../src/scripts}/dwm-status-restart.sh > ~/.dwm-status-restart.log 2>&1 &
-      ${builtins.toString ../src/scripts}/initialize-screen.sh > ~/.initialize-screen.log 2>&1 &
-      ${builtins.toString ../src/scripts}/"$idle".sh > ~/.xidlehook.log 2>&1 &
+      status-bar > ~/.statusbar-start.log 2>&1 &
+      screen-init > ~/.initialize-screen.log 2>&1 &
+      $idle > ~/.idle.log 2>&1 &
    '';
   };
 

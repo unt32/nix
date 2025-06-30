@@ -11,4 +11,6 @@ xidlehook \
         --timer 900 \
           'xrandr --output "$PRIMARY_DISPLAY" --brightness .1' \
           'xrandr --output "$PRIMARY_DISPLAY" --brightness 1' \
-        --timer 300 'xrandr --output "$PRIMARY_DISPLAY" --brightness 1 & xset dpms force off' '' \
+        --timer 300 'xrandr --output "$PRIMARY_DISPLAY" --brightness 1 & xset dpms force off' '' &
+
+echo $idle

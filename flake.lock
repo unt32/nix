@@ -121,6 +121,22 @@
         "type": "github"
       }
     },
+    "myscripts-repo": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "path": "./src/scripts",
+        "type": "path"
+      },
+      "original": {
+        "path": "./src/scripts",
+        "type": "path"
+      },
+      "parent": []
+    },
     "nixpkgs": {
       "locked": {
         "lastModified": 1748162331,
@@ -184,6 +200,7 @@
       "inputs": {
         "home-manager": "home-manager",
         "lanzaboote": "lanzaboote",
+        "myscripts-repo": "myscripts-repo",
         "nixpkgs": "nixpkgs",
         "unstable-nixpkgs": "unstable-nixpkgs"
       }

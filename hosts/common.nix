@@ -1,4 +1,4 @@
-{ config, pkgs, hostname, stateVersion, user, ... }:
+{ config, pkgs, hostname, stateVersion, user, scripts, ... }:
 let
   hosts = {
     P16G2 = {
@@ -15,7 +15,6 @@ let
   fontSizes = if builtins.hasAttr hostname hosts 
            then hosts.${hostname}
            else default;
-
 in
 {
   system.stateVersion = stateVersion;
@@ -70,7 +69,11 @@ in
     };
     systemPackages = with pkgs; [
       home-manager
-#      i3lock
+
+      scripts.screen-init
+      scripts.status-bar
+      scripts.battery
+      scripts.plugged
 
       (dwm.overrideAttrs (oldAttrs: rec {
         src = ../src/dwm;

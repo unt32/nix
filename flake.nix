@@ -15,15 +15,28 @@
 
     lanzaboote = {
       url = "github:nix-community/lanzaboote/v0.4.2";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
-      # Optional but recommended to limit the size of your system closure.
+    myscripts-repo = {
+      url = "./src/scripts";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
   };
 
-  outputs = { self, nixpkgs, unstable-nixpkgs, home-manager, lanzaboote, ... }@inputs: let
+  outputs = { self, nixpkgs, unstable-nixpkgs, home-manager, lanzaboote, myscripts-repo,  ... }@inputs: let
     
+    system = "x86_64-linux";
+    homeStateVersion = "25.05";
+    user = "unt32";
+    hosts = [
+        { hostname = "P16G2"; stateVersion = "25.05"; }
+        { hostname = "myPC"; stateVersion = "25.05"; }
+    ];
+
+    scripts = myscripts-repo.packages.${system};
+ 
     pkgs = import nixpkgs {
 	inherit system;
 	config.allowUnfree = true;
@@ -34,17 +47,10 @@
       config.AllowUnFree = true;
     };
 
-    system = "x86_64-linux";
-    homeStateVersion = "25.05";
-    user = "unt32";
-    hosts = [
-        { hostname = "P16G2"; stateVersion = "25.05"; }
-        { hostname = "myPC"; stateVersion = "25.05"; }
-    ];
     makeSystem = { hostname, stateVersion }: nixpkgs.lib.nixosSystem {
       system = system;
       specialArgs = {
-        inherit inputs user stateVersion hostname lanzaboote unstable;
+        inherit inputs user stateVersion hostname lanzaboote unstable scripts;
       };
 
       modules = [
@@ -52,7 +58,7 @@
         ./hosts/common.nix
       ];
     };
-  
+     
   in {
     nixosConfigurations = nixpkgs.lib.foldl' (configs: host:
       configs // {
