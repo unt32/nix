@@ -37,7 +37,7 @@
     ];
     
     sessionVariables = {
-   };
+    };
   };
   
 
@@ -78,7 +78,6 @@
    '';
   };
 
-
   gtk = {
     enable = true;
     theme = {
@@ -89,16 +88,10 @@
       name = "Papirus-Dark";
       package = pkgs.papirus-icon-theme;
     };
-    cursorTheme = {
-      name = "Bibata-Modern-Classic";
-      package = pkgs.bibata-cursors;
-      size = 24;
-    };
     gtk3.extraConfig = {
       gtk-application-prefer-dark-theme = 1;
       gtk-theme-name = "Adwaita-dark";
       gtk-icon-theme-name = "Papirus-Dark";
-      gtk-cursor-theme-name = "Bibata-Modern-Classic";
       gtk-font-name = "JetBrains Mono 11";
     };
     gtk4.extraConfig = {

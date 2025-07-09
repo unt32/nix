@@ -78,6 +78,11 @@
             };
     };
 
+    xserver = {
+      upscaleDefaultCursor = true;
+      dpi = 192;
+    };
+
     dwm-status = {
       enable = true;
       extraConfig = builtins.readFile ./dwm-status.toml;
