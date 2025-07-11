@@ -21,7 +21,9 @@
 
     };
     systemPackages = with pkgs; [
-      unstable.sbctl
+      sbctl
+      tpm2-tss
+      tpm2-tools
     ];
   };
 
@@ -37,6 +39,7 @@
     };
 
     initrd.luks.devices."luks-c81b66c2-27a8-40fc-b741-2d8c3e39e5bf".device = "/dev/disk/by-uuid/c81b66c2-27a8-40fc-b741-2d8c3e39e5bf";
+    initrd.systemd.enable = true;
   };
 
   hardware.bluetooth = {
