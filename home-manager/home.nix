@@ -7,6 +7,10 @@
 
     packages = with pkgs; [
 
+        #GNOME 
+        gnomeExtensions.just-perfection
+        gnome-tweaks
+        bibata-cursors
 
         pavucontrol
 	dconf # for GTK
@@ -84,15 +88,9 @@
       name = "Adwaita-dark";
       package = pkgs.gnome-themes-extra;
     };
-    iconTheme = {
-      name = "Papirus-Dark";
-      package = pkgs.papirus-icon-theme;
-    };
     gtk3.extraConfig = {
       gtk-application-prefer-dark-theme = 1;
       gtk-theme-name = "Adwaita-dark";
-      gtk-icon-theme-name = "Papirus-Dark";
-      gtk-font-name = "JetBrains Mono 11";
     };
     gtk4.extraConfig = {
       gtk-application-prefer-dark-theme = 1;

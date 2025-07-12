@@ -1,5 +1,5 @@
 { config, pkgs, hostname, stateVersion, user, scripts, ... }:
-let
+/*let
   hosts = {
     P16G2 = {
       fontSize = "14"; 
@@ -15,7 +15,7 @@ let
   fontSizes = if builtins.hasAttr hostname hosts 
            then hosts.${hostname}
            else default;
-in
+in*/
 {
   system.stateVersion = stateVersion;
   
@@ -51,12 +51,13 @@ in
       xkb = {
         layout = "us,ru";
         variant = "";
-        #options = "grp:win_space_toggle";
       };
+      desktopManager.gnome.enable = true;
+      displayManager.gdm.enable = true;
     };
 
     displayManager.ly = {
-      enable = true;
+      #enable = true;
       settings = {
         load = true;
         save = true;
@@ -65,15 +66,25 @@ in
   };
 
   programs = {
-    i3lock.enable = true;
+    #i3lock.enable = true;
   };
 
   environment = {
     sessionVariables = {
     };
+
+    gnome.excludePackages = with pkgs; [
+      gnome-tour
+      epiphany
+      gnome-maps
+      gnome-text-editor
+      gnome-contacts
+      gnome-user-docs
+    ];
+
     systemPackages = with pkgs; [
       home-manager
-
+/*
       scripts.screen-init
       scripts.status-bar
       scripts.battery
@@ -116,6 +127,7 @@ in
 
       xclip
       scrot
+*/
     ];
   };
   
