@@ -106,7 +106,7 @@
     logind = {
       lidSwitch = "suspend";
       lidSwitchDocked = "ignore";
-      lidSwitchExternalPower = "lock";
+      lidSwitchExternalPower = "suspend";
     };
 
     fprintd = {
