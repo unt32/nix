@@ -9,7 +9,6 @@
   environment = {
     sessionVariables = {
       SCREEN = "--output DP-0 --mode 1920x1080 --refresh 165 --primary --pos 0x0 --rotate normal --output HDMI-0 --off";
-      #SCREEN = "--output DP-0 --mode 1920x1080 --refresh 165 --primary --pos 0x0 --rotate normal --output HDMI-0 --mode 1600x1200 --refresh 60 --pos 1920x0 --rotate right";
       idle = "plugged";
     };
   };

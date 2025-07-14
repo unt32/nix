@@ -10,9 +10,9 @@
   
   environment = { 
     sessionVariables = {
-        QT_SCALE_FACTOR = "2.5";
-        GDK_SCALE = "2.5";
-        GDK_DPI_SCALE = "0.5";
+#        QT_SCALE_FACTOR = "2.5";
+#        GDK_SCALE = "2.5";
+#        GDK_DPI_SCALE = "0.5";
         MOZ_USE_XINPUT2 = "1";
         _JAVA_AWT_WM_NONREPARENTING = "1";
 
@@ -38,8 +38,19 @@
       pkiBundle = "/var/lib/sbctl";
     };
 
-    initrd.luks.devices."luks-c81b66c2-27a8-40fc-b741-2d8c3e39e5bf".device = "/dev/disk/by-uuid/c81b66c2-27a8-40fc-b741-2d8c3e39e5bf";
-    initrd.systemd.enable = true;
+    initrd = {
+      luks.devices."luks-c81b66c2-27a8-40fc-b741-2d8c3e39e5bf".device = "/dev/disk/by-uuid/c81b66c2-27a8-40fc-b741-2d8c3e39e5bf";
+      systemd.enable = true;
+    };
+  };
+
+    systemd.services.setMicMuteLed = {
+    description = "Set micmute LED brightness";
+    wantedBy = [ "multi-user.target" ];
+    serviceConfig = {
+      Type = "oneshot";
+      ExecStart = "${pkgs.bash}/bin/bash -c 'echo 0 | ${pkgs.coreutils}/bin/tee /sys/class/leds/platform::micmute/brightness'";
+    };
   };
 
   hardware.bluetooth = {
