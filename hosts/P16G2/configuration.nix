@@ -4,21 +4,13 @@
   imports =
   [	
 	./hardware-configuration.nix
-#	./tlp.nix
         lanzaboote.nixosModules.lanzaboote
   ];
   
   environment = { 
     sessionVariables = {
-#        QT_SCALE_FACTOR = "2.5";
-#        GDK_SCALE = "2.5";
-#        GDK_DPI_SCALE = "0.5";
         MOZ_USE_XINPUT2 = "1";
         _JAVA_AWT_WM_NONREPARENTING = "1";
-
-#        SCREEN = "--output eDP-1 --primary --mode 3840x2400 --rotate normal --refresh 60";
-#        idle = "battery";
-
     };
     systemPackages = with pkgs; [
       sbctl
@@ -93,17 +85,6 @@
                   '')
                 ];
             };
-    };
-
-    xserver = {
-      upscaleDefaultCursor = true;
-      dpi = 192;
-    };
-
-    dwm-status = {
-#      enable = true;
-      extraConfig = builtins.readFile ./dwm-status.toml;
-      order = [ "audio" "backlight" "battery" "network" "time" ];
     };
 
     logind = {

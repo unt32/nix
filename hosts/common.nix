@@ -1,21 +1,4 @@
 { config, pkgs, hostname, stateVersion, user, scripts, ... }:
-/*let
-  hosts = {
-    P16G2 = {
-      fontSize = "14"; 
-      pixelSize = "35";
-    };
-  };
-
-  default = {
-    fontSize = "14";
-    pixelSize = "16";
-  };
-
-  fontSizes = if builtins.hasAttr hostname hosts 
-           then hosts.${hostname}
-           else default;
-in*/
 {
   system.stateVersion = stateVersion;
   
@@ -55,18 +38,9 @@ in*/
       desktopManager.gnome.enable = true;
       displayManager.gdm.enable = true;
     };
-
-    displayManager.ly = {
-      #enable = true;
-      settings = {
-        load = true;
-        save = true;
-      };
-    };
   };
 
   programs = {
-    #i3lock.enable = true;
   };
 
   environment = {
@@ -84,50 +58,6 @@ in*/
 
     systemPackages = with pkgs; [
       home-manager
-/*
-      scripts.screen-init
-      scripts.status-bar
-      scripts.battery
-      scripts.plugged
-
-      (dwm.overrideAttrs (oldAttrs: rec {
-        src = ../src/dwm;
-        patches = [
-          (builtins.toFile "dwm-fontsize.patch" ''
-            --- a/config.def.h
-            +++ b/config.def.h
-            @@ -10,2 +10,2 @@
-            -static const char *fonts[]          = { "monospace:size=10" };
-            -static const char dmenufont[]       = "monospace:size=10";
-            +static const char *fonts[]          = { "monospace:size=${fontSizes.fontSize}" };
-            +static const char dmenufont[]       = "monospace:size=${fontSizes.fontSize}";
-          '')
-        ];
-      }))
-
-      (st.overrideAttrs (oldAttrs: rec {
-        src = ../src/st;
-        patches = [
-                (builtins.toFile "st-fontsize.patch" ''
-                  --- a/config.def.h
-                  +++ b/config.def.h
-                  @@ -8,1 +8,1 @@
-                  -static char *font = "Liberation Mono:pixelsize=12:antialias=true:autohint=true";
-                  +static char *font = "Liberation Mono:pixelsize=${fontSizes.pixelSize}:antialias=true:autohint=true";
-                '')
-              ];
-      }))
-
-      dmenu
-      xidlehook
-      xss-lock
-      xkb-switch
-      alsa-utils
-      brightnessctl
-
-      xclip
-      scrot
-*/
     ];
   };
   
