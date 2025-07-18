@@ -8,18 +8,18 @@ selected_fg=${5:-"#eeeeee"}
 
 
 function powermenu {
-	options="lock\nsleep\npoweroff\nrestart"
+	options="lock\nsleep\npoweroff\nreboot"
 	 selected=$(echo -e "$options" | dmenu -fn "$font" \
 		-nb "$normal_bg" -nf "$normal_fg" \
 		-sb "$selected_bg" -sf "$selected_fg")
 
-	if [[ Shelected = "Shutdown" ]]; then
+	if [[ $selected = "poweroff" ]]; then
 		systemctl poweroff
-	elif [[ $selected = "Restart" ]]; then
+	elif [[ $selected = "restart" ]]; then
 		systemctl reboot
-	elif [[ $selected = "Sleep" ]]; then
+	elif [[ $selected = "sleep" ]]; then
 		systemctl suspend
-	elif [[ $selected = "Lock" ]]; then
+	elif [[ $selected = "lock" ]]; then
 		loginctl lock-session
 	fi
 }
