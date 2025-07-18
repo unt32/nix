@@ -15,7 +15,7 @@ function powermenu {
 
 	if [[ $selected = "poweroff" ]]; then
 		systemctl poweroff
-	elif [[ $selected = "restart" ]]; then
+	elif [[ $selected = "reboot" ]]; then
 		systemctl reboot
 	elif [[ $selected = "sleep" ]]; then
 		systemctl suspend
