@@ -8,7 +8,7 @@
 
   environment = {
     sessionVariables = {
-      SCREEN = "--output DP-0 --mode 1920x1080 --refresh 165 --primary --pos 0x0 --rotate normal --output HDMI-0 --off";
+      SCREEN = "--output DP-0 --mode 1920x1080 --refresh 165 --primary --pos 0x0 --rotate normal";
       idle = "plugged";
     };
   };
@@ -121,5 +121,4 @@
           dedicatedServer.openFirewall = false; # Open ports in the firewall for Source Dedicated Server
           localNetworkGameTransfers.openFirewall = true; # Open ports in the firewall for Steam Local Network Game Transfers
   };
-
 }

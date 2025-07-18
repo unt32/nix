@@ -13,12 +13,16 @@
       status-bar = pkgs.writeShellScriptBin "status-bar" (builtins.readFile ./dwm-status-restart.sh);
       battery = pkgs.writeShellScriptBin "battery" (builtins.readFile ./battery.sh);
       plugged = pkgs.writeShellScriptBin "plugged" (builtins.readFile ./plugged.sh);
+      powermenu = pkgs.writeShellScriptBin "powermenu" (builtins.readFile ./powermenu.sh);
     in
     {
-      packages.x86_64-linux.screen-init = screen-init;
-      packages.x86_64-linux.status-bar = status-bar;
-      packages.x86_64-linux.battery = battery;
-      packages.x86_64-linux.plugged = plugged;
+      packages.x86_64-linux = {
+        screen-init = screen-init;
+        status-bar = status-bar;
+        battery = battery;
+        plugged = plugged;
+        powermenu = powermenu;
+      };
     };
   
 }

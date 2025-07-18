@@ -77,6 +77,7 @@ in
       scripts.status-bar
       scripts.battery
       scripts.plugged
+      scripts.powermenu
 
       (dwm.overrideAttrs (oldAttrs: rec {
         src = ../src/dwm;
