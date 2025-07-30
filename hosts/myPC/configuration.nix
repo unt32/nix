@@ -108,6 +108,24 @@
                 '')
               ];
             };
+            extraConfig.pipewire-pulse."92-low-latency" = {
+              context.modules = [
+                {
+                  name = "libpipewire-module-protocol-pulse";
+                  args = {
+                    pulse.min.req = "128/48000";
+                    pulse.default.req = "256/48000";
+                    pulse.max.req = "1024/48000";
+                    pulse.min.quantum = "128/48000";
+                    pulse.max.quantum = "1024/48000";
+                  };
+                }
+              ];
+              stream.properties = {
+                node.latency = "256/48000";
+                resample.quality = 1;
+              };
+            };
     };
 
     blueman.enable = true;
@@ -120,5 +138,6 @@
           remotePlay.openFirewall = false; # Open ports in the firewall for Steam Remote Play
           dedicatedServer.openFirewall = false; # Open ports in the firewall for Source Dedicated Server
           localNetworkGameTransfers.openFirewall = true; # Open ports in the firewall for Steam Local Network Game Transfers
+          extraCompatPackages = with pkgs; [ proton-ge-bin ];
   };
 }

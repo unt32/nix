@@ -20,7 +20,7 @@ function powermenu {
 	elif [[ $selected = "sleep" ]]; then
 		systemctl suspend
 	elif [[ $selected = "lock" ]]; then
-		loginctl lock-session
+		xset dpms force off
 	fi
 }
 powermenu
