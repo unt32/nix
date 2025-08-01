@@ -1,0 +1,52 @@
+--- a/config.def.h
++++ b/config.def.h
+
+1a2,3
+> #include <X11/XF86keysym.h>
+> 
+35c37
+< static const float mfact     = 0.55; /* factor of master area size [0.05..0.95] */
+---
+> static const float mfact     = 0.50; /* factor of master area size [0.05..0.95] */
+48c50,51
+< #define MODKEY Mod1Mask
+---
+> #define MODKEY Mod4Mask
+> #define ALT Mod1Mask
+60a64
+> static const char *powermenucmd[] = { "powermenu", dmenufont, col_gray1, col_gray3, col_cyan, col_gray4, NULL };
+65a70
+> 	{ MODKEY,                       XK_o,	spawn,	   {.v = powermenucmd} },
+68,69c73,74
+< 	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
+< 	{ MODKEY,                       XK_k,      focusstack,     {.i = -1 } },
+---
+> 	{ MODKEY,                       XK_j,   focusstack,     {.i = +1 } },
+> 	{ MODKEY,                       XK_k,     focusstack,     {.i = -1 } },
+72,73c77,78
+< 	{ MODKEY,                       XK_h,      setmfact,       {.f = -0.05} },
+< 	{ MODKEY,                       XK_l,      setmfact,       {.f = +0.05} },
+---
+> 	{ MODKEY,                       XK_h,   setmfact,       {.f = -0.05} },
+> 	{ MODKEY,                       XK_l,  setmfact,       {.f = +0.05} },
+75,76c80,81
+< 	{ MODKEY,                       XK_Tab,    view,           {0} },
+< 	{ MODKEY|ShiftMask,             XK_c,      killclient,     {0} },
+---
+> 	{ ALT, 	                        XK_Tab,    view,           {0} },
+> 	{ ALT,		                XK_F4,     killclient,     {0} },
+80c85,86
+< 	{ MODKEY,                       XK_space,  setlayout,      {0} },
+---
+> 	{ MODKEY,                       XK_space,  spawn,          SHCMD("xkb-switch -n") },
+> 	{ 0,                            XK_Print,  spawn, 	   SHCMD("scrot -s -f -z /tmp/screenshot.png && xclip -selection clipboard -t image/png -i \"$(ls -t /tmp/screenshot*.png | head -n 1)\"") },
+97a104,112
+> 
+> 
+> 	{ 0, XF86XK_AudioMute, spawn, SHCMD("amixer set Master toggle") },         // Mute sound
+>         { 0, XF86XK_AudioMicMute, spawn, SHCMD("amixer set Capture toggle") },  // Mute microphone
+>         { 0, XF86XK_AudioRaiseVolume, spawn, SHCMD("amixer set Master 5%+") },   // Increase volume by 5%
+>         { 0, XF86XK_AudioLowerVolume, spawn, SHCMD("amixer set Master 5%-") },   // Decrease volume by 5%
+>         { 0, XF86XK_MonBrightnessUp, spawn, SHCMD("brightnessctl s +10%") },      // Increase brightness with XF86BrightnessUp
+>         { 0, XF86XK_MonBrightnessDown, spawn, SHCMD("brightnessctl s 10-%") },    // Decrease brightness with XF86BrightnessDown
+> 

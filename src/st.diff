@@ -1,0 +1,5 @@
+--- a/config.def.h
++++ b/config.def.h
+@@ -97,1 +97,1 @@ char *termname = "st-256color";
+-float alpha = 0.8;
++float alpha = 0.97;

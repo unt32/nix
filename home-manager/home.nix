@@ -13,6 +13,8 @@
 	firefox
         discord
 
+        feh
+
         powertop
         htop
 	rtorrent
@@ -44,7 +46,10 @@
   programs = {
     vim = {
    	enable = true;
-	extraConfig = "colorscheme torte"; 
+        extraConfig = ''
+          colorscheme torte
+          autocmd ColorScheme * hi Normal ctermbg=NONE guibg=NONE
+        '';
     };
 
     git = {
@@ -52,7 +57,6 @@
     	userEmail = "vladsaen5@gmail.com";
     	userName = "unt32";
     };
-  
   
     mangohud = {
 	enable = true;
@@ -75,6 +79,8 @@
       status-bar > ~/.statusbar-start.log 2>&1 &
       screen-init > ~/.initialize-screen.log 2>&1 &
       $idle > ~/.idle.log 2>&1 &
+
+      feh --no-fehbg --bg-scale ${../src/wallpaper.jpg} > .feh.log 2>&1 &
    '';
   };
 
