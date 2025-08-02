@@ -48,6 +48,9 @@ in
   services = {
     picom = {
       enable = true;
+      settings = {
+        unredir-if-possible = true;
+      };
     };
 
     xserver = {
