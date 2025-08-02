@@ -42,6 +42,29 @@
       luks.devices."luks-c81b66c2-27a8-40fc-b741-2d8c3e39e5bf".device = "/dev/disk/by-uuid/c81b66c2-27a8-40fc-b741-2d8c3e39e5bf";
       systemd.enable = true;
     };
+
+      plymouth = {
+        enable = true;
+        theme = "bgrt";
+        themePackages = with pkgs; [
+            nixos-bgrt-plymouth
+        ];
+      };
+
+      # Enable "Silent boot"
+      consoleLogLevel = 3;
+      initrd.verbose = false;
+      kernelParams = [
+        "quiet"
+        "splash"
+        "boot.shell_on_fail"
+        "udev.log_priority=3"
+        "rd.systemd.show_status=auto"
+      ];
+      # Hide the OS choice for bootloaders.
+      # It's still possible to open the bootloader list by pressing any key
+      # It will just not appear on screen unless a key is pressed
+      loader.timeout = 0;
   };
 
     systemd.services.setMicMuteLed = {
