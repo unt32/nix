@@ -108,22 +108,20 @@
                 '')
               ];
             };
-            extraConfig.pipewire-pulse."92-low-latency" = {
-              context.modules = [
-                {
-                  name = "libpipewire-module-protocol-pulse";
-                  args = {
-                    pulse.min.req = "128/48000";
-                    pulse.default.req = "256/48000";
-                    pulse.max.req = "1024/48000";
-                    pulse.min.quantum = "128/48000";
-                    pulse.max.quantum = "1024/48000";
-                  };
-                }
-              ];
-              stream.properties = {
-                node.latency = "256/48000";
-                resample.quality = 1;
+            extraConfig.pipewire = {
+              "99-my-config" = {
+                "context.properties" = {
+                  "default.clock.rate" = 96000;
+                  "default.clock.min-quantum" = 1024;
+                };
+              };
+            };
+            # Configuration for the PipeWire client library
+            extraConfig.client = {
+              "99-my-client-config" = {
+                "context.properties" = {
+                  "default.clock.rate" = 96000;
+                };
               };
             };
     };
