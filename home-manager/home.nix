@@ -11,8 +11,8 @@
         pavucontrol
 	dconf # for GTK
 	firefox
-
         feh
+
 
         powertop
         htop
@@ -22,11 +22,17 @@
         less
         tree
         blobdrop
+        p7zip
+        ntfs3g
+        simple-mtpfs
+        mpv
+
 
         fpc
         binutils
         nasm
         gdb
+
 
 	lutris
 	wineWowPackages.full
