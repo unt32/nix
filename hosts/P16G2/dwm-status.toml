@@ -1,15 +1,19 @@
-separator = " / "
+separator = "] ["
 
 [audio]
-mute = " mute"
-template = " vol {VOL}%"
+mute = " [muted"
+template = " [s{VOL}%"
 
 [backlight]
 device = "amdgpu_bl1"
-template = "bl {BL}%"
+template = "b{BL}%"
 
 [battery]
-notifier_levels = [ 2, 5, 10, 15, 20 ]
+enable_notifier = false
 
 [time]
-format = "%H:%M "
+format = "%H:%M] "
+
+[network]
+no_value = "?"
+template = "{ESSID} {LocalIPv4}"

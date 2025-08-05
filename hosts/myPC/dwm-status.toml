@@ -1,8 +1,11 @@
-separator = " / "
+separator = "] ["
 
 [audio]
-mute = " mute"
-template = " vol {VOL}%"
+mute = " [muted"
+template = " [s{VOL}%"
+
+[battery]
+enable_notifier = false
 
 [time]
-format = "%H:%M "
+format = "%H:%M] "
