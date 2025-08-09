@@ -1,10 +1,9 @@
 { config, pkgs, ... }:
 
 {
-  imports =
-    [
-      ./hardware-configuration.nix
-    ];
+  imports = [
+    ./hardware-configuration.nix
+  ];
 
   environment = {
     sessionVariables = {
@@ -14,61 +13,59 @@
   };
 
   boot = {
-      loader = {
-        systemd-boot = {
-            enable = true;
-            memtest86.enable = true;
-        };
-        efi.canTouchEfiVariables = true;
+    loader = {
+      systemd-boot = {
+        enable = true;
+        memtest86.enable = true;
       };
+      efi.canTouchEfiVariables = true;
+    };
 
-      extraModulePackages = with config.boot.kernelPackages; [ xpadneo ];
-      extraModprobeConfig = ''
-        options bluetooth disable_ertm=Y
-      '';
-      # connect xbox controller
+    extraModulePackages = with config.boot.kernelPackages; [ xpadneo ];
+    extraModprobeConfig = ''
+      options bluetooth disable_ertm=Y
+    '';
+    # connect xbox controller
 
+    plymouth = {
+      enable = true;
+      theme = "bgrt";
+      themePackages = with pkgs; [
+        nixos-bgrt-plymouth
+      ];
+    };
 
-        plymouth = {
-          enable = true;
-          theme = "bgrt";
-          themePackages = with pkgs; [
-              nixos-bgrt-plymouth
-          ];
-        };
-
-        # Enable "Silent boot"
-        consoleLogLevel = 3;
-        initrd.verbose = false;
-        kernelParams = [
-          "quiet"
-          "splash"
-          "boot.shell_on_fail"
-          "udev.log_priority=3"
-          "rd.systemd.show_status=auto"
-        ];
-        # Hide the OS choice for bootloaders.
-        # It's still possible to open the bootloader list by pressing any key
-        # It will just not appear on screen unless a key is pressed
-        loader.timeout = 0;
+    # Enable "Silent boot"
+    consoleLogLevel = 3;
+    initrd.verbose = false;
+    kernelParams = [
+      "quiet"
+      "splash"
+      "boot.shell_on_fail"
+      "udev.log_priority=3"
+      "rd.systemd.show_status=auto"
+    ];
+    # Hide the OS choice for bootloaders.
+    # It's still possible to open the bootloader list by pressing any key
+    # It will just not appear on screen unless a key is pressed
+    loader.timeout = 0;
   };
-
 
   hardware = {
     bluetooth = {
-          enable = true;
-          powerOnBoot = false;
-          settings.General = {
-            experimental = true; # show battery
+      enable = true;
+      powerOnBoot = false;
+      settings.General = {
+        experimental = true; # show battery
 
-            # https://www.reddit.com/r/NixOS/comments/1ch5d2p/comment/lkbabax/
-            # for pairing bluetooth controller
-            Privacy = "device";
-            JustWorksRepairing = "always";
-            Class = "0x000100";
-            FastConnectable = true;
-            Enable = "Source,Sink,Media,Socket";
-          };
+        # https://www.reddit.com/r/NixOS/comments/1ch5d2p/comment/lkbabax/
+        # for pairing bluetooth controller
+        Privacy = "device";
+        JustWorksRepairing = "always";
+        Class = "0x000100";
+        FastConnectable = true;
+        Enable = "Source,Sink,Media,Socket";
+      };
     };
 
     xpadneo.enable = true;
@@ -113,53 +110,57 @@
   security.rtkit.enable = true;
   services = {
     dwm-status = {
-        enable = true;
-        extraConfig = builtins.readFile ./dwm-status.toml;
-        order = [ "audio" "network" "time" ];
+      enable = true;
+      extraConfig = builtins.readFile ./dwm-status.toml;
+      order = [
+        "audio"
+        "network"
+        "time"
+      ];
     };
 
     pipewire = {
-            enable = true;
-            alsa.enable = true;
-            alsa.support32Bit = true;
-            pulse.enable = true;
-            # If you want to use JACK applications, uncomment this
-            #jack.enable = true;
-            wireplumber = {
-              configPackages = [
-                (pkgs.writeTextDir "share/wireplumber/wireplumber.conf.d/11-bluetooth-policy.conf" ''
-                  wireplumber.settings = { bluetooth.autoswitch-to-headset-profile = false }
-                '')
-              ];
-            };
-            extraConfig.pipewire = {
-              "99-my-config" = {
-                "context.properties" = {
-                  "default.clock.rate" = 96000;
-                  "default.clock.min-quantum" = 1024;
-                };
-              };
-            };
-            # Configuration for the PipeWire client library
-            extraConfig.client = {
-              "99-my-client-config" = {
-                "context.properties" = {
-                  "default.clock.rate" = 96000;
-                };
-              };
-            };
+      enable = true;
+      alsa.enable = true;
+      alsa.support32Bit = true;
+      pulse.enable = true;
+      # If you want to use JACK applications, uncomment this
+      #jack.enable = true;
+      wireplumber = {
+        configPackages = [
+          (pkgs.writeTextDir "share/wireplumber/wireplumber.conf.d/11-bluetooth-policy.conf" ''
+            wireplumber.settings = { bluetooth.autoswitch-to-headset-profile = false }
+          '')
+        ];
+      };
+      extraConfig.pipewire = {
+        "99-my-config" = {
+          "context.properties" = {
+            "default.clock.rate" = 96000;
+            "default.clock.min-quantum" = 1024;
+          };
+        };
+      };
+      # Configuration for the PipeWire client library
+      extraConfig.client = {
+        "99-my-client-config" = {
+          "context.properties" = {
+            "default.clock.rate" = 96000;
+          };
+        };
+      };
     };
 
     blueman.enable = true;
-    xserver.videoDrivers = ["nvidia"];
+    xserver.videoDrivers = [ "nvidia" ];
   };
 
   programs.steam = {
-          enable = true;
-          gamescopeSession.enable = true;
-          remotePlay.openFirewall = false; # Open ports in the firewall for Steam Remote Play
-          dedicatedServer.openFirewall = false; # Open ports in the firewall for Source Dedicated Server
-          localNetworkGameTransfers.openFirewall = true; # Open ports in the firewall for Steam Local Network Game Transfers
-          extraCompatPackages = with pkgs; [ proton-ge-bin ];
+    enable = true;
+    gamescopeSession.enable = true;
+    remotePlay.openFirewall = false; # Open ports in the firewall for Steam Remote Play
+    dedicatedServer.openFirewall = false; # Open ports in the firewall for Source Dedicated Server
+    localNetworkGameTransfers.openFirewall = true; # Open ports in the firewall for Steam Local Network Game Transfers
+    extraCompatPackages = with pkgs; [ proton-ge-bin ];
   };
 }

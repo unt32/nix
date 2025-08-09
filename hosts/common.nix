@@ -1,8 +1,16 @@
-{ config, pkgs, hostname, stateVersion, user, scripts, ... }:
+{
+  config,
+  pkgs,
+  hostname,
+  stateVersion,
+  user,
+  scripts,
+  ...
+}:
 let
   hosts = {
     P16G2 = {
-      fontSize = "14"; 
+      fontSize = "14";
       pixelSize = "35";
     };
   };
@@ -12,13 +20,11 @@ let
     pixelSize = "16";
   };
 
-  fontSizes = if builtins.hasAttr hostname hosts 
-           then hosts.${hostname}
-           else default;
+  fontSizes = if builtins.hasAttr hostname hosts then hosts.${hostname} else default;
 in
 {
   system.stateVersion = stateVersion;
-  
+
   networking = {
     networkmanager.enable = true;
     hostName = hostname;
@@ -29,7 +35,7 @@ in
   i18n = {
     defaultLocale = "en_US.UTF-8";
     extraLocaleSettings = {
-      LANGUAGE =  "en_US.UTF-8";
+      LANGUAGE = "en_US.UTF-8";
       LC_MESSAGES = "en_US.UTF-8";
       LC_ALL = "en_US.UTF-8";
       LC_CTYPE = "en_US.UTF-8";
@@ -79,6 +85,16 @@ in
     };
     systemPackages = with pkgs; [
       home-manager
+      (treefmt.withConfig {
+        runtimeInputs = [ pkgs.nixfmt-rfc-style ];
+        settings = {
+          on-unmatched = "info";
+          formatter.nixfmt = {
+            command = "nixfmt";
+            includes = [ "*.nix" ];
+          };
+        };
+      })
 
       scripts.screen-init
       scripts.status-bar
@@ -109,26 +125,26 @@ in
 
       (st.overrideAttrs (oldAttrs: rec {
         patches = [
-                (fetchpatch {
-                  url = "https://st.suckless.org/patches/anysize/st-anysize-20220718-baa9357.diff";
-                  sha256 = "sha256-yx9VSwmPACx3EN3CAdQkxeoJKJxQ6ziC9tpBcoWuWHc=";
-                })           
+          (fetchpatch {
+            url = "https://st.suckless.org/patches/anysize/st-anysize-20220718-baa9357.diff";
+            sha256 = "sha256-yx9VSwmPACx3EN3CAdQkxeoJKJxQ6ziC9tpBcoWuWHc=";
+          })
 
-                (fetchpatch {
-                  url = "https://st.suckless.org/patches/alpha/st-alpha-osc11-20220222-0.8.5.diff";
-                  sha256 = "sha256-Y8GDatq/1W86GKPJWzggQB7O85hXS0SJRva2atQ3upw=";
-                })           
+          (fetchpatch {
+            url = "https://st.suckless.org/patches/alpha/st-alpha-osc11-20220222-0.8.5.diff";
+            sha256 = "sha256-Y8GDatq/1W86GKPJWzggQB7O85hXS0SJRva2atQ3upw=";
+          })
 
-                ../src/st.diff
-      
-                (builtins.toFile "st-fontsize.patch" ''
-                  --- a/config.def.h
-                  +++ b/config.def.h
-                  @@ -8,1 +8,1 @@
-                  -static char *font = "Liberation Mono:pixelsize=12:antialias=true:autohint=true";
-                  +static char *font = "Liberation Mono:pixelsize=${fontSizes.pixelSize}:antialias=true:autohint=true";
-                '')
-              ];
+          ../src/st.diff
+
+          (builtins.toFile "st-fontsize.patch" ''
+            --- a/config.def.h
+            +++ b/config.def.h
+            @@ -8,1 +8,1 @@
+            -static char *font = "Liberation Mono:pixelsize=12:antialias=true:autohint=true";
+            +static char *font = "Liberation Mono:pixelsize=${fontSizes.pixelSize}:antialias=true:autohint=true";
+          '')
+        ];
       }))
 
       dmenu
@@ -142,8 +158,11 @@ in
       scrot
     ];
   };
-  
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+
+  nix.settings.experimental-features = [
+    "nix-command"
+    "flakes"
+  ];
 
   nixpkgs.config.allowUnfree = true;
 
@@ -152,7 +171,7 @@ in
     dates = "weekly";
     options = "--delete-older-than 30d";
   };
-	
+
   services.libinput = {
     mouse = {
       middleEmulation = false;
@@ -163,10 +182,15 @@ in
   };
 
   users.users.${user} = {
-            isNormalUser = true;
-            home = "/home/${user}";
-            extraGroups = [ "input" "audio" "wheel" "networkmanager" ];
-            shell = pkgs.bash;
+    isNormalUser = true;
+    home = "/home/${user}";
+    extraGroups = [
+      "input"
+      "audio"
+      "wheel"
+      "networkmanager"
+    ];
+    shell = pkgs.bash;
   };
 
 }

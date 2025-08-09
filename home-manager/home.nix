@@ -1,4 +1,11 @@
-{ homeStateVersion, user, pkgs, unstable, ... }: {
+{
+  homeStateVersion,
+  user,
+  pkgs,
+  unstable,
+  ...
+}:
+{
 
   home = {
     username = user;
@@ -7,67 +14,62 @@
 
     packages = with pkgs; [
 
+      pavucontrol
+      dconf # for GTK
+      firefox
+      feh
 
-        pavucontrol
-	dconf # for GTK
-	firefox
-        feh
+      powertop
+      htop
+      rtorrent
+      mc
+      curl
+      less
+      tree
+      blobdrop
+      p7zip
+      ntfs3g
+      simple-mtpfs
+      mpv
 
+      fpc
+      binutils
+      nasm
+      gdb
 
-        powertop
-        htop
-	rtorrent
-        mc
-        curl
-        less
-        tree
-        blobdrop
-        p7zip
-        ntfs3g
-        simple-mtpfs
-        mpv
+      lutris
+      wineWowPackages.full
 
+      #unstable.airshipper
 
-        fpc
-        binutils
-        nasm
-        gdb
-
-
-	lutris
-	wineWowPackages.full
-
-        #unstable.airshipper
-	
-        prismlauncher
-        jdk21
+      prismlauncher
+      jdk21
     ];
-    
+
     sessionVariables = {
     };
   };
-  
 
   programs = {
     vim = {
-   	enable = true;
-        extraConfig = ''
-          colorscheme torte
-          autocmd ColorScheme * hi Normal ctermbg=NONE guibg=NONE
-        '';
+      enable = true;
+      extraConfig = ''
+        colorscheme torte
+        autocmd ColorScheme * hi Normal ctermbg=NONE guibg=NONE
+      '';
     };
 
     git = {
-        enable = true;
-    	userEmail = "vladsaen5@gmail.com";
-    	userName = "unt32";
+      enable = true;
+      userEmail = "vladsaen5@gmail.com";
+      userName = "unt32";
     };
-  
+
     mangohud = {
-	enable = true;
-        settings = {
-          preset = 3;
-        };
+      enable = true;
+      settings = {
+        preset = 3;
+      };
     };
 
     vesktop = {
@@ -106,7 +108,7 @@
       };
     };
   };
-  
+
   xsession = {
     enable = true;
     windowManager.command = "exec dwm";
@@ -122,7 +124,7 @@
       $idle > ~/.idle.log 2>&1 &
 
       feh --no-fehbg --bg-scale ${../src/wallpaper.jpg} > .feh.log 2>&1 &
-   '';
+    '';
   };
 
   gtk = {
