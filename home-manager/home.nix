@@ -19,6 +19,12 @@
       firefox
       feh
 
+      lutris
+      wineWowPackages.full
+
+      #prismlauncher
+      #jdk21
+
       powertop
       htop
       rtorrent
@@ -31,19 +37,6 @@
       ntfs3g
       simple-mtpfs
       mpv
-
-      fpc
-      binutils
-      nasm
-      gdb
-
-      lutris
-      wineWowPackages.full
-
-      #unstable.airshipper
-
-      prismlauncher
-      jdk21
     ];
 
     sessionVariables = {
