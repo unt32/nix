@@ -116,7 +116,7 @@
       screen-init > ~/.initialize-screen.log 2>&1 &
       $idle > ~/.idle.log 2>&1 &
 
-      feh --no-fehbg --bg-scale ${../src/wallpaper.jpg} > .feh.log 2>&1 &
+      feh --no-fehbg --bg-max ${../src/wallpaper.jpg} > .feh.log 2>&1 &
     '';
   };
 

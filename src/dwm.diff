@@ -4,6 +4,10 @@
 1a2,3
 > #include <X11/XF86keysym.h>
 > 
+16c18
+< static const char col_cyan[]        = "#005577";
+---
+> static const char col_cyan[]        = "#005577";
 35c37
 < static const float mfact     = 0.55; /* factor of master area size [0.05..0.95] */
 ---

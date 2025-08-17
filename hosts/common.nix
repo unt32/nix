@@ -11,16 +11,20 @@ let
   hosts = {
     P16G2 = {
       fontSize = "14";
-      pixelSize = "35";
+      pixelSize = "40";
+      borderpx = "3";
+      alpha = "0.8";
     };
   };
 
   default = {
     fontSize = "14";
     pixelSize = "16";
+    borderpx = "1";
+    alpha = "0.9";
   };
 
-  fontSizes = if builtins.hasAttr hostname hosts then hosts.${hostname} else default;
+  host = if builtins.hasAttr hostname hosts then hosts.${hostname} else default;
 in
 {
   system.stateVersion = stateVersion;
@@ -113,14 +117,17 @@ in
 
           ../src/dwm.diff
 
-          (builtins.toFile "dwm-fontsize.patch" ''
+          (builtins.toFile "dwm-diffs.patch" ''
             --- a/config.def.h
             +++ b/config.def.h
+            @@ -4,1 +4,1 @@
+            -static const unsigned int borderpx  = 1;        /* border pixel of windows */
+            +static const unsigned int borderpx  = ${host.borderpx};        /* border pixel of windows */
             @@ -10,2 +10,2 @@
             -static const char *fonts[]          = { "monospace:size=10" };
             -static const char dmenufont[]       = "monospace:size=10";
-            +static const char *fonts[]          = { "monospace:size=${fontSizes.fontSize}" };
-            +static const char dmenufont[]       = "monospace:size=${fontSizes.fontSize}";
+            +static const char *fonts[]          = { "monospace:size=${host.fontSize}" };
+            +static const char dmenufont[]       = "monospace:size=${host.fontSize}";
           '')
         ];
       }))
@@ -137,14 +144,15 @@ in
             sha256 = "sha256-Y8GDatq/1W86GKPJWzggQB7O85hXS0SJRva2atQ3upw=";
           })
 
-          ../src/st.diff
-
-          (builtins.toFile "st-fontsize.patch" ''
+          (builtins.toFile "st-diffs.patch" ''
             --- a/config.def.h
             +++ b/config.def.h
             @@ -8,1 +8,1 @@
             -static char *font = "Liberation Mono:pixelsize=12:antialias=true:autohint=true";
-            +static char *font = "Liberation Mono:pixelsize=${fontSizes.pixelSize}:antialias=true:autohint=true";
+            +static char *font = "Liberation Mono:pixelsize=${host.pixelSize}:antialias=true:autohint=true";
+            @@ -97,1 +97,1 @@ char *termname = "st-256color";
+            -float alpha = 0.8;
+            +float alpha = ${host.alpha};
           '')
         ];
       }))
