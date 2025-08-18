@@ -1,6 +1,7 @@
 {
   config,
   lanzaboote,
+  disko,
   lib,
   pkgs,
   unstable,
@@ -10,7 +11,9 @@
   imports = [
     ./hardware-configuration.nix
     ./tlp.nix
+    ./disko.nix
     lanzaboote.nixosModules.lanzaboote
+    disko.nixosModules.disko
   ];
 
   environment = {
