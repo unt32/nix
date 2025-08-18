@@ -23,14 +23,12 @@
             luks = {
               # https://0pointer.net/blog/unlocking-luks2-volumes-with-tpm2-fido2-pkcs11-security-hardware-on-systemd-248.html
               size = "100%";
-              type = "luks";
               content = {
+                type = "luks";
+                name = "crypted";
                 settings = {
                   allowDiscards = true;
                 };
-                name = "crypted";
-                type = "luks";
-                name = "cryptroot";
                 content = {
                   type = "filesystem";
                   format = "ext4";
