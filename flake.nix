@@ -17,6 +17,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    disko = {
+      url = "github:nix-community/disko";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     myscripts-repo = {
       url = "./src/scripts";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -31,6 +36,7 @@
       unstable-nixpkgs,
       home-manager,
       lanzaboote,
+      disko,
       myscripts-repo,
       ...
     }@inputs:
@@ -73,6 +79,7 @@
               stateVersion
               hostname
               lanzaboote
+              disko
               unstable
               scripts
               ;
