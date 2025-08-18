@@ -25,10 +25,6 @@
               settings = {
                 allowDiscards = true;
               };
-              extraOpenArgs = [
-                "tpm2-device=auto"
-                "token-timeout=10"
-              ];
               size = "100%";
               name = "crypted";
               type = "luks";
