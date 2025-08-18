@@ -23,13 +23,15 @@
             luks = {
               # https://0pointer.net/blog/unlocking-luks2-volumes-with-tpm2-fido2-pkcs11-security-hardware-on-systemd-248.html
               settings = {
-                crypttabExtraOpts = [
-                  "tpm2-device=auto"
-                  "token-timeout=10"
-                ];
+                allowDiscards = true;
               };
+              extraOpenArgs = [
+                "tpm2-device=auto"
+                "token-timeout=10"
+              ];
               size = "100%";
-              label = "luks";
+              name = "crypted";
+              type = "luks";
               content = {
                 type = "luks";
                 name = "cryptroot";
