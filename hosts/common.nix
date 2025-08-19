@@ -12,7 +12,7 @@ let
     P16G2 = {
       fontSize = "14";
       pixelSize = "40";
-      borderpx = "3";
+      borderpx = "4";
       alpha = "0.8";
     };
   };
@@ -199,6 +199,7 @@ in
       "audio"
       "wheel"
       "networkmanager"
+      "tss"
     ];
     shell = pkgs.bash;
   };

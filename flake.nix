@@ -71,7 +71,7 @@
       makeSystem =
         { hostname, stateVersion }:
         nixpkgs.lib.nixosSystem {
-          system = system;
+          inherit system;
           specialArgs = {
             inherit
               inputs
@@ -104,7 +104,7 @@
       ) { } hosts;
 
       homeConfigurations.${user} = home-manager.lib.homeManagerConfiguration {
-        pkgs = pkgs;
+        inherit pkgs;
         extraSpecialArgs = {
           inherit
             inputs

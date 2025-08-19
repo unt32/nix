@@ -24,36 +24,11 @@
         "sd_mod"
       ];
       kernelModules = [ ];
-      /*
-        luks.devices = {
-             "luks-2247535f-dc05-47ab-9bdc-21e81c97a6f8".device =
-               "/dev/disk/by-uuid/2247535f-dc05-47ab-9bdc-21e81c97a6f8";
-             "luks-c81b66c2-27a8-40fc-b741-2d8c3e39e5bf".device =
-               "/dev/disk/by-uuid/c81b66c2-27a8-40fc-b741-2d8c3e39e5bf";
-           };
-      */
     };
 
     kernelModules = [ "kvm-amd" ];
     extraModulePackages = [ ];
   };
-  /*
-    fileSystems = {
-      "/" = {
-        device = "/dev/disk/by-uuid/fd40f811-2cda-42d2-8c19-0dae2db19239";
-        fsType = "ext4";
-      };
-
-      "/boot" = {
-        device = "/dev/disk/by-uuid/B723-206D";
-        fsType = "vfat";
-        options = [
-          "fmask=0077"
-          "dmask=0077"
-        ];
-      };
-    };
-  */
 
   swapDevices = [
     {
