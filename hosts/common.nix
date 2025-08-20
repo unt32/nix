@@ -91,7 +91,13 @@ in
   environment = {
     sessionVariables = {
     };
+    variables = {
+      EDITOR = "vim";
+      VISUAL = "vim";
+    };
     systemPackages = with pkgs; [
+      vim
+
       home-manager
       (treefmt.withConfig {
         runtimeInputs = [ pkgs.nixfmt-rfc-style ];

@@ -17,6 +17,7 @@
       pavucontrol
       dconf # for GTK
       firefox
+      mpv
       feh
 
       lutris
@@ -27,16 +28,18 @@
 
       powertop
       htop
+
       rtorrent
-      mc
       curl
+
+      pv
       less
       tree
+      file
       blobdrop
       p7zip
       ntfs3g
       simple-mtpfs
-      mpv
     ];
 
     sessionVariables = {
