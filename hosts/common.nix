@@ -58,6 +58,8 @@ in
   };
 
   services = {
+    fwupd.enable = true;
+
     picom = {
       enable = true;
       settings = {

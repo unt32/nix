@@ -32,5 +32,12 @@
         };
       };
     };
+    nodev = {
+      ssd1tb = {
+        device = "/dev/disk/by-uuid/28597bcb-f822-4bbf-b458-6ee3720ab133";
+        fsType = "ext4";
+        mountpoint = "/mnt/SSD1TB";
+      };
+    };
   };
 }
