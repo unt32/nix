@@ -208,6 +208,7 @@ in
       "wheel"
       "networkmanager"
       "tss"
+      "users"
     ];
     shell = pkgs.bash;
   };
