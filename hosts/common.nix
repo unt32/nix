@@ -27,6 +27,9 @@ let
   host = if builtins.hasAttr hostname hosts then hosts.${hostname} else default;
 in
 {
+
+  nixpkgs.config.allowUnfree = true;
+
   system.stateVersion = stateVersion;
 
   networking = {
@@ -81,6 +84,15 @@ in
         load = true;
         save = true;
       };
+    };
+
+    libinput = {
+      mouse = {
+        middleEmulation = false;
+        accelProfile = "flat";
+        accelSpeed = "0";
+      };
+      touchpad.middleEmulation = false;
     };
   };
 
@@ -176,26 +188,16 @@ in
     ];
   };
 
-  nix.settings.experimental-features = [
-    "nix-command"
-    "flakes"
-  ];
-
-  nixpkgs.config.allowUnfree = true;
-
-  nix.gc = {
-    automatic = true;
-    dates = "weekly";
-    options = "--delete-older-than 30d";
-  };
-
-  services.libinput = {
-    mouse = {
-      middleEmulation = false;
-      accelProfile = "flat";
-      accelSpeed = "0";
+  nix = {
+    settings.experimental-features = [
+      "nix-command"
+      "flakes"
+    ];
+    gc = {
+      automatic = true;
+      dates = "weekly";
+      options = "--delete-older-than 30d";
     };
-    touchpad.middleEmulation = false;
   };
 
   users.users.${user} = {

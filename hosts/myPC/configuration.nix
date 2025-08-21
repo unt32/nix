@@ -10,6 +10,11 @@
       SCREEN = "--output DP-0 --mode 1920x1080 --refresh 165 --primary --pos 0x0 --rotate normal";
       idle = "plugged";
     };
+    systemPackages = with pkgs; [
+      sbctl
+      tpm2-tss
+      tpm2-tools
+    ];
   };
 
   boot = {
@@ -18,6 +23,7 @@
         enable = true;
         memtest86.enable = true;
       };
+      timeout = 0;
       efi.canTouchEfiVariables = true;
     };
 
@@ -27,6 +33,10 @@
     '';
     # connect xbox controller
 
+    initrd = {
+      verbose = false;
+    };
+
     plymouth = {
       enable = true;
       theme = "bgrt";
@@ -35,9 +45,7 @@
       ];
     };
 
-    # Enable "Silent boot"
     consoleLogLevel = 3;
-    initrd.verbose = false;
     kernelParams = [
       "quiet"
       "splash"
@@ -45,10 +53,6 @@
       "udev.log_priority=3"
       "rd.systemd.show_status=auto"
     ];
-    # Hide the OS choice for bootloaders.
-    # It's still possible to open the bootloader list by pressing any key
-    # It will just not appear on screen unless a key is pressed
-    loader.timeout = 0;
   };
 
   hardware = {
@@ -107,7 +111,15 @@
 
   };
 
-  security.rtkit.enable = true;
+  security = {
+    rtkit.enable = true;
+    tpm2 = {
+      enable = true;
+      pkcs11.enable = true;
+      tctiEnvironment.enable = true;
+    };
+  };
+
   services = {
     dwm-status = {
       enable = true;
