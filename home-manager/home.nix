@@ -58,6 +58,17 @@
   programs = {
     bash = {
       enable = true;
+      bashrcExtra = ''
+        alias rs='sudo nixos-rebuild switch --flake ~/nix'
+        alias rb='sudo nixos-rebuild boot --flake ~/nix'
+        alias rt='sudo nixos-rebuild test --flake ~/nix'
+
+        alias hs='home-manager switch --flake ~/nix/'
+
+        alias fwopen='sudo nft add rule inet nixos-fw input tcp dport 1414 accept'
+        alias fwlist='sudo nft list ruleset'
+        alias fwclose='sudo systemctl restart nftables.service'
+      '';
     };
 
     lf = {
@@ -70,7 +81,7 @@
               *.tar*) tar tf "$1";;
               *.7z|*.rar|*.zip) 7z l "$1";;
               *.pdf) pdftotext "$1" -;;
-              *.png|*.jpg|*.jpeg|*.gif|*.bmp|*.webp|*.tiff|*.mp4|*.mov|*.avi) timg -g 80x40 "$1";;
+              *.png|*.jpg|*.jpeg|*.gif|*.bmp|*.webp|*.tiff|*.mp4|*.mov|*.avi) timg -g 80x40 --frames 1 "$1";;
               *) highlight -O ansi "$1" || cat "$1";;
           esac
         '';
@@ -143,14 +154,6 @@
         };
         useSystem = true;
       };
-    };
-  };
-
-  xdg = {
-    enable = true;
-    mimeApps.defaultApplications = {
-      terminal = "st.desktop";
-      textEditor = "vim.desktop";
     };
   };
 
