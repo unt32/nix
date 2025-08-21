@@ -29,6 +29,12 @@
       powertop
       htop
 
+      # LF
+      highlight
+      poppler-utils
+      bat
+      timg
+
       rtorrent
       curl
 
@@ -43,10 +49,45 @@
     ];
 
     sessionVariables = {
+      EDITOR = "vim";
+      VISUAL = "vim";
+      OPENER = "openit";
     };
   };
 
   programs = {
+    bash = {
+      enable = true;
+    };
+
+    lf = {
+      enable = true;
+      previewer = {
+        source = pkgs.writeShellScript "preview.sh" ''
+          #!/bin/sh
+
+          case "$1" in
+              *.tar*) tar tf "$1";;
+              *.7z|*.rar|*.zip) 7z l "$1";;
+              *.pdf) pdftotext "$1" -;;
+              *.png|*.jpg|*.jpeg|*.gif|*.bmp|*.webp|*.tiff|*.mp4|*.mov|*.avi) timg -g 80x40 "$1";;
+              *) highlight -O ansi "$1" || cat "$1";;
+          esac
+        '';
+      };
+      keybindings = {
+        D = "trash";
+        f = "filetype";
+      };
+      commands = {
+        trash = "%mv $f ~/trash/";
+        filetype = "%file $f";
+      };
+      extraConfig = ''
+        $mkdir -p ~/trash
+      '';
+    };
+
     vim = {
       enable = true;
       extraConfig = ''
@@ -102,6 +143,14 @@
         };
         useSystem = true;
       };
+    };
+  };
+
+  xdg = {
+    enable = true;
+    mimeApps.defaultApplications = {
+      terminal = "st.desktop";
+      textEditor = "vim.desktop";
     };
   };
 

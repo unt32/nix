@@ -38,6 +38,11 @@
         fsType = "ext4";
         mountpoint = "/mnt/SSD1TB";
       };
+      hdd500gb = {
+        device = "/dev/disk/by-uuid/92e58c25-c20d-478c-9c6f-7a8a50a3fcad";
+        fsType = "ext4";
+        mountpoint = "/mnt/HDD500GB";
+      };
     };
   };
 }

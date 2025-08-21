@@ -48,6 +48,10 @@
       device = "/dev/disk/by-uuid/28597bcb-f822-4bbf-b458-6ee3720ab133";
       fsType = "ext4";
     };
+    "/mnt/HDD500GB" = {
+      device = "/dev/disk/by-uuid/92e58c25-c20d-478c-9c6f-7a8a50a3fcad";
+      fsType = "ext4";
+    };
   };
 
   swapDevices = [

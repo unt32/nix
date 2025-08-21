@@ -92,8 +92,6 @@ in
     sessionVariables = {
     };
     variables = {
-      EDITOR = "vim";
-      VISUAL = "vim";
     };
     systemPackages = with pkgs; [
       vim
@@ -115,6 +113,7 @@ in
       scripts.battery
       scripts.plugged
       scripts.powermenu
+      scripts.openit
 
       (dwm.overrideAttrs (oldAttrs: rec {
         patches = oldAttrs.patches ++ [
