@@ -59,11 +59,11 @@
     bash = {
       enable = true;
       bashrcExtra = ''
-        alias rs='sudo nixos-rebuild switch --flake ~/nix'
-        alias rb='sudo nixos-rebuild boot --flake ~/nix'
-        alias rt='sudo nixos-rebuild test --flake ~/nix'
+        alias rs='echo "rebuild switch"; sudo nixos-rebuild switch --flake ~/nix'
+        alias rb='echo "rebuild boot"; sudo nixos-rebuild boot --flake ~/nix'
+        alias rt='echo "rebuild test"; sudo nixos-rebuild test --flake ~/nix'
 
-        alias hs='home-manager switch --flake ~/nix/'
+        alias hs='echo "home-manager switch"; home-manager switch --flake ~/nix/'
 
         alias fwopen='sudo nft add rule inet nixos-fw input tcp dport 1414 accept'
         alias fwlist='sudo nft list ruleset'
@@ -91,7 +91,7 @@
         f = "filetype";
       };
       commands = {
-        trash = "%mv $f ~/trash/";
+        trash = "%mv $fs ~/trash/ || mv $f ~/trash/ ";
         filetype = "%file $f";
       };
       extraConfig = ''
@@ -171,7 +171,7 @@
       screen-init > ~/.initialize-screen.log 2>&1 &
       $idle > ~/.idle.log 2>&1 &
 
-      feh --no-fehbg --bg-max ${../src/wallpaper.jpg} > .feh.log 2>&1 &
+      feh --no-fehbg --bg-fill ${../src/wallpaper.jpg} > .feh.log 2>&1 &
     '';
   };
 

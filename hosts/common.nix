@@ -20,7 +20,7 @@ let
   default = {
     fontSize = "14";
     pixelSize = "16";
-    borderpx = "1";
+    borderpx = "2";
     alpha = "0.9";
   };
 
@@ -177,6 +177,7 @@ in
       }))
 
       dmenu
+
       xidlehook
       xss-lock
       xkb-switch
