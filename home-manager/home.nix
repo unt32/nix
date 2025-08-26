@@ -26,6 +26,8 @@
       #prismlauncher
       #jdk21
 
+      jrnl
+
       powertop
       htop
 
@@ -59,11 +61,11 @@
     bash = {
       enable = true;
       bashrcExtra = ''
-        alias rs='echo "rebuild switch"; sudo nixos-rebuild switch --flake ~/nix'
-        alias rb='echo "rebuild boot"; sudo nixos-rebuild boot --flake ~/nix'
-        alias rt='echo "rebuild test"; sudo nixos-rebuild test --flake ~/nix'
+        alias rs='echo -e "\nrebuild switch\n"; sudo nixos-rebuild switch --flake ~/nix'
+        alias rb='echo -e "\nrebuild boot\n"; sudo nixos-rebuild boot --flake ~/nix'
+        alias rt='echo -e "\nrebuild test\n"; sudo nixos-rebuild test --flake ~/nix'
 
-        alias hs='echo "home-manager switch"; home-manager switch --flake ~/nix/'
+        alias hs='echo -e "\nhome-manager switch\n"; home-manager switch --flake ~/nix/'
 
         alias fwopen='sudo nft add rule inet nixos-fw input tcp dport 1414 accept'
         alias fwlist='sudo nft list ruleset'

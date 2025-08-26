@@ -11,24 +11,41 @@ let
   hosts = {
     P16G2 = {
       fontSize = "14";
-      pixelSize = "40";
-      borderpx = "4";
+      borderPx = "4";
       alpha = "0.8";
+      pixelSize = "40";
     };
   };
 
   default = {
     fontSize = "14";
-    pixelSize = "16";
-    borderpx = "2";
+    borderPx = "2";
     alpha = "0.9";
+    pixelSize = "16";
   };
 
   host = if builtins.hasAttr hostname hosts then hosts.${hostname} else default;
 in
 {
 
-  nixpkgs.config.allowUnfree = true;
+  nixpkgs = {
+    config.allowUnfree = true;
+    overlays = [
+      (import ../src/overlays/dwm.nix {
+        inherit (host)
+          fontSize
+          borderPx
+          ;
+      })
+
+      (import ../src/overlays/st.nix {
+        inherit (host)
+          alpha
+          pixelSize
+          ;
+      })
+    ];
+  };
 
   system.stateVersion = stateVersion;
 
@@ -101,14 +118,9 @@ in
   };
 
   environment = {
-    sessionVariables = {
-    };
-    variables = {
-    };
     systemPackages = with pkgs; [
-      vim
-
       home-manager
+
       (treefmt.withConfig {
         runtimeInputs = [ pkgs.nixfmt-rfc-style ];
         settings = {
@@ -127,55 +139,8 @@ in
       scripts.powermenu
       scripts.openit
 
-      (dwm.overrideAttrs (oldAttrs: rec {
-        patches = oldAttrs.patches ++ [
-          (fetchpatch {
-            url = "https://dwm.suckless.org/patches/noborder/dwm-noborder-6.2.diff";
-            sha256 = "sha256-HJKvYCPDgAcxCmKeqA1Fri94RB184odEBF4ZTj6jvy8=";
-          })
-
-          ../src/dwm.diff
-
-          (builtins.toFile "dwm-diffs.patch" ''
-            --- a/config.def.h
-            +++ b/config.def.h
-            @@ -4,1 +4,1 @@
-            -static const unsigned int borderpx  = 1;        /* border pixel of windows */
-            +static const unsigned int borderpx  = ${host.borderpx};        /* border pixel of windows */
-            @@ -10,2 +10,2 @@
-            -static const char *fonts[]          = { "monospace:size=10" };
-            -static const char dmenufont[]       = "monospace:size=10";
-            +static const char *fonts[]          = { "monospace:size=${host.fontSize}" };
-            +static const char dmenufont[]       = "monospace:size=${host.fontSize}";
-          '')
-        ];
-      }))
-
-      (st.overrideAttrs (oldAttrs: rec {
-        patches = [
-          (fetchpatch {
-            url = "https://st.suckless.org/patches/anysize/st-anysize-20220718-baa9357.diff";
-            sha256 = "sha256-yx9VSwmPACx3EN3CAdQkxeoJKJxQ6ziC9tpBcoWuWHc=";
-          })
-
-          (fetchpatch {
-            url = "https://st.suckless.org/patches/alpha/st-alpha-osc11-20220222-0.8.5.diff";
-            sha256 = "sha256-Y8GDatq/1W86GKPJWzggQB7O85hXS0SJRva2atQ3upw=";
-          })
-
-          (builtins.toFile "st-diffs.patch" ''
-            --- a/config.def.h
-            +++ b/config.def.h
-            @@ -8,1 +8,1 @@
-            -static char *font = "Liberation Mono:pixelsize=12:antialias=true:autohint=true";
-            +static char *font = "Liberation Mono:pixelsize=${host.pixelSize}:antialias=true:autohint=true";
-            @@ -97,1 +97,1 @@ char *termname = "st-256color";
-            -float alpha = 0.8;
-            +float alpha = ${host.alpha};
-          '')
-        ];
-      }))
-
+      dwm
+      st
       dmenu
 
       xidlehook
