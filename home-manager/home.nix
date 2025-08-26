@@ -79,12 +79,13 @@
         source = pkgs.writeShellScript "preview.sh" ''
           #!/bin/sh
 
+          file "$1"
           case "$1" in
               *.tar*) tar tf "$1";;
               *.7z|*.rar|*.zip) 7z l "$1";;
               *.pdf) pdftotext "$1" -;;
               *.png|*.jpg|*.jpeg|*.gif|*.bmp|*.webp|*.tiff|*.mp4|*.mov|*.avi) timg -g 80x40 --frames 1 "$1";;
-              *) highlight -O ansi "$1" || cat "$1";;
+              *) highlight -O xterm256 "$1" || cat "$1";;
           esac
         '';
       };
