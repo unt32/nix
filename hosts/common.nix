@@ -142,12 +142,12 @@ in
                 IdentityFile ~/.ssh/myPC
                 Port 39651
                 User unt32
-                HostName r3600-2060s
+                HostName 10.147.17.0
         Host P16G2
                 IdentityFile ~/.ssh/P16G2
                 Port 39651
                 User unt32
-                HostName thinkpad-P16G2
+                HostName 10.147.17.1
       ";
     };
   };
