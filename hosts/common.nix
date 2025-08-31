@@ -111,10 +111,45 @@ in
       };
       touchpad.middleEmulation = false;
     };
+
+    openssh = {
+      enable = true;
+      ports = [ 39651 ];
+      settings = {
+        PasswordAuthentication = false;
+        KbdInteractiveAuthentication = false;
+        PermitRootLogin = "no";
+        AllowUsers = [ "unt32" ];
+      };
+
+    };
+
+    zerotierone = {
+      enable = true;
+      joinNetworks = [
+        "45b6e887e2bc151f"
+      ];
+    };
   };
 
   programs = {
     i3lock.enable = true;
+    ssh = {
+      extraConfig = "
+        Host github.com
+          IdentityFile ~/.ssh/git
+        Host myPC
+                IdentityFile ~/.ssh/myPC
+                Port 39651
+                User unt32
+                HostName r3600-2060s
+        Host P16G2
+                IdentityFile ~/.ssh/P16G2
+                Port 39651
+                User unt32
+                HostName thinkpad-P16G2
+      ";
+    };
   };
 
   environment = {
