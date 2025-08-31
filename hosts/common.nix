@@ -134,22 +134,6 @@ in
 
   programs = {
     i3lock.enable = true;
-    ssh = {
-      extraConfig = "
-        Host github.com
-          IdentityFile ~/.ssh/git
-        Host myPC
-                IdentityFile ~/.ssh/myPC
-                Port 39651
-                User unt32
-                HostName 10.147.17.0
-        Host P16G2
-                IdentityFile ~/.ssh/P16G2
-                Port 39651
-                User unt32
-                HostName 10.147.17.1
-      ";
-    };
   };
 
   environment = {
