@@ -40,6 +40,9 @@
       rtorrent
       curl
 
+
+      systemctl-tui
+
       pv
       less
       tree
@@ -70,6 +73,8 @@
         alias fwopen='sudo nft add rule inet nixos-fw input tcp dport 1414 accept'
         alias fwlist='sudo nft list ruleset'
         alias fwclose='sudo systemctl restart nftables.service'
+
+        alias sctl=systemctl-tui
       '';
     };
 
@@ -92,9 +97,11 @@
       keybindings = {
         D = "trash";
         f = "filetype";
+        b = "filedrop";
       };
       commands = {
-        trash = "%mv $fs ~/trash/ || mv $f ~/trash/ ";
+        trash = "%[ -n \"$fs\" ] && mv $fs ~/trash/ || mv $f ~/trash/";
+        filedrop = "%[ -n \"$fs\" ] && blobdrop $fs || blobdrop $f";
         filetype = "%file $f";
       };
       extraConfig = ''
@@ -121,7 +128,7 @@
       compression = true;
       extraConfig = "
         Host github.com
-          IdentityFile ~/.ssh/git
+                IdentityFile ~/.ssh/git
         Host myPC
                 IdentityFile ~/.ssh/myPC
                 Port 39651
