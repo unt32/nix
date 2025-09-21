@@ -23,7 +23,6 @@
         enable = true;
         memtest86.enable = true;
       };
-      timeout = 0;
       efi.canTouchEfiVariables = true;
     };
 
@@ -32,27 +31,6 @@
       options bluetooth disable_ertm=Y
     '';
     # connect xbox controller
-
-    initrd = {
-      verbose = false;
-    };
-
-    plymouth = {
-      enable = true;
-      theme = "bgrt";
-      themePackages = with pkgs; [
-        nixos-bgrt-plymouth
-      ];
-    };
-
-    consoleLogLevel = 3;
-    kernelParams = [
-      "quiet"
-      "splash"
-      "boot.shell_on_fail"
-      "udev.log_priority=3"
-      "rd.systemd.show_status=auto"
-    ];
   };
 
   hardware = {
@@ -122,7 +100,6 @@
 
   services = {
     dwm-status = {
-      enable = true;
       extraConfig = builtins.readFile ./dwm-status.toml;
       order = [
         "audio"
@@ -167,12 +144,4 @@
     xserver.videoDrivers = [ "nvidia" ];
   };
 
-  programs.steam = {
-    enable = true;
-    gamescopeSession.enable = true;
-    remotePlay.openFirewall = false; # Open ports in the firewall for Steam Remote Play
-    dedicatedServer.openFirewall = false; # Open ports in the firewall for Source Dedicated Server
-    localNetworkGameTransfers.openFirewall = true; # Open ports in the firewall for Steam Local Network Game Transfers
-    extraCompatPackages = with pkgs; [ proton-ge-bin ];
-  };
 }

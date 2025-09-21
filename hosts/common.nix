@@ -77,8 +77,37 @@ in
     };
   };
 
+  boot = {
+
+    plymouth = {
+      enable = true;
+      theme = "bgrt";
+      themePackages = with pkgs; [
+        nixos-bgrt-plymouth
+      ];
+    };
+
+    # Enable "Silent boot"
+    consoleLogLevel = 3;
+    initrd.verbose = false;
+    kernelParams = [
+      "quiet"
+      "splash"
+      "boot.shell_on_fail"
+      "udev.log_priority=3"
+      "rd.systemd.show_status=auto"
+    ];
+    # Hide the OS choice for bootloaders.
+    # It's still possible to open the bootloader list by pressing any key
+    # It will just not appear on screen unless a key is pressed
+    loader.timeout = 0;
+
+  };
+
   services = {
     fwupd.enable = true;
+
+    dwm-status.enable = true;
 
     picom = {
       enable = true;
@@ -104,12 +133,16 @@ in
     };
 
     libinput = {
+      enable = true;
       mouse = {
         middleEmulation = false;
         accelProfile = "flat";
         accelSpeed = "0";
       };
-      touchpad.middleEmulation = false;
+      touchpad = {
+        accelSpeed = "1.0";
+        middleEmulation = false;
+      };
     };
 
     openssh = {
@@ -171,6 +204,15 @@ in
       xclip
       scrot
     ];
+  };
+
+  programs.steam = {
+    enable = true;
+    gamescopeSession.enable = true;
+    remotePlay.openFirewall = false; # Open ports in the firewall for Steam Remote Play
+    dedicatedServer.openFirewall = false; # Open ports in the firewall for Source Dedicated Server
+    localNetworkGameTransfers.openFirewall = true; # Open ports in the firewall for Steam Local Network Game Transfers
+    extraCompatPackages = with pkgs; [ proton-ge-bin ];
   };
 
   nix = {

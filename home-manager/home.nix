@@ -40,7 +40,6 @@
       rtorrent
       curl
 
-
       systemctl-tui
 
       pv
