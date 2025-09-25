@@ -10,7 +10,7 @@
 let
   hosts = {
     P16G2 = {
-      fontSize = "14";
+      fontSize = "12";
       borderPx = "4";
       alpha = "0.8";
       pixelSize = "40";
@@ -27,6 +27,9 @@ let
   host = if builtins.hasAttr hostname hosts then hosts.${hostname} else default;
 in
 {
+  imports = [
+    ./mods/dwm-de.nix
+  ];
 
   nixpkgs = {
     config.allowUnfree = true;
@@ -107,28 +110,11 @@ in
   services = {
     fwupd.enable = true;
 
-    dwm-status.enable = true;
-
-    picom = {
-      enable = true;
-      settings = {
-        unredir-if-possible = true;
-      };
-    };
-
     xserver = {
       enable = true;
       xkb = {
         layout = "us,ru";
         variant = "";
-      };
-    };
-
-    displayManager.ly = {
-      enable = true;
-      settings = {
-        load = true;
-        save = true;
       };
     };
 
@@ -165,12 +151,10 @@ in
     };
   };
 
-  programs = {
-    i3lock.enable = true;
-  };
-
   environment = {
     systemPackages = with pkgs; [
+      git
+      vim
       home-manager
 
       (treefmt.withConfig {
@@ -183,26 +167,6 @@ in
           };
         };
       })
-
-      scripts.screen-init
-      scripts.status-bar
-      scripts.battery
-      scripts.plugged
-      scripts.powermenu
-      scripts.openit
-
-      dwm
-      st
-      dmenu
-
-      xidlehook
-      xss-lock
-      xkb-switch
-      alsa-utils
-      brightnessctl
-
-      xclip
-      scrot
     ];
   };
 
