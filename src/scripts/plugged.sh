@@ -1,7 +1,12 @@
 #!/bin/sh
 
-pkill -e xidlehook
 
+xset s 0 0
+xset s off
+xset dpms 0 0 0
+
+
+echo plugged
 export PRIMARY_DISPLAY="$(xrandr | awk '/ primary/{print $1}' | tr -d '\n')"
 
 xidlehook \
@@ -11,6 +16,4 @@ xidlehook \
         --timer 900 \
           'xrandr --output "$PRIMARY_DISPLAY" --brightness .1' \
           'xrandr --output "$PRIMARY_DISPLAY" --brightness 1' \
-        --timer 300 'xrandr --output "$PRIMARY_DISPLAY" --brightness 1 & xset dpms force off' '' &
-
-echo $idle
+        --timer 300 'xrandr --output "$PRIMARY_DISPLAY" --brightness 1 & xset dpms force off' ''

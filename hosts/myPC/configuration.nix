@@ -7,8 +7,6 @@
 
   environment = {
     sessionVariables = {
-      SCREEN = "--output DP-0 --mode 1920x1080 --refresh 165 --primary --pos 0x0 --rotate normal";
-      idle = "plugged";
     };
     systemPackages = with pkgs; [
       sbctl

@@ -20,10 +20,6 @@
     sessionVariables = {
       MOZ_USE_XINPUT2 = "1";
       _JAVA_AWT_WM_NONREPARENTING = "1";
-
-      SCREEN = "--output eDP-1 --primary --mode 3840x2400 --rotate normal --refresh 60";
-      idle = "battery";
-
     };
     systemPackages = with pkgs; [
       sbctl
@@ -118,6 +114,26 @@
         };
       };
 
+    };
+
+    autorandr.profiles = {
+      "main" = {
+        fingerprint = {
+          eDP-1 = "00ffffffffffff004c83654100000000001f0104b5221678020cf1ae523cb9230c50540000000101010101010101010101010101010171df0050f06020902008880058d71000001b71df0050f06020902008880058d71000001b000000fe0053444320202020202020202020000000fe0041544e413630595630342d302001ac02030f00e3058000e606050174600700000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000b7";
+        };
+        config = {
+          eDP-1 = {
+            enable = true;
+            crtc = 0;
+            primary = true;
+            position = "0x0";
+            mode = "3840x2400";
+            gamma = "1:1:1";
+            rate = "60.00";
+            rotate = "normal";
+          };
+        };
+      };
     };
 
     xserver = {

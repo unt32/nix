@@ -13,8 +13,6 @@
     in
     {
       packages.x86_64-linux = {
-        screen-init = pkgs.writeShellScriptBin "screen-init" (builtins.readFile ./initialize-screen.sh);
-        status-bar = pkgs.writeShellScriptBin "status-bar" (builtins.readFile ./dwm-status-restart.sh);
         battery = pkgs.writeShellScriptBin "battery" (builtins.readFile ./battery.sh);
         plugged = pkgs.writeShellScriptBin "plugged" (builtins.readFile ./plugged.sh);
         powermenu = pkgs.writeShellScriptBin "powermenu" (builtins.readFile ./powermenu.sh);
