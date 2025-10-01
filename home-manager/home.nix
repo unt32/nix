@@ -5,11 +5,14 @@
   unstable,
   ...
 }:
+let
+  homeDir = "/home/${user}";
+in
 {
 
   home = {
     username = user;
-    homeDirectory = "/home/${user}";
+    homeDirectory = homeDir;
     stateVersion = homeStateVersion;
 
     packages = with pkgs; [
@@ -197,6 +200,35 @@
     };
     gtk4.extraConfig = {
       gtk-application-prefer-dark-theme = 1;
+    };
+  };
+
+  qt = {
+    enable = true;
+    platformTheme.name = "gtk";
+  };
+
+  xdg = {
+    enable = true;
+    portal = {
+      enable = true;
+      extraPortals = with pkgs; [
+        xdg-desktop-portal
+        xdg-desktop-portal-gtk
+      ];
+      config.common.default = "*";
+    };
+    userDirs = {
+      enable = true;
+      createDirectories = true;
+      download = "${homeDir}/downloads";
+      desktop = "${homeDir}/.xdg-shit/desktop";
+      documents = "${homeDir}/.xdg-shit/documents";
+      music = "${homeDir}/.xdg-shit/music";
+      pictures = "${homeDir}/.xdg-shit/pictures";
+      publicShare = "${homeDir}/.xdg-shit/publicShare";
+      templates = "${homeDir}/.xdg-shit/templates";
+      videos = "${homeDir}/.xdg-shit/videos";
     };
   };
 

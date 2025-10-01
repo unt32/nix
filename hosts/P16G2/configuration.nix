@@ -20,6 +20,7 @@
     sessionVariables = {
       MOZ_USE_XINPUT2 = "1";
       _JAVA_AWT_WM_NONREPARENTING = "1";
+      GDK_SCALE = "2.5";
     };
     systemPackages = with pkgs; [
       sbctl
