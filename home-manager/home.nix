@@ -98,11 +98,13 @@ in
       };
       keybindings = {
         D = "trash";
+        W = "setbg";
         f = "filetype";
         b = "filedrop";
       };
       commands = {
         trash = "%[ -n \"$fs\" ] && mv $fs ~/trash/ || mv $f ~/trash/";
+        setbg = "%feh --bg-fill $f";
         filedrop = "%[ -n \"$fs\" ] && blobdrop $fs || blobdrop $f";
         filetype = "%file $f";
       };

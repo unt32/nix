@@ -3,6 +3,7 @@
   pkgs,
   lib,
   hostname,
+  user,
   scripts,
   ...
 }:
@@ -82,7 +83,7 @@ in
       serviceConfig = {
         Restart = "on-failure";
         RestartSec = 5;
-        ExecStart = "${pkgs.feh}/bin/feh --no-fehbg --bg-fill ${../../src/wallpaper.jpg}";
+        ExecStart = "${pkgs.bash}/bin/bash -c \"/home/${user}/.fehbg && echo 'Custom wallpaper applied' || ${pkgs.feh}/bin/feh --no-fehbg --bg-fill ${../../src/wallpaper.jpg}\"";
       };
     };
 
