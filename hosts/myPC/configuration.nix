@@ -153,7 +153,7 @@
             crtc = 0;
             primary = true;
             position = "0x0";
-            mode = "3840x2400";
+            mode = "1920x1080";
             gamma = "1:1:1";
             rate = "165.00";
             rotate = "normal";

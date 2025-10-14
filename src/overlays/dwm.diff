@@ -20,19 +20,7 @@
 60a64
 > static const char *powermenucmd[] = { "powermenu", dmenufont, col_gray1, col_gray3, col_cyan, col_gray4, NULL };
 65a70
-> 	{ MODKEY,                       XK_o,	spawn,	   {.v = powermenucmd} },
-68,69c73,74
-< 	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
-< 	{ MODKEY,                       XK_k,      focusstack,     {.i = -1 } },
----
-> 	{ MODKEY,                       XK_j,   focusstack,     {.i = +1 } },
-> 	{ MODKEY,                       XK_k,     focusstack,     {.i = -1 } },
-72,73c77,78
-< 	{ MODKEY,                       XK_h,      setmfact,       {.f = -0.05} },
-< 	{ MODKEY,                       XK_l,      setmfact,       {.f = +0.05} },
----
-> 	{ MODKEY,                       XK_h,   setmfact,       {.f = -0.05} },
-> 	{ MODKEY,                       XK_l,  setmfact,       {.f = +0.05} },
+> 	{ MODKEY,                       XK_o,		    spawn,          {.v = powermenucmd} },
 75,76c80,81
 < 	{ MODKEY,                       XK_Tab,    view,           {0} },
 < 	{ MODKEY|ShiftMask,             XK_c,      killclient,     {0} },
