@@ -2,43 +2,35 @@
   disko.devices = {
     disk = {
       main = {
-        device = "/dev/nvme0n1";
+        device = "/dev/nmvme0n1";
         type = "disk";
         content = {
           type = "gpt";
           partitions = {
             ESP = {
-              size = "512M";
               type = "EF00";
+              size = "512M";
               content = {
                 type = "filesystem";
                 format = "vfat";
                 mountpoint = "/boot";
                 mountOptions = [
-                  "umask=0077"
+                  "fmask=0077"
                   "dmask=0077"
                 ];
               };
             };
-            luks = {
-              # https://0pointer.net/blog/unlocking-luks2-volumes-with-tpm2-fido2-pkcs11-security-hardware-on-systemd-248.html
+            root = {
               size = "100%";
               content = {
-                type = "luks";
-                name = "crypted";
-                settings = {
-                  allowDiscards = true;
-                };
-                content = {
-                  type = "filesystem";
-                  format = "ext4";
-                  mountpoint = "/";
-                };
+                type = "filesystem";
+                format = "ext4";
+                mountpoint = "/";
               };
             };
           };
         };
       };
     };
-  };
+  }
 }

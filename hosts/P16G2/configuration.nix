@@ -20,10 +20,9 @@
     sessionVariables = {
       MOZ_USE_XINPUT2 = "1";
       _JAVA_AWT_WM_NONREPARENTING = "1";
-      _JAVA_OPTIONS = "-Dsun.java2d.uiScale=2.2"; # default 1 I think
+      _JAVA_OPTIONS = "-Dsun.java2d.uiScale=2.2";
       GDK_SCALE = "2.5";
       QT_AUTO_SCREEN_SCALE_FACTOR = "1";
-      XCURSOR_SIZE = "64"; # default 16 I think
     };
     systemPackages = with pkgs; [
       sbctl
